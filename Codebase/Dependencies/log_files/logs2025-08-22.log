@@ -1,0 +1,16 @@
+INFO:2025-08-22 00:19:00,919:MainThread:Dhan.py  started system
+INFO:2025-08-22 00:19:00,919:MainThread:STARTED THE PROGRAM
+ERROR:2025-08-22 00:19:12,582:MainThread:Error at Gettting balance as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Codebase\Dhan_Tradehull_V3.py", line 495, in get_balance
+    raise Exception(response)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-08-22 00:19:13,661:MainThread:got exception in pnl as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}} 
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Codebase\Dhan_Tradehull_V3.py", line 454, in get_live_pnl
+    raise Exception(pos_book)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+INFO:2025-08-22 00:20:58,696:MainThread:Dhan.py  started system
+INFO:2025-08-22 00:20:58,697:MainThread:STARTED THE PROGRAM
+INFO:2025-08-22 00:21:43,888:MainThread:Dhan.py  started system
+INFO:2025-08-22 00:21:43,890:MainThread:STARTED THE PROGRAM
