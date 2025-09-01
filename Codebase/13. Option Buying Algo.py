@@ -128,8 +128,9 @@ while True:
                 exchange = "NSE"
 
             chart = tsl.get_historical_data(tradingsymbol=name, exchange=exchange, timeframe="5")
+            chart['vwap'] = volume_weighted_average_price(high=chart['high'],low=chart['low'],close=chart['close'],volume=chart['volume'])
             chart['rsi'] = talib.RSI(chart['close'], timeperiod=14)
-            chart['ma_rsi'] = talib.SMA(chart['rsi'], timeperiod=14)
+            chart['ma_rsi'] = talib.SMA(chart['rsi'], timeperiod=20)
             chart['ma'] = pta.sma(chart['close'], timeperiod=12)
             #print(chart)
             #pdb.set_trace()
@@ -138,7 +139,6 @@ while True:
             #chart['timestamp'] = pd.to_datetime(chart['timestamp'])
             #chart = chart.set_index('timestamp').sort_index()
             #chart.index = chart.index.tz_localize(None)
-            chart['vwap'] = volume_weighted_average_price(high=chart['high'],low=chart['low'],close=chart['close'],volume=chart['volume'])
             # Calculate Parabolic Sar Value
             para = pta.psar(high=chart['high'], low=chart['low'], close=chart['close'],step=0.05, max_step=0.2, offset=None)
             chart[['PSARl_0.02_0.2', 'PSARs_0.02_0.2', 'PSARaf_0.02_0.2', 'PSARr_0.02_0.2']] = para[['PSARl_0.02_0.2', 'PSARs_0.02_0.2', 'PSARaf_0.02_0.2', 'PSARr_0.02_0.2']]
@@ -173,16 +173,11 @@ while True:
             fractal_high = pd.to_numeric(last['fractal_high'], errors='coerce')
             vwap = pd.to_numeric(last['vwap'], errors='coerce')
             Crossabove = pta.cross(chart['rsi'], chart['ma_rsi'], above=True)
-            #pdb.set_trace()
-            if Crossabove >= 1:
-                Crossabove = True;
-            else:
-                Crossabove = False;
 
-            #pdb.set_trace()
             # buy entry conditions
             bc1 = cc['rsi'] > 60
-            bc2 = Crossabove
+            #pdb.set_trace()
+            bc2 = bool(Crossabove.iloc[-2])
             #bc2 = cross_up.iloc[-2]
             #bc2 = (cc['rsi'] < cc['ma_rsi']) and (last['rsi'] > last['ma_rsi'])
             bc3 = last_close > long_stop
@@ -190,7 +185,7 @@ while True:
             bc5 = last_close > vwap
             bc6 = orderbook[name]['traded'] is None
             bc7 = no_of_orders_placed < 5
-            print(bc1 ,bc2, bc3 ,bc4 ,bc5 , bc6 , bc7 )
+            print(bc1 ,bc2, bc3 ,bc4 ,bc5 )
             #print("Types:", type(last['close']), type(last['Long_Stop']), type(last['fractal_high']),type(last['vwap']))
 
 
@@ -205,7 +200,7 @@ while True:
         if bc1 and bc2 and bc3 and bc4 and bc5 and bc6 and bc7:
             print("buy ", name, "\t")
 
-            pdb.set_trace()
+            #pdb.set_trace()
 
             # margin_avialable = tsl.get_balance()
             # margin_required  = cc['close']/4.5
@@ -214,7 +209,7 @@ while True:
             # 	print(f"Less margin, not taking order : margin_avialable is {margin_avialable} and margin_required is {margin_required} for {name}")
             # 	continue
 
-            ce_name, pe_name, ce_otm_strike, pe_otm_strike = tsl.OTM_Strike_Selection(Underlying='NIFTY', Expiry=0,
+            ce_name, pe_name, ce_otm_strike, pe_otm_strike = tsl.OTM_Strike_Selection(Underlying=name, Expiry=0,
                                                                                       OTM_count=2)
 
             lot_size = tsl.get_lot_size(tradingsymbol=ce_name)
