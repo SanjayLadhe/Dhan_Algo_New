@@ -1994,25 +1994,25 @@ class Tradehull:
                 try:
                     name = name.upper()
                     if name in exchange_index.keys():
-                        security_check = instrument_df[((instrument_df['SEM_CUSTOM_SYMBOL'] == name) | (
-                                    instrument_df['SEM_TRADING_SYMBOL'] == name))]
+                        security_check = instrument_df[((instrument_df['SEM_CUSTOM_SYMBOL'] == name) |
+                                                        (instrument_df['SEM_TRADING_SYMBOL'] == name))]
                         if security_check.empty:
                             raise Exception("Check the Tradingsymbol")
                         security_id = security_check.iloc[-1]['SEM_SMST_SECURITY_ID']
                         instruments['IDX_I'].append(int(security_id))
                         instrument_names[str(security_id)] = name
                     elif name in self.commodity_step_dict.keys():
-                        security_check = instrument_df[(instrument_df['SEM_EXM_EXCH_ID'] == 'MCX') & (
-                                    instrument_df['SM_SYMBOL_NAME'] == name.upper()) & (
-                                                                   instrument_df['SEM_INSTRUMENT_NAME'] == 'FUTCOM')]
+                        security_check = instrument_df[(instrument_df['SEM_EXM_EXCH_ID'] == 'MCX') &
+                                                       (instrument_df['SM_SYMBOL_NAME'] == name.upper()) &
+                                                       (instrument_df['SEM_INSTRUMENT_NAME'] == 'FUTCOM')]
                         if security_check.empty:
                             raise Exception("Check the Tradingsymbol")
                         security_id = security_check.sort_values(by='SEM_EXPIRY_DATE').iloc[0]['SEM_SMST_SECURITY_ID']
                         instruments['MCX_COMM'].append(int(security_id))
                         instrument_names[str(security_id)] = name
                     else:
-                        security_check = instrument_df[((instrument_df['SEM_CUSTOM_SYMBOL'] == name) | (
-                                    instrument_df['SEM_TRADING_SYMBOL'] == name))]
+                        security_check = instrument_df[((instrument_df['SEM_CUSTOM_SYMBOL'] == name) |
+                                                        (instrument_df['SEM_TRADING_SYMBOL'] == name))]
                         if security_check.empty:
                             raise Exception("Check the Tradingsymbol")
                         security_id = security_check.iloc[-1]['SEM_SMST_SECURITY_ID']
@@ -2030,14 +2030,14 @@ class Tradehull:
                         mcx_check = ['MCX_COMM' for mcx in self.commodity_step_dict.keys() if mcx in name]
                         exchange = "MCX_COMM" if len(mcx_check) != 0 else exchange
                         if exchange == "MCX_COMM":
-                            if instrument_df[((instrument_df['SEM_CUSTOM_SYMBOL'] == name) | (
-                                    instrument_df['SEM_TRADING_SYMBOL'] == name)) & (
-                                                     instrument_df['SEM_EXM_EXCH_ID'] == 'MCX')].empty:
+                            if instrument_df[((instrument_df['SEM_CUSTOM_SYMBOL'] == name) |
+                                              (instrument_df['SEM_TRADING_SYMBOL'] == name)) &
+                                             (instrument_df['SEM_EXM_EXCH_ID'] == 'MCX')].empty:
                                 exchange = trail_exchange
                         if exchange == "MCX_COMM":
-                            security_check = instrument_df[((instrument_df['SEM_CUSTOM_SYMBOL'] == name) | (
-                                        instrument_df['SEM_TRADING_SYMBOL'] == name)) & (
-                                                                       instrument_df['SEM_EXM_EXCH_ID'] == 'MCX')]
+                            security_check = instrument_df[((instrument_df['SEM_CUSTOM_SYMBOL'] == name) |
+                                                            (instrument_df['SEM_TRADING_SYMBOL'] == name)) &
+                                                           (instrument_df['SEM_EXM_EXCH_ID'] == 'MCX')]
                             if security_check.empty:
                                 raise Exception("Check the Tradingsymbol")
                             security_id = security_check.iloc[-1]['SEM_SMST_SECURITY_ID']
@@ -2046,6 +2046,7 @@ class Tradehull:
                 except Exception as e:
                     print(f"Exception for instrument name {name} as {e}")
                     continue
+
             time.sleep(2)
             data = self.Dhan.ohlc_data(instruments)
 
@@ -2059,6 +2060,12 @@ class Tradehull:
                 for exchange in data['data']['data']:
                     for key, values in all_values[exchange].items():
                         symbol = instrument_names[key]
+
+                        # only add timestamp if available in API response
+                        if "timestamp" in values:
+                            import pandas as pd
+                            values["timestamp"] = pd.to_datetime(values["timestamp"], unit="ms", errors="coerce")
+
                         ltp_data[symbol] = values
             else:
                 raise Exception(data)
@@ -2156,3 +2163,10 @@ class Tradehull:
                 })
 
         return pd.DataFrame(renko_data)
+
+    def crossover(series1, series2):
+        """True where series1 crosses above series2."""
+        return (series1.shift(1) < series2.shift(1)) & (series1 > series2)
+
+
+
