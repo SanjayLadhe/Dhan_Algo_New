@@ -1,0 +1,343 @@
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 12:31:48.217320
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 12:56:36.552930
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 13:23:46.125227
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 13:25:30.628505
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 13:36:53.277738
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-06 13:36:53] Paper Trading Simulator Initialized
+[2025-10-06 13:36:53] Balance queried: 50,000.00
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 13:38:49.429937
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-06 13:38:49] Paper Trading Simulator Initialized
+[2025-10-06 13:38:49] Balance queried: 50,000.00
+[2025-10-06 13:38:54]  ORDER PLACED: MARKET BUY 25 RELIANCE25APR2425500CE @ 100.60 (Order ID: PAPER_1000)
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 13:41:56.260812
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-06 13:41:56] Paper Trading Simulator Initialized
+[2025-10-06 13:41:56] Balance queried: 50,000.00
+[2025-10-06 13:42:01]  ORDER PLACED: MARKET BUY 25 RELIANCE25APR2425500CE @ 100.60 (Order ID: PAPER_1000)
+[2025-10-06 13:42:01]     Balance reduced: 2,515.00 | New Balance: 47,485.00
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 13:43:18.930265
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-06 13:43:18] Paper Trading Simulator Initialized
+[2025-10-06 13:43:18] Balance queried: 50,000.00
+[2025-10-06 13:43:23]  ORDER PLACED: MARKET BUY 25 RELIANCE25APR2425500CE @ 100.60 (Order ID: PAPER_1000)
+[2025-10-06 13:43:23]     Balance reduced: 2,515.00 | New Balance: 47,485.00
+[2025-10-06 13:43:23]  Executed Price for PAPER_1000: 100.60
+[2025-10-06 13:43:26]  ORDER PLACED: STOPLIMIT SELL 25 RELIANCE25APR2425500CE @ 96.60 (Order ID: PAPER_1001)
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 15:05:09.663065
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-06 15:05:09] Paper Trading Simulator Initialized
+[2025-10-06 15:05:09] Balance queried: 50,000.00
+[2025-10-06 15:05:14]  ORDER PLACED: MARKET BUY 25 RELIANCE25APR2425500CE @ 100.60 (Order ID: PAPER_1000)
+[2025-10-06 15:05:14]     Balance reduced: 2,515.00 | New Balance: 47,485.00
+[2025-10-06 15:05:14]  Executed Price for PAPER_1000: 100.60
+[2025-10-06 15:05:17]  ORDER PLACED: STOPLIMIT SELL 25 RELIANCE25APR2425500CE @ 96.60 (Order ID: PAPER_1001)
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 15:08:51.542214
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-06 15:08:51] Paper Trading Simulator Initialized
+[2025-10-06 15:08:51] Balance queried: 50,000.00
+[2025-10-06 15:08:56]  ORDER PLACED: MARKET BUY 25 RELIANCE25APR2425500CE @ 100.60 (Order ID: PAPER_1000)
+[2025-10-06 15:08:56]     Balance reduced: 2,515.00 | New Balance: 47,485.00
+[2025-10-06 15:08:56]  Executed Price for PAPER_1000: 100.60
+[2025-10-06 15:08:59]  ORDER PLACED: STOPLIMIT SELL 25 RELIANCE25APR2425500CE @ 96.60 (Order ID: PAPER_1001)
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 15:11:08.517960
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-06 15:11:08] Paper Trading Simulator Initialized
+[2025-10-06 15:11:08] Balance queried: 50,000.00
+[2025-10-06 15:11:13]  ORDER PLACED: MARKET BUY 25 RELIANCE25APR2425500CE @ 100.60 (Order ID: PAPER_1000)
+[2025-10-06 15:11:13]     Balance reduced: 2,515.00 | New Balance: 47,485.00
+[2025-10-06 15:11:13]  Executed Price for PAPER_1000: 100.60
+[2025-10-06 15:11:15]  ORDER PLACED: STOPLIMIT SELL 25 RELIANCE25APR2425500CE @ 96.60 (Order ID: PAPER_1001)
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 15:14:43.586769
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-06 15:14:43] Paper Trading Simulator Initialized
+[2025-10-06 15:14:43] Balance queried: 50,000.00
+[2025-10-06 15:14:48]  ORDER PLACED: MARKET BUY 25 RELIANCE25APR2425500CE @ 100.60 (Order ID: PAPER_1000)
+[2025-10-06 15:14:48]     Balance reduced: 2,515.00 | New Balance: 47,485.00
+[2025-10-06 15:14:48]  Executed Price for PAPER_1000: 100.60
+[2025-10-06 15:14:51]  ORDER PLACED: STOPLIMIT SELL 25 RELIANCE25APR2425500CE @ 96.60 (Order ID: PAPER_1001)
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 15:17:29.877212
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-06 15:17:29] Paper Trading Simulator Initialized
+[2025-10-06 15:17:29] Balance queried: 50,000.00
+[2025-10-06 15:17:34]  ORDER PLACED: MARKET BUY 25 RELIANCE25APR2425500CE @ 100.60 (Order ID: PAPER_1000)
+[2025-10-06 15:17:34]     Balance reduced: 2,515.00 | New Balance: 47,485.00
+[2025-10-06 15:17:34]  Executed Price for PAPER_1000: 100.60
+[2025-10-06 15:17:37]  ORDER PLACED: STOPLIMIT SELL 25 RELIANCE25APR2425500CE @ 96.60 (Order ID: PAPER_1001)
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 15:22:43.551760
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-06 15:22:43] Paper Trading Simulator Initialized
+[2025-10-06 15:22:43] Balance queried: 50,000.00
+[2025-10-06 15:22:48]  ORDER PLACED: MARKET BUY 25 RELIANCE25APR2425500CE @ 100.60 (Order ID: PAPER_1000)
+[2025-10-06 15:22:48]     Balance reduced: 2,515.00 | New Balance: 47,485.00
+[2025-10-06 15:22:48]  Executed Price for PAPER_1000: 100.60
+[2025-10-06 15:22:51]  ORDER PLACED: STOPLIMIT SELL 25 RELIANCE25APR2425500CE @ 96.60 (Order ID: PAPER_1001)
+[2025-10-06 15:22:51]   ORDER MODIFIED: PAPER_1001 | TSL: 96.60 → 99.60
+[2025-10-06 15:22:54]  ORDER PLACED: MARKET SELL 25 RELIANCE25APR2425500CE @ 99.40 (Order ID: PAPER_1002)
+[2025-10-06 15:22:54]     Balance increased: 2,485.00 | New Balance: 49,970.00
+[2025-10-06 15:22:54]  Executed Price for PAPER_1002: 99.40
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 15:24:35.651443
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-06 15:24:35] Paper Trading Simulator Initialized
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 15:25:42.188717
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-06 15:25:42] Paper Trading Simulator Initialized
+[2025-10-06 15:27:51]  ORDER PLACED: MARKET BUY 675 JSWSTEEL 28 OCT 1160 CALL @ 32.78 (Order ID: PAPER_1000)
+[2025-10-06 15:27:51]     Balance reduced: 22,126.50 | New Balance: 27,873.50
+[2025-10-06 15:27:51]  Executed Price for PAPER_1000: 32.78
+[2025-10-06 15:27:54]  ORDER PLACED: STOPLIMIT SELL 675 JSWSTEEL 28 OCT 1160 CALL @ 31.60 (Order ID: PAPER_1001)
+[2025-10-06 15:27:59]  Order Status for PAPER_1001: PENDING
+[2025-10-06 15:27:59]  ORDER CANCELLED: PAPER_1001
+[2025-10-06 15:28:03]  ORDER PLACED: MARKET SELL 675 JSWSTEEL 28 OCT 1160 CALL @ 32.12 (Order ID: PAPER_1002)
+[2025-10-06 15:28:03]     Balance increased: 21,681.00 | New Balance: 49,554.50
+[2025-10-06 15:28:03]  Executed Price for PAPER_1002: 32.12
+[2025-10-06 15:28:41]  ORDER PLACED: MARKET BUY 675 JSWSTEEL 28 OCT 1160 CALL @ 33.03 (Order ID: PAPER_1003)
+[2025-10-06 15:28:41]     Balance reduced: 22,295.25 | New Balance: 27,259.25
+[2025-10-06 15:28:41]  Executed Price for PAPER_1003: 33.03
+[2025-10-06 15:28:43]  ORDER PLACED: STOPLIMIT SELL 675 JSWSTEEL 28 OCT 1160 CALL @ 31.90 (Order ID: PAPER_1004)
+[2025-10-06 15:28:49]  Order Status for PAPER_1004: PENDING
+[2025-10-06 15:28:49]  ORDER CANCELLED: PAPER_1004
+[2025-10-06 15:28:52]  ORDER PLACED: MARKET SELL 675 JSWSTEEL 28 OCT 1160 CALL @ 31.72 (Order ID: PAPER_1005)
+[2025-10-06 15:28:52]     Balance increased: 21,411.00 | New Balance: 48,670.25
+[2025-10-06 15:28:52]  Executed Price for PAPER_1005: 31.72
+[2025-10-06 15:29:29]  ORDER PLACED: MARKET BUY 675 JSWSTEEL 28 OCT 1160 CALL @ 32.58 (Order ID: PAPER_1006)
+[2025-10-06 15:29:29]     Balance reduced: 21,991.50 | New Balance: 26,678.75
+[2025-10-06 15:29:29]  Executed Price for PAPER_1006: 32.58
+[2025-10-06 15:29:31]  ORDER PLACED: STOPLIMIT SELL 675 JSWSTEEL 28 OCT 1160 CALL @ 31.40 (Order ID: PAPER_1007)
+[2025-10-06 15:29:37]  Order Status for PAPER_1007: PENDING
+[2025-10-06 15:29:37]  ORDER CANCELLED: PAPER_1007
+[2025-10-06 15:29:40]  ORDER PLACED: MARKET SELL 675 JSWSTEEL 28 OCT 1160 CALL @ 31.52 (Order ID: PAPER_1008)
+[2025-10-06 15:29:40]     Balance increased: 21,276.00 | New Balance: 47,954.75
+[2025-10-06 15:29:40]  Executed Price for PAPER_1008: 31.52
+[2025-10-06 15:30:20]  ORDER PLACED: MARKET BUY 675 JSWSTEEL 28 OCT 1160 CALL @ 32.73 (Order ID: PAPER_1009)
+[2025-10-06 15:30:20]     Balance reduced: 22,092.75 | New Balance: 25,862.00
+[2025-10-06 15:30:20]  Executed Price for PAPER_1009: 32.73
+[2025-10-06 15:30:22]  ORDER PLACED: STOPLIMIT SELL 675 JSWSTEEL 28 OCT 1160 CALL @ 31.50 (Order ID: PAPER_1010)
+[2025-10-06 15:30:28]  Order Status for PAPER_1010: PENDING
+[2025-10-06 15:30:28]  ORDER CANCELLED: PAPER_1010
+[2025-10-06 15:30:31]  ORDER PLACED: MARKET SELL 675 JSWSTEEL 28 OCT 1160 CALL @ 31.67 (Order ID: PAPER_1011)
+[2025-10-06 15:30:31]     Balance increased: 21,377.25 | New Balance: 47,239.25
+[2025-10-06 15:30:31]  Executed Price for PAPER_1011: 31.67
+[2025-10-06 15:31:09]  ORDER PLACED: MARKET BUY 675 JSWSTEEL 28 OCT 1160 CALL @ 100.60 (Order ID: PAPER_1012)
+[2025-10-06 15:31:09]     Balance reduced: 67,905.00 | New Balance: -20,665.75
+[2025-10-06 15:31:09]  Executed Price for PAPER_1012: 100.60
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 17:59:40.727078
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-06 17:59:40] Paper Trading Simulator Initialized
+[2025-10-06 18:00:32]  ORDER PLACED: MARKET BUY 675 JSWSTEEL 28 OCT 1160 CALL @ 32.73 (Order ID: PAPER_1000)
+[2025-10-06 18:00:32]     Balance reduced: 22,092.75 | New Balance: 27,907.25
+[2025-10-06 18:00:32]  Executed Price for PAPER_1000: 32.73
+[2025-10-06 18:00:34]  ORDER PLACED: STOPLIMIT SELL 675 JSWSTEEL 28 OCT 1160 CALL @ 31.50 (Order ID: PAPER_1001)
+[2025-10-06 18:00:40]  Order Status for PAPER_1001: PENDING
+[2025-10-06 18:00:40]  ORDER CANCELLED: PAPER_1001
+[2025-10-06 18:00:43]  ORDER PLACED: MARKET SELL 675 JSWSTEEL 28 OCT 1160 CALL @ 31.67 (Order ID: PAPER_1002)
+[2025-10-06 18:00:43]     Balance increased: 21,377.25 | New Balance: 49,284.50
+[2025-10-06 18:00:43]  Executed Price for PAPER_1002: 31.67
+[2025-10-06 18:00:55]  Order Status for PAPER_1001: CANCELLED
+[2025-10-06 18:00:55]  ORDER CANCELLED: PAPER_1001
+[2025-10-06 18:00:58]  ORDER PLACED: MARKET SELL 675 JSWSTEEL 28 OCT 1160 CALL @ 31.67 (Order ID: PAPER_1003)
+[2025-10-06 18:00:58]     Balance increased: 21,377.25 | New Balance: 70,661.75
+[2025-10-06 18:00:58]  Executed Price for PAPER_1003: 31.67
+[2025-10-06 18:01:08]  Order Status for PAPER_1001: CANCELLED
+[2025-10-06 18:01:08]  ORDER CANCELLED: PAPER_1001
+[2025-10-06 18:01:12]  ORDER PLACED: MARKET SELL 675 JSWSTEEL 28 OCT 1160 CALL @ 31.67 (Order ID: PAPER_1004)
+[2025-10-06 18:01:12]     Balance increased: 21,377.25 | New Balance: 92,039.00
+[2025-10-06 18:01:12]  Executed Price for PAPER_1004: 31.67
+
+================================================================================
+Paper Trading Session Started: 2025-10-06 18:15:33.176031
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-06 18:15:33] Paper Trading Simulator Initialized
+
+================================================================================
+Paper Trading Session Started: 2025-10-07 10:13:04.779455
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-07 10:13:04] Paper Trading Simulator Initialized
+[2025-10-07 10:15:24]  ORDER PLACED: MARKET BUY 475 BHARTIARTL 28 OCT 1940 CALL @ 32.28 (Order ID: PAPER_1000)
+[2025-10-07 10:15:24]     Balance reduced: 15,333.00 | New Balance: 34,667.00
+[2025-10-07 10:15:24]  Executed Price for PAPER_1000: 32.28
+[2025-10-07 10:15:27]  ORDER PLACED: STOPLIMIT SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 29.00 (Order ID: PAPER_1001)
+[2025-10-07 10:15:33]  Order Status for PAPER_1001: PENDING
+[2025-10-07 10:15:33]  ORDER CANCELLED: PAPER_1001
+[2025-10-07 10:15:37]  ORDER PLACED: MARKET SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 31.07 (Order ID: PAPER_1002)
+[2025-10-07 10:15:37]     Balance increased: 14,758.25 | New Balance: 49,425.25
+[2025-10-07 10:15:37]  Executed Price for PAPER_1002: 31.07
+[2025-10-07 10:15:48]  Order Status for PAPER_1001: CANCELLED
+[2025-10-07 10:15:48]  ORDER CANCELLED: PAPER_1001
+[2025-10-07 10:15:52]  ORDER PLACED: MARKET SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 31.82 (Order ID: PAPER_1003)
+[2025-10-07 10:15:52]     Balance increased: 15,114.50 | New Balance: 64,539.75
+[2025-10-07 10:15:52]  Executed Price for PAPER_1003: 31.82
+[2025-10-07 10:16:03]  Order Status for PAPER_1001: CANCELLED
+[2025-10-07 10:16:03]  ORDER CANCELLED: PAPER_1001
+[2025-10-07 10:16:07]  ORDER PLACED: MARKET SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 31.37 (Order ID: PAPER_1004)
+[2025-10-07 10:16:07]     Balance increased: 14,900.75 | New Balance: 79,440.50
+[2025-10-07 10:16:07]  Executed Price for PAPER_1004: 31.37
+[2025-10-07 10:16:19]  Order Status for PAPER_1001: CANCELLED
+[2025-10-07 10:16:19]  ORDER CANCELLED: PAPER_1001
+[2025-10-07 10:16:22]  ORDER PLACED: MARKET SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 31.97 (Order ID: PAPER_1005)
+[2025-10-07 10:16:22]     Balance increased: 15,185.75 | New Balance: 94,626.25
+[2025-10-07 10:16:23]  Executed Price for PAPER_1005: 31.97
+[2025-10-07 10:16:35]  Order Status for PAPER_1001: CANCELLED
+[2025-10-07 10:16:35]  ORDER CANCELLED: PAPER_1001
+[2025-10-07 10:16:39]  ORDER PLACED: MARKET SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 32.72 (Order ID: PAPER_1006)
+[2025-10-07 10:16:39]     Balance increased: 15,542.00 | New Balance: 110,168.25
+[2025-10-07 10:16:39]  Executed Price for PAPER_1006: 32.72
+[2025-10-07 10:16:50]  Order Status for PAPER_1001: CANCELLED
+[2025-10-07 10:16:50]  ORDER CANCELLED: PAPER_1001
+[2025-10-07 10:16:54]  ORDER PLACED: MARKET SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 32.82 (Order ID: PAPER_1007)
+[2025-10-07 10:16:54]     Balance increased: 15,589.50 | New Balance: 125,757.75
+[2025-10-07 10:16:54]  Executed Price for PAPER_1007: 32.82
+[2025-10-07 10:17:06]  Order Status for PAPER_1001: CANCELLED
+[2025-10-07 10:17:06]  ORDER CANCELLED: PAPER_1001
+[2025-10-07 10:17:09]  ORDER PLACED: MARKET SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 31.62 (Order ID: PAPER_1008)
+[2025-10-07 10:17:09]     Balance increased: 15,019.50 | New Balance: 140,777.25
+[2025-10-07 10:17:09]  Executed Price for PAPER_1008: 31.62
+[2025-10-07 10:17:21]  Order Status for PAPER_1001: CANCELLED
+[2025-10-07 10:17:21]  ORDER CANCELLED: PAPER_1001
+[2025-10-07 10:17:25]  ORDER PLACED: MARKET SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 31.97 (Order ID: PAPER_1009)
+[2025-10-07 10:17:25]     Balance increased: 15,185.75 | New Balance: 155,963.00
+[2025-10-07 10:17:25]  Executed Price for PAPER_1009: 31.97
+[2025-10-07 10:17:36]  Order Status for PAPER_1001: CANCELLED
+[2025-10-07 10:17:36]  ORDER CANCELLED: PAPER_1001
+[2025-10-07 10:17:41]  ORDER PLACED: MARKET SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 31.72 (Order ID: PAPER_1010)
+[2025-10-07 10:17:41]     Balance increased: 15,067.00 | New Balance: 171,030.00
+[2025-10-07 10:17:41]  Executed Price for PAPER_1010: 31.72
+[2025-10-07 10:17:52]  Order Status for PAPER_1001: CANCELLED
+[2025-10-07 10:17:52]  ORDER CANCELLED: PAPER_1001
+[2025-10-07 10:17:56]  ORDER PLACED: MARKET SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 30.47 (Order ID: PAPER_1011)
+[2025-10-07 10:17:56]     Balance increased: 14,473.25 | New Balance: 185,503.25
+[2025-10-07 10:17:56]  Executed Price for PAPER_1011: 30.47
+[2025-10-07 10:18:08]  Order Status for PAPER_1001: CANCELLED
+[2025-10-07 10:18:08]  ORDER CANCELLED: PAPER_1001
+[2025-10-07 10:18:11]  ORDER PLACED: MARKET SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 31.22 (Order ID: PAPER_1012)
+[2025-10-07 10:18:11]     Balance increased: 14,829.50 | New Balance: 200,332.75
+[2025-10-07 10:18:11]  Executed Price for PAPER_1012: 31.22
+[2025-10-07 10:18:23]  Order Status for PAPER_1001: CANCELLED
+[2025-10-07 10:18:23]  ORDER CANCELLED: PAPER_1001
+[2025-10-07 10:18:26]  ORDER PLACED: MARKET SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 30.47 (Order ID: PAPER_1013)
+[2025-10-07 10:18:26]     Balance increased: 14,473.25 | New Balance: 214,806.00
+[2025-10-07 10:18:26]  Executed Price for PAPER_1013: 30.47
+[2025-10-07 10:18:38]  Order Status for PAPER_1001: CANCELLED
+[2025-10-07 10:18:38]  ORDER CANCELLED: PAPER_1001
+[2025-10-07 10:18:42]  ORDER PLACED: MARKET SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 31.07 (Order ID: PAPER_1014)
+[2025-10-07 10:18:42]     Balance increased: 14,758.25 | New Balance: 229,564.25
+[2025-10-07 10:18:42]  Executed Price for PAPER_1014: 31.07
+[2025-10-07 10:18:55]  Order Status for PAPER_1001: CANCELLED
+[2025-10-07 10:18:55]  ORDER CANCELLED: PAPER_1001
+[2025-10-07 10:18:58]  ORDER PLACED: MARKET SELL 475 BHARTIARTL 28 OCT 1940 CALL @ 31.02 (Order ID: PAPER_1015)
+[2025-10-07 10:18:59]     Balance increased: 14,734.50 | New Balance: 244,298.75
+[2025-10-07 10:18:59]  Executed Price for PAPER_1015: 31.02
+
+================================================================================
+Paper Trading Session Started: 2025-10-07 13:09:56.204154
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-07 13:09:56] Paper Trading Simulator Initialized
+[2025-10-07 13:12:17]  ORDER PLACED: MARKET BUY 50 DIXON 28 OCT 17250 CALL @ 537.04 (Order ID: PAPER_1000)
+[2025-10-07 13:12:17]     Balance reduced: 26,852.00 | New Balance: 23,148.00
+[2025-10-07 13:12:17]  Executed Price for PAPER_1000: 537.04
+[2025-10-07 13:12:19]  ORDER PLACED: STOPLIMIT SELL 50 DIXON 28 OCT 17250 CALL @ 505.10 (Order ID: PAPER_1001)
+[2025-10-07 13:12:26]  Order Status for PAPER_1001: PENDING
+[2025-10-07 13:12:31]   ORDER MODIFIED: PAPER_1001 | TSL: 505.10 → 521.10
+
+================================================================================
+Paper Trading Session Started: 2025-10-07 16:51:40.213221
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-07 16:51:40] Paper Trading Simulator Initialized
+[2025-10-07 16:52:14]  ORDER PLACED: MARKET BUY 375 TORNTPOWER 28 OCT 1240 CALL @ 40.94 (Order ID: PAPER_1000)
+[2025-10-07 16:52:14]     Balance reduced: 15,352.50 | New Balance: 34,647.50
+[2025-10-07 16:52:14]  Executed Price for PAPER_1000: 40.94
+[2025-10-07 16:52:17]  ORDER PLACED: STOPLIMIT SELL 375 TORNTPOWER 28 OCT 1240 CALL @ 38.80 (Order ID: PAPER_1001)
+[2025-10-07 16:52:22]  Order Status for PAPER_1001: PENDING
+[2025-10-07 16:52:27]   ORDER MODIFIED: PAPER_1001 | TSL: 38.80 → 39.40
+[2025-10-07 16:52:37]  Order Status for PAPER_1001: PENDING
+[2025-10-07 16:52:53]  Order Status for PAPER_1001: PENDING
+[2025-10-07 16:53:08]  Order Status for PAPER_1001: PENDING
+[2025-10-07 16:53:23]  Order Status for PAPER_1001: PENDING
+[2025-10-07 16:53:38]  Order Status for PAPER_1001: PENDING
+[2025-10-07 16:53:53]  Order Status for PAPER_1001: PENDING
+[2025-10-07 16:54:08]  Order Status for PAPER_1001: PENDING
+[2025-10-07 16:54:24]  Order Status for PAPER_1001: PENDING
+[2025-10-07 16:54:39]  Order Status for PAPER_1001: PENDING
+
+================================================================================
+Paper Trading Session Started: 2025-10-07 18:09:32.566597
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-07 18:09:32] Paper Trading Simulator Initialized
+[2025-10-07 18:10:15]  ORDER PLACED: MARKET BUY 375 TORNTPOWER 28 OCT 1240 CALL @ 40.94 (Order ID: PAPER_1000)
+[2025-10-07 18:10:15]     Balance reduced: 15,352.50 | New Balance: 34,647.50
+[2025-10-07 18:10:15]  Executed Price for PAPER_1000: 40.94
+[2025-10-07 18:10:18]  ORDER PLACED: STOPLIMIT SELL 375 TORNTPOWER 28 OCT 1240 CALL @ 38.80 (Order ID: PAPER_1001)
+[2025-10-07 18:10:23]  Order Status for PAPER_1001: PENDING
+[2025-10-07 18:10:30]   ORDER MODIFIED: PAPER_1001 | TSL: 38.80 → 39.40
+[2025-10-07 18:10:40]  Order Status for PAPER_1001: PENDING

@@ -1,0 +1,133 @@
+2025-10-07 10:13:41,402 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='ADANIGREEN', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:13:41,420 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='ABB', exchange='NSE', timeframe='1') - Queue size after add: 2, Max allowed: 5
+2025-10-07 10:13:41,420 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 3, Max allowed: 5
+2025-10-07 10:13:41,421 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BAJFINANCE', exchange='NSE', timeframe='1') - Queue size after add: 4, Max allowed: 5
+2025-10-07 10:13:41,423 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='ICICIBANK', exchange='NSE', timeframe='1') - Queue size after add: 5, Max allowed: 5
+2025-10-07 10:13:56,661 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:14:01,546 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BAJAJFINSV', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:14:01,565 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 2, Max allowed: 5
+2025-10-07 10:14:01,586 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='ADANIENSOL', exchange='NSE', timeframe='1') - Queue size after add: 3, Max allowed: 5
+2025-10-07 10:14:01,620 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='INDIANB', exchange='NSE', timeframe='1') - Queue size after add: 4, Max allowed: 5
+2025-10-07 10:14:01,841 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='PERSISTENT', exchange='NSE', timeframe='1') - Queue size after add: 5, Max allowed: 5
+2025-10-07 10:14:08,078 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='OFSS', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:14:08,079 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='HCLTECH', exchange='NSE', timeframe='1') - Queue size after add: 2, Max allowed: 5
+2025-10-07 10:14:08,094 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='COFORGE', exchange='NSE', timeframe='1') - Queue size after add: 3, Max allowed: 5
+2025-10-07 10:14:08,192 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='DIVISLAB', exchange='NSE', timeframe='1') - Queue size after add: 4, Max allowed: 5
+2025-10-07 10:14:08,243 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='CIPLA', exchange='NSE', timeframe='1') - Queue size after add: 5, Max allowed: 5
+2025-10-07 10:14:15,182 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='APOLLOHOSP', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:14:15,185 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='DRREDDY', exchange='NSE', timeframe='1') - Queue size after add: 2, Max allowed: 5
+2025-10-07 10:14:15,201 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='HINDUNILVR', exchange='NSE', timeframe='1') - Queue size after add: 3, Max allowed: 5
+2025-10-07 10:14:15,281 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='COLPAL', exchange='NSE', timeframe='1') - Queue size after add: 4, Max allowed: 5
+2025-10-07 10:14:25,456 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='APOLLOHOSP 28 OCT 7700 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:15:02,918 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='ADANIGREEN', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:15:02,920 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='ABB', exchange='NSE', timeframe='1') - Queue size after add: 2, Max allowed: 5
+2025-10-07 10:15:02,922 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 3, Max allowed: 5
+2025-10-07 10:15:02,936 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BAJFINANCE', exchange='NSE', timeframe='1') - Queue size after add: 4, Max allowed: 5
+2025-10-07 10:15:02,968 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='ICICIBANK', exchange='NSE', timeframe='1') - Queue size after add: 5, Max allowed: 5
+2025-10-07 10:15:11,692 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='ICICIBANK 28 OCT 1380 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:15:19,090 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:15:31,007 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:15:46,045 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:16:01,108 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:16:16,237 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:16:32,663 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:16:47,706 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:17:03,329 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:17:18,434 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:17:33,409 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:17:50,108 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:18:05,163 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:18:20,287 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:18:35,522 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 10:18:52,196 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:10:12,636 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BSE', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:10:12,638 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='ICICIBANK', exchange='NSE', timeframe='1') - Queue size after add: 2, Max allowed: 5
+2025-10-07 13:10:12,640 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BAJFINANCE', exchange='NSE', timeframe='1') - Queue size after add: 3, Max allowed: 5
+2025-10-07 13:10:12,641 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='AMBER', exchange='NSE', timeframe='1') - Queue size after add: 4, Max allowed: 5
+2025-10-07 13:10:12,643 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='PGEL', exchange='NSE', timeframe='1') - Queue size after add: 5, Max allowed: 5
+2025-10-07 13:10:26,128 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BSE 28 OCT 2250 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:10:31,942 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='None', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:10:37,067 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='ICICIBANK 28 OCT 1380 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:10:40,550 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='DIXON', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:10:40,552 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='RELIANCE', exchange='NSE', timeframe='1') - Queue size after add: 2, Max allowed: 5
+2025-10-07 13:10:40,553 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 3, Max allowed: 5
+2025-10-07 13:10:40,611 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='INDHOTEL', exchange='NSE', timeframe='1') - Queue size after add: 4, Max allowed: 5
+2025-10-07 13:10:40,704 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='INDUSINDBK', exchange='NSE', timeframe='1') - Queue size after add: 5, Max allowed: 5
+2025-10-07 13:10:48,297 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='INDUSINDBK 28 OCT 750 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:10:52,293 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='NESTLEIND', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:10:52,294 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='GODREJCP', exchange='NSE', timeframe='1') - Queue size after add: 2, Max allowed: 5
+2025-10-07 13:10:52,296 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='COLPAL', exchange='NSE', timeframe='1') - Queue size after add: 3, Max allowed: 5
+2025-10-07 13:10:52,326 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='INDIANB', exchange='NSE', timeframe='1') - Queue size after add: 4, Max allowed: 5
+2025-10-07 13:10:52,560 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='HCLTECH', exchange='NSE', timeframe='1') - Queue size after add: 5, Max allowed: 5
+2025-10-07 13:11:00,881 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='NESTLEIND 28 OCT 1180 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:11:04,841 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='PERSISTENT', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:11:04,843 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='OFSS', exchange='NSE', timeframe='1') - Queue size after add: 2, Max allowed: 5
+2025-10-07 13:11:04,844 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='MPHASIS', exchange='NSE', timeframe='1') - Queue size after add: 3, Max allowed: 5
+2025-10-07 13:11:04,875 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='JSWSTEEL', exchange='NSE', timeframe='1') - Queue size after add: 4, Max allowed: 5
+2025-10-07 13:11:43,439 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BSE', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:11:43,440 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='ICICIBANK', exchange='NSE', timeframe='1') - Queue size after add: 2, Max allowed: 5
+2025-10-07 13:11:43,442 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BAJFINANCE', exchange='NSE', timeframe='1') - Queue size after add: 3, Max allowed: 5
+2025-10-07 13:11:43,472 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='AMBER', exchange='NSE', timeframe='1') - Queue size after add: 4, Max allowed: 5
+2025-10-07 13:11:43,601 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='PGEL', exchange='NSE', timeframe='1') - Queue size after add: 5, Max allowed: 5
+2025-10-07 13:11:50,548 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BSE 28 OCT 2250 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:11:56,314 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='None', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:12:00,348 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='ICICIBANK 28 OCT 1380 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:12:03,435 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='DIXON', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:12:03,436 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='RELIANCE', exchange='NSE', timeframe='1') - Queue size after add: 2, Max allowed: 5
+2025-10-07 13:12:03,437 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='BHARTIARTL', exchange='NSE', timeframe='1') - Queue size after add: 3, Max allowed: 5
+2025-10-07 13:12:03,488 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='INDHOTEL', exchange='NSE', timeframe='1') - Queue size after add: 4, Max allowed: 5
+2025-10-07 13:12:03,538 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='INDUSINDBK', exchange='NSE', timeframe='1') - Queue size after add: 5, Max allowed: 5
+2025-10-07 13:12:11,642 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='DIXON 28 OCT 17250 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:12:23,287 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='DIXON', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:12:26,128 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='DIXON 28 OCT 17250 CALL', exchange='NFO', timeframe='3') - Queue size after add: 1, Max allowed: 5
+2025-10-07 13:12:26,518 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='DIXON 28 OCT 17250 CALL', exchange='NFO', timeframe='5') - Queue size after add: 2, Max allowed: 5
+2025-10-07 16:51:57,972 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='LODHA', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:51:57,974 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='OBEROIRLTY', exchange='NSE', timeframe='1') - Queue size after add: 2, Max allowed: 5
+2025-10-07 16:51:57,976 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='PHOENIXLTD', exchange='NSE', timeframe='1') - Queue size after add: 3, Max allowed: 5
+2025-10-07 16:51:57,978 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 4, Max allowed: 5
+2025-10-07 16:51:58,006 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='DIVISLAB', exchange='NSE', timeframe='1') - Queue size after add: 5, Max allowed: 5
+2025-10-07 16:52:09,448 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:52:20,077 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:52:22,731 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='3') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:52:22,987 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='5') - Queue size after add: 2, Max allowed: 5
+2025-10-07 16:52:35,288 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:52:37,878 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='3') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:52:38,141 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='5') - Queue size after add: 2, Max allowed: 5
+2025-10-07 16:52:50,517 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:52:53,125 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='3') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:52:53,393 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='5') - Queue size after add: 2, Max allowed: 5
+2025-10-07 16:53:05,623 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:53:08,210 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='3') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:53:08,464 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='5') - Queue size after add: 2, Max allowed: 5
+2025-10-07 16:53:20,803 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:53:23,423 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='3') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:53:23,673 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='5') - Queue size after add: 2, Max allowed: 5
+2025-10-07 16:53:35,867 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:53:38,476 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='3') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:53:38,719 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='5') - Queue size after add: 2, Max allowed: 5
+2025-10-07 16:53:50,866 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:53:53,497 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='3') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:53:53,764 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='5') - Queue size after add: 2, Max allowed: 5
+2025-10-07 16:54:06,213 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:54:08,826 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='3') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:54:09,084 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='5') - Queue size after add: 2, Max allowed: 5
+2025-10-07 16:54:21,373 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:54:24,120 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='3') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:54:24,376 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='5') - Queue size after add: 2, Max allowed: 5
+2025-10-07 16:54:36,682 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:54:39,282 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='3') - Queue size after add: 1, Max allowed: 5
+2025-10-07 16:54:39,540 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='5') - Queue size after add: 2, Max allowed: 5
+2025-10-07 18:09:49,318 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='LODHA', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 18:09:49,319 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='OBEROIRLTY', exchange='NSE', timeframe='1') - Queue size after add: 2, Max allowed: 5
+2025-10-07 18:09:49,321 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='PHOENIXLTD', exchange='NSE', timeframe='1') - Queue size after add: 3, Max allowed: 5
+2025-10-07 18:09:49,354 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 4, Max allowed: 5
+2025-10-07 18:09:49,411 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='DIVISLAB', exchange='NSE', timeframe='1') - Queue size after add: 5, Max allowed: 5
+2025-10-07 18:09:59,198 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='OBEROIRLTY 28 OCT 1640 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 18:10:04,886 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='PHOENIXLTD 28 OCT 1600 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 18:10:10,239 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 18:10:21,113 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 18:10:23,559 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 18:10:25,866 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='5') - Queue size after add: 1, Max allowed: 5
+2025-10-07 18:10:37,991 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER', exchange='NSE', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 18:10:40,436 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='1') - Queue size after add: 1, Max allowed: 5
+2025-10-07 18:10:42,688 - INFO - CALL_ALLOWED - DATA_API - tsl.get_historical_data(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', exchange='NFO', timeframe='5') - Queue size after add: 1, Max allowed: 5
