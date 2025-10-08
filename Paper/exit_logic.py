@@ -99,17 +99,31 @@ def handle_sl_exit(tsl, name, orderbook, process_start_time,
         )
         orderbook[name]['remark'] = "Stop_Loss_Hit"
 
-        # Send alert
-        message = "\n".join(f"'{key}': {repr(value)}" for key, value in orderbook[name].items())
-        message = f"🛑 SL HIT - {name}\n\n{message}"
-        #tsl.send_telegram_alert(message=message, receiver_chat_id=receiver_chat_id, bot_token=bot_token)
+        # Send alert - Beautified
+        pnl_emoji = "💰" if orderbook[name]['pnl'] >= 0 else "📉"
+        message = f"""🛑 STOP LOSS HIT
+
+📊 Symbol: {name}
+🎯 Option: {orderbook[name].get('options_name', 'N/A')}
+
+💵 Entry Price: ₹{orderbook[name]['entry_price']:.2f}
+💵 Exit Price: ₹{orderbook[name]['exit_price']:.2f}
+🔻 Stop Loss: ₹{orderbook[name]['sl']:.2f}
+
+{pnl_emoji} P&L: ₹{orderbook[name]['pnl']:.2f}
+📦 Quantity: {orderbook[name]['qty']}
+
+⏰ Entry Time: {orderbook[name]['entry_time']}
+⏰ Exit Time: {orderbook[name]['exit_time']}
+
+📝 Remark: {orderbook[name]['remark']}"""
+        tsl.send_telegram_alert(message=message, receiver_chat_id=receiver_chat_id, bot_token=bot_token)
 
         print(f"✅ SL Exit processed for {name}, PnL: {orderbook[name]['pnl']}")
 
-        # Handle re-entry
-        if reentry == "yes":
-            completed_orders.append(orderbook[name].copy())
-            orderbook[name] = single_order.copy()
+        # Always move to completed orders and reset orderbook
+        completed_orders.append(orderbook[name].copy())
+        orderbook[name] = single_order.copy()
 
         return True
 
@@ -246,17 +260,29 @@ def handle_target_exit(tsl, name, orderbook, process_start_time,
         )
         orderbook[name]['remark'] = "Target_Reached"
 
-        # Send alert
-        message = "\n".join(f"'{key}': {repr(value)}" for key, value in orderbook[name].items())
-        message = f"🎯 TARGET HIT - {name}\n\n{message}"
-        #tsl.send_telegram_alert(message=message, receiver_chat_id=receiver_chat_id, bot_token=bot_token)
+        # Send alert - Beautified
+        message = f"""🎯 TARGET REACHED! 🎉
+
+📊 Symbol: {name}
+🎯 Option: {orderbook[name].get('options_name', 'N/A')}
+
+💵 Entry Price: ₹{orderbook[name]['entry_price']:.2f}
+💵 Exit Price: ₹{orderbook[name]['exit_price']:.2f}
+
+💰 P&L: ₹{orderbook[name]['pnl']:.2f} ✅
+📦 Quantity: {orderbook[name]['qty']}
+
+⏰ Entry Time: {orderbook[name]['entry_time']}
+⏰ Exit Time: {orderbook[name]['exit_time']}
+
+📝 Remark: {orderbook[name]['remark']}"""
+        tsl.send_telegram_alert(message=message, receiver_chat_id=receiver_chat_id, bot_token=bot_token)
 
         print(f"✅ Target exit processed for {name}, PnL: {orderbook[name]['pnl']}")
 
-        # Handle re-entry
-        if reentry == "yes":
-            completed_orders.append(orderbook[name].copy())
-            orderbook[name] = single_order.copy()
+        # Always move to completed orders and reset orderbook
+        completed_orders.append(orderbook[name].copy())
+        orderbook[name] = single_order.copy()
 
         return True
 
@@ -386,17 +412,30 @@ def handle_time_exit(tsl, name, orderbook, process_start_time, all_ltp,
         )
         orderbook[name]['remark'] = "Time_Exit_Loss"
 
-        # Send alert
-        message = "\n".join(f"'{key}': {repr(value)}" for key, value in orderbook[name].items())
-        message = f"⏰ TIME EXIT (LOSS) - {name}\n\n{message}"
-        #tsl.send_telegram_alert(message=message, receiver_chat_id=receiver_chat_id, bot_token=bot_token)
+        # Send alert - Beautified
+        message = f"""⏰ TIME EXIT - LOSS
+
+📊 Symbol: {name}
+🎯 Option: {orderbook[name].get('options_name', 'N/A')}
+
+💵 Entry Price: ₹{orderbook[name]['entry_price']:.2f}
+💵 Exit Price: ₹{orderbook[name]['exit_price']:.2f}
+
+📉 P&L: ₹{orderbook[name]['pnl']:.2f}
+📦 Quantity: {orderbook[name]['qty']}
+
+⏰ Entry Time: {orderbook[name]['entry_time']}
+⏰ Exit Time: {orderbook[name]['exit_time']}
+⌛ Reason: Max holding time exceeded
+
+📝 Remark: {orderbook[name]['remark']}"""
+        tsl.send_telegram_alert(message=message, receiver_chat_id=receiver_chat_id, bot_token=bot_token)
 
         print(f"✅ Time exit processed for {name}, PnL: {orderbook[name]['pnl']}")
 
-        # Handle re-entry
-        if reentry == "yes":
-            completed_orders.append(orderbook[name].copy())
-            orderbook[name] = single_order.copy()
+        # Always move to completed orders and reset orderbook
+        completed_orders.append(orderbook[name].copy())
+        orderbook[name] = single_order.copy()
 
         return True
 
@@ -406,7 +445,7 @@ def handle_time_exit(tsl, name, orderbook, process_start_time, all_ltp,
         return False
 
 
-def update_trailing_stop_loss(tsl, name, orderbook, atr_multipler):
+def update_trailing_stop_loss(tsl, name, orderbook, atr_multipler, options_chart_3min=None):
     """
     Update trailing stop loss if price has moved favorably.
     Uses ATRTrailingStop custom indicator for ATR calculation.
@@ -416,6 +455,7 @@ def update_trailing_stop_loss(tsl, name, orderbook, atr_multipler):
         name: Stock symbol
         orderbook: Order tracking dictionary
         atr_multipler: ATR multiplier for stop loss calculation
+        options_chart_3min: Pre-fetched 3-minute resampled data (optional, to avoid duplicate API calls)
 
     Returns:
         bool: True if TSL was updated
@@ -428,25 +468,47 @@ def update_trailing_stop_loss(tsl, name, orderbook, atr_multipler):
         if not options_name:
             return False
 
-        # Fetch option data for ATR calculation
-        data_api_limiter.wait(
-            call_description=f"tsl.get_historical_data(tradingsymbol='{options_name}', exchange='NFO', timeframe='5')"
-        )
-        options_chart_tsl = tsl.get_historical_data(
-            tradingsymbol=options_name,
-            exchange='NFO',
-            timeframe="5"
-        )
+        # ✅ Use pre-fetched data if available, otherwise fetch it
+        options_chart_tsl_3min = options_chart_3min
 
-        if options_chart_tsl is None or options_chart_tsl.empty:
-            return False
+        if options_chart_tsl_3min is None or options_chart_tsl_3min.empty:
+            # Fetch 1-minute option data for ATR calculation
+            data_api_limiter.wait(
+                call_description=f"tsl.get_historical_data(tradingsymbol='{options_name}', exchange='NFO', timeframe='1')"
+            )
+            options_chart_tsl = tsl.get_historical_data(
+                tradingsymbol=options_name,
+                exchange='NFO',
+                timeframe="1"
+            )
 
-        if not all(col in options_chart_tsl.columns for col in ['high', 'low', 'close']):
+            if options_chart_tsl is None or options_chart_tsl.empty:
+                return False
+
+            if not all(col in options_chart_tsl.columns for col in ['high', 'low', 'close']):
+                return False
+
+            # Set timestamp as index for resampling
+            options_chart_tsl = options_chart_tsl.set_index('timestamp')
+
+            # Resample 1-minute data to 3-minute timeframe
+            options_chart_tsl_3min = options_chart_tsl.resample('3T').agg({
+                'open': 'first',
+                'high': 'max',
+                'low': 'min',
+                'close': 'last',
+                'volume': 'sum'
+            }).dropna()
+
+            # Reset index for next time use
+            options_chart_tsl_3min = options_chart_tsl_3min.reset_index()
+
+        if options_chart_tsl_3min.empty:
             return False
 
         # ✅ Calculate ATR using ATRTrailingStop custom indicator
         atr_indicator = ATRTrailingStopIndicator(period=14, multiplier=atr_multipler)
-        result_df = atr_indicator.compute_indicator(options_chart_tsl)
+        result_df = atr_indicator.compute_indicator(options_chart_tsl_3min)
 
         # Get ATR value from the result
         if 'ATR' in result_df.columns:
@@ -454,8 +516,8 @@ def update_trailing_stop_loss(tsl, name, orderbook, atr_multipler):
             sl_points_tsl = rc_options_tsl['ATR']
         else:
             # Fallback: calculate manually if ATR column not available
-            atr_values = result_df.get('Long_Stop', options_chart_tsl['close'])
-            sl_points_tsl = abs(options_chart_tsl['close'].iloc[-1] - atr_values.iloc[-1])
+            atr_values = result_df.get('Long_Stop', options_chart_tsl_3min['close'])
+            sl_points_tsl = abs(options_chart_tsl_3min['close'].iloc[-1] - atr_values.iloc[-1])
 
         # Get current LTP
         ltp_api_limiter.wait(
@@ -507,19 +569,19 @@ def update_trailing_stop_loss(tsl, name, orderbook, atr_multipler):
         return False
 
 
-def check_rsi_longstop_exit(tsl, name, orderbook):
+def check_rsi_longstop_exit(tsl, name, orderbook, options_chart_3min=None):
     """
     Check if exit condition met:
     - RSI closes below MA-RSI OR
     - Latest candle closes below Long_Stop
 
     Uses ATRTrailingStop custom indicator for Long_Stop calculation.
-    Fetches 1-minute data and resamples to 3 minutes.
 
     Args:
         tsl: Tradehull API client
         name: Stock symbol
         orderbook: Order tracking dictionary
+        options_chart_3min: Pre-fetched 3-minute resampled data (optional, to avoid duplicate API calls)
 
     Returns:
         tuple: (bool, str) - (condition_met, reason)
@@ -534,28 +596,36 @@ def check_rsi_longstop_exit(tsl, name, orderbook):
         if not options_name:
             return False, "no_option_name"
 
-        # ✅ FIX: Fetch 1-minute data (not 3-minute)
-        data_api_limiter.wait(
-            call_description=f"tsl.get_historical_data(tradingsymbol='{options_name}', exchange='NFO', timeframe='1')"
-        )
-        options_chart = tsl.get_historical_data(
-            tradingsymbol=options_name,
-            exchange='NFO',
-            timeframe="1"  # Fetch 1-minute data
-        )
+        # ✅ Use pre-fetched data if available, otherwise fetch it
+        if options_chart_3min is None or options_chart_3min.empty:
+            # Fetch 1-minute data
+            data_api_limiter.wait(
+                call_description=f"tsl.get_historical_data(tradingsymbol='{options_name}', exchange='NFO', timeframe='1')"
+            )
+            options_chart = tsl.get_historical_data(
+                tradingsymbol=options_name,
+                exchange='NFO',
+                timeframe="1"
+            )
 
-        if options_chart is None or options_chart.empty:
-            print(f"[WARNING] Failed to fetch option data for RSI/LongStop check: {options_name}")
-            return False, "data_fetch_failed"
+            if options_chart is None or options_chart.empty:
+                print(f"[WARNING] Failed to fetch option data for RSI/LongStop check: {options_name}")
+                return False, "data_fetch_failed"
 
-        # ✅ Resample 1-minute data to 3-minute timeframe
-        options_chart_3min = options_chart.resample('3T').agg({
-            'open': 'first',
-            'high': 'max',
-            'low': 'min',
-            'close': 'last',
-            'volume': 'sum'
-        }).dropna()
+            # Set timestamp as index for resampling
+            options_chart = options_chart.set_index('timestamp')
+
+            # Resample 1-minute data to 3-minute timeframe
+            options_chart_3min = options_chart.resample('3T').agg({
+                'open': 'first',
+                'high': 'max',
+                'low': 'min',
+                'close': 'last',
+                'volume': 'sum'
+            }).dropna()
+
+            # Reset index for next time use
+            options_chart_3min = options_chart_3min.reset_index()
 
         if options_chart_3min.empty:
             print(f"[WARNING] Resampled 3-minute data is empty for {options_name}")
@@ -670,21 +740,37 @@ def handle_rsi_longstop_exit(tsl, name, orderbook, process_start_time, exit_reas
         if exit_reason == "rsi_below_ma_rsi":
             orderbook[name]['remark'] = "RSI_Below_MA_Exit"
             reason_text = "RSI crossed below MA-RSI"
+            reason_emoji = "📊"
         else:
             orderbook[name]['remark'] = "Close_Below_LongStop_Exit"
             reason_text = "Close below Long_Stop"
+            reason_emoji = "📉"
 
-        # Send Telegram alert
-        message = "\n".join(f"'{key}': {repr(value)}" for key, value in orderbook[name].items())
-        message = f"📉 Technical Exit ({reason_text}) - {name}\n\n{message}"
-        #tsl.send_telegram_alert(message=message,receiver_chat_id=receiver_chat_id,bot_token=bot_token)
+        # Send Telegram alert - Beautified
+        pnl_emoji = "💰" if orderbook[name]['pnl'] >= 0 else "📉"
+        message = f"""{reason_emoji} TECHNICAL EXIT
+
+📊 Symbol: {name}
+🎯 Option: {orderbook[name].get('options_name', 'N/A')}
+
+💵 Entry Price: ₹{orderbook[name]['entry_price']:.2f}
+💵 Exit Price: ₹{orderbook[name]['exit_price']:.2f}
+
+{pnl_emoji} P&L: ₹{orderbook[name]['pnl']:.2f}
+📦 Quantity: {orderbook[name]['qty']}
+
+⏰ Entry Time: {orderbook[name]['entry_time']}
+⏰ Exit Time: {orderbook[name]['exit_time']}
+
+⚠️ Exit Reason: {reason_text}
+📝 Remark: {orderbook[name]['remark']}"""
+        tsl.send_telegram_alert(message=message,receiver_chat_id=receiver_chat_id,bot_token=bot_token)
 
         print(f"✅ Technical exit processed for {name}: {reason_text}, PnL: {orderbook[name]['pnl']}")
 
-        # Handle re-entry
-        if reentry == "yes":
-            completed_orders.append(orderbook[name].copy())
-            orderbook[name] = single_order.copy()
+        # Always move to completed orders and reset orderbook
+        completed_orders.append(orderbook[name].copy())
+        orderbook[name] = single_order.copy()
 
         return True
 
@@ -725,6 +811,8 @@ def process_exit_conditions(tsl, name, orderbook, all_ltp, process_start_time,
         str: Exit status ("sl_hit", "target_hit", "rsi_exit", "time_exit", "tsl_updated", "no_exit")
     """
     try:
+        from rate_limiter import data_api_limiter
+
         # Only process if trade is active
         if orderbook[name].get('traded') != "yes":
             return "no_active_trade"
@@ -745,8 +833,41 @@ def process_exit_conditions(tsl, name, orderbook, all_ltp, process_start_time,
                                  bot_token, receiver_chat_id, reentry, completed_orders, single_order):
                 return "target_hit"
 
+        # ✅ OPTIMIZATION: Fetch option historical data ONCE, resample to 3min, and reuse for both functions
+        options_name = orderbook[name].get('options_name')
+        options_chart_3min = None
+
+        if options_name:
+            # Fetch 1-minute data
+            data_api_limiter.wait(
+                call_description=f"tsl.get_historical_data(tradingsymbol='{options_name}', exchange='NFO', timeframe='1')"
+            )
+            options_chart_1min = tsl.get_historical_data(
+                tradingsymbol=options_name,
+                exchange='NFO',
+                timeframe="1"
+            )
+
+            # Resample to 3-minute if data is available
+            if options_chart_1min is not None and not options_chart_1min.empty:
+                # Set timestamp as index
+                options_chart_1min = options_chart_1min.set_index('timestamp')
+
+                # Resample to 3-minute
+                options_chart_3min = options_chart_1min.resample('3T').agg({
+                    'open': 'first',
+                    'high': 'max',
+                    'low': 'min',
+                    'close': 'last',
+                    'volume': 'sum'
+                }).dropna()
+
+                # Reset index for further use
+                options_chart_3min = options_chart_3min.reset_index()
+
         # Priority 3: Check RSI/LongStop Technical Exit (CUSTOM CONDITION)
-        condition_met, exit_reason = check_rsi_longstop_exit(tsl, name, orderbook)
+        # Pass pre-fetched 3-min data to avoid duplicate API call
+        condition_met, exit_reason = check_rsi_longstop_exit(tsl, name, orderbook, options_chart_3min)
         if condition_met:
             if handle_rsi_longstop_exit(tsl, name, orderbook, process_start_time, exit_reason,
                                        bot_token, receiver_chat_id, reentry, completed_orders, single_order):
@@ -759,7 +880,8 @@ def process_exit_conditions(tsl, name, orderbook, all_ltp, process_start_time,
                 return "time_exit"
 
         # Priority 5: Update TSL
-        if update_trailing_stop_loss(tsl, name, orderbook, atr_multipler):
+        # Pass pre-fetched 3-min data to avoid duplicate API call
+        if update_trailing_stop_loss(tsl, name, orderbook, atr_multipler, options_chart_3min):
             return "tsl_updated"
 
         return "no_exit"

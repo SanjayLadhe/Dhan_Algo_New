@@ -77,3 +77,6 @@ Traceback (most recent call last):
 Exception: interval value must be ['1','5','15','25','60','DAY']
 INFO:2025-10-07 18:09:31,006:MainThread:Dhan.py  started system
 INFO:2025-10-07 18:09:31,006:MainThread:STARTED THE PROGRAM
+INFO:2025-10-07 23:43:36,500:MainThread:Dhan.py  started system
+INFO:2025-10-07 23:43:36,500:MainThread:STARTED THE PROGRAM
+ERROR:2025-10-07 23:44:05,807:MainThread:Exception in dhanhq>>intraday_history_minute_charts: HTTPSConnectionPool(host='api.dhan.co', port=443): Max retries exceeded with url: /v2/charts/historical (Caused by SSLError(SSLCertVerificationError(1, "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'api.dhan.co'. (_ssl.c:1006)")))

@@ -266,11 +266,30 @@ def place_ce_entry_order(tsl, name, ce_name, lot_size, options_chart_Res, atr_mu
         )
         orderbook[name]['sl_orderid'] = sl_orderid
         orderbook[name]['traded'] = "yes"
-        
-        # Send Telegram alert
-        message = "\n".join(f"'{key}': {repr(value)}" for key, value in orderbook[name].items())
-        message = f"CE Entry Done - {name} ({ce_name})\n\n{message}"
-        #tsl.send_telegram_alert(message=message, receiver_chat_id=receiver_chat_id, bot_token=bot_token)
+
+        # Send Telegram alert - Beautified
+        risk = abs(orderbook[name]['entry_price'] - orderbook[name]['sl'])
+        target_price = orderbook[name]['entry_price'] + (risk * 3)  # 3:1 risk-reward
+
+        message = f"""📈 CALL OPTION ENTRY
+
+📊 Symbol: {name}
+🎯 Option: {ce_name}
+📍 Strike: ATM
+
+💵 Entry Price: ₹{orderbook[name]['entry_price']:.2f}
+🔻 Stop Loss: ₹{orderbook[name]['sl']:.2f}
+🎯 Target: ₹{target_price:.2f}
+
+📦 Quantity: {orderbook[name]['qty']}
+💰 Position Value: ₹{(orderbook[name]['entry_price'] * orderbook[name]['qty']):.2f}
+
+⏰ Entry Time: {orderbook[name]['entry_time']}
+📊 Direction: {orderbook[name]['buy_sell']}
+
+🔄 Trade Type: {orderbook[name].get('trade_type', 'MIS')}
+📝 Status: Position ACTIVE"""
+        tsl.send_telegram_alert(message=message, receiver_chat_id=receiver_chat_id, bot_token=bot_token)
         
         print(f"CE entry order placed successfully for {name}")
         return True

@@ -51,7 +51,8 @@ pd.set_option('display.expand_frame_repr', False)
 # API CREDENTIALS
 # ============================
 client_code = "1106090196"
-token_id = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzU5ODk4NTA5LCJpYXQiOjE3NTk4MTIxMDksInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTA2MDkwMTk2In0.jBJAbZ2H7af7s-adASebVjpqcMioe6sP1yKUVaSqO795xkVdW25ImvnwoHA9KyLCYXrbdNQf7z8h_e3u6IWtWA"
+token_id = ("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzU5OTg1NTkzLCJpYXQiOjE3NTk4OTkxOTMsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTA2MDkwMTk2In0.bqF4PigSwXUam1Cn7EKlWxagPwgu9sflmuiA7ouO1IBNd0KAPHnD69mGTyCN6nv5bdbKHfDbv-Wiox3nTYYlRw"
+            "")
 tsl = get_trading_instance(client_code, token_id)
 # ============================
 # RISK MANAGEMENT PARAMETERS
@@ -482,7 +483,7 @@ def main():
             if market_status == "market_not_started":
                 print(f"⏰ Waiting for market to start... Current time: {current_time.strftime('%H:%M:%S')}")
                 time.sleep(10)
-                continue
+                pass
 
             if market_status in ["market_closed", "max_loss_hit"]:
                 print(f"\n{'='*80}")
@@ -503,9 +504,22 @@ def main():
                 break
                 """
 
-            # Fetch LTP for watchlist
-            ltp_api_limiter.wait(call_description="tsl.get_ltp_data(names=watchlist)")
-            all_ltp_raw = retry_api_call(tsl.get_ltp_data, retries=1, delay=1.0, names=watchlist)
+            # Check if we have an active position
+            has_position, active_positions = is_position_active()
+
+            # Build LTP fetch list (watchlist + active option symbols)
+            ltp_fetch_list = watchlist.copy()
+
+            if has_position:
+                # Add option symbols from active positions to LTP fetch
+                for symbol_name in active_positions.index:
+                    option_symbol = orderbook[symbol_name].get('options_name')
+                    if option_symbol and option_symbol not in ltp_fetch_list:
+                        ltp_fetch_list.append(option_symbol)
+
+            # Fetch LTP for watchlist + active options
+            ltp_api_limiter.wait(call_description=f"tsl.get_ltp_data(names={len(ltp_fetch_list)} symbols)")
+            all_ltp_raw = retry_api_call(tsl.get_ltp_data, retries=1, delay=1.0, names=ltp_fetch_list)
 
             if all_ltp_raw is None:
                 print("⚠️ Failed to fetch LTP data. Retrying in 5 seconds...")
@@ -513,9 +527,6 @@ def main():
                 continue
 
             all_ltp = all_ltp_raw
-
-            # Check if we have an active position
-            has_position, active_positions = is_position_active()
 
             if has_position:
                 # ============================

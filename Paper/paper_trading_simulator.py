@@ -325,16 +325,39 @@ class PaperTradingSimulator:
     
     def send_telegram_alert(self, message, receiver_chat_id, bot_token):
         """
-        Simulate sending Telegram alert (just log it).
-        
+        Send actual Telegram alert.
+
         Args:
             message: Alert message
             receiver_chat_id: Chat ID
             bot_token: Bot token
         """
-        self._log(f" TELEGRAM ALERT:\n{message}\n")
-        # Don't actually send in paper trading mode
-        return True
+        import requests
+
+        try:
+            self._log(f"📱 SENDING TELEGRAM ALERT:\n{message}\n")
+
+            # Send actual Telegram message
+            url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
+            payload = {
+                'chat_id': receiver_chat_id,
+                'text': message
+            }
+
+            response = requests.post(url, json=payload, timeout=10)
+
+            if response.status_code == 200:
+                self._log("✅ Telegram alert sent successfully")
+                return True
+            else:
+                self._log(f"⚠️ Telegram alert failed: {response.status_code} - {response.text}")
+                return False
+
+        except Exception as e:
+            self._log(f"❌ Error sending Telegram alert: {e}")
+            import traceback
+            traceback.print_exc()
+            return False
     
     # ============================
     # SIMULATION METHODS FOR TESTING SL TRIGGERS

@@ -341,3 +341,476 @@ Initial Balance: 50,000.00
 [2025-10-07 18:10:23]  Order Status for PAPER_1001: PENDING
 [2025-10-07 18:10:30]   ORDER MODIFIED: PAPER_1001 | TSL: 38.80 → 39.40
 [2025-10-07 18:10:40]  Order Status for PAPER_1001: PENDING
+
+================================================================================
+Paper Trading Session Started: 2025-10-07 23:44:05.812650
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-07 23:44:05] Paper Trading Simulator Initialized
+[2025-10-07 23:44:41]  ORDER PLACED: MARKET BUY 375 TORNTPOWER 28 OCT 1240 CALL @ 40.94 (Order ID: PAPER_1000)
+[2025-10-07 23:44:41]     Balance reduced: 15,352.50 | New Balance: 34,647.50
+[2025-10-07 23:44:41]  Executed Price for PAPER_1000: 40.94
+[2025-10-07 23:44:44]  ORDER PLACED: STOPLIMIT SELL 375 TORNTPOWER 28 OCT 1240 CALL @ 38.80 (Order ID: PAPER_1001)
+[2025-10-07 23:44:49]  Order Status for PAPER_1001: PENDING
+[2025-10-07 23:44:56]   ORDER MODIFIED: PAPER_1001 | TSL: 38.80 → 39.40
+[2025-10-07 23:45:06]  Order Status for PAPER_1001: PENDING
+
+================================================================================
+Paper Trading Session Started: 2025-10-08 00:08:56.558286
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-08 00:08:56] Paper Trading Simulator Initialized
+
+================================================================================
+Paper Trading Session Started: 2025-10-08 00:10:18.143014
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-08 00:10:18] Paper Trading Simulator Initialized
+
+================================================================================
+Paper Trading Session Started: 2025-10-08 00:11:15.473085
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-08 00:11:15] Paper Trading Simulator Initialized
+[2025-10-08 00:12:07]  ORDER PLACED: MARKET BUY 375 TORNTPOWER 28 OCT 1240 CALL @ 40.94 (Order ID: PAPER_1000)
+[2025-10-08 00:12:07]     Balance reduced: 15,352.50 | New Balance: 34,647.50
+[2025-10-08 00:12:07]  Executed Price for PAPER_1000: 40.94
+[2025-10-08 00:12:10]  ORDER PLACED: STOPLIMIT SELL 375 TORNTPOWER 28 OCT 1240 CALL @ 38.80 (Order ID: PAPER_1001)
+[2025-10-08 00:12:25]  Order Status for PAPER_1001: PENDING
+[2025-10-08 00:12:32]   ORDER MODIFIED: PAPER_1001 | TSL: 38.80 → 39.70
+[2025-10-08 00:12:51]  Order Status for PAPER_1001: PENDING
+[2025-10-08 00:13:18]  Order Status for PAPER_1001: PENDING
+[2025-10-08 00:13:44]  Order Status for PAPER_1001: PENDING
+
+================================================================================
+Paper Trading Session Started: 2025-10-08 00:18:43.271404
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-08 00:18:43] Paper Trading Simulator Initialized
+[2025-10-08 00:19:45]  ORDER PLACED: MARKET BUY 375 TORNTPOWER 28 OCT 1240 CALL @ 40.94 (Order ID: PAPER_1000)
+[2025-10-08 00:19:45]     Balance reduced: 15,352.50 | New Balance: 34,647.50
+[2025-10-08 00:19:45]  Executed Price for PAPER_1000: 40.94
+[2025-10-08 00:19:48]  ORDER PLACED: STOPLIMIT SELL 375 TORNTPOWER 28 OCT 1240 CALL @ 38.80 (Order ID: PAPER_1001)
+[2025-10-08 00:19:48]  TELEGRAM ALERT:
+CE Entry Done - TORNTPOWER (TORNTPOWER 28 OCT 1240 CALL)
+
+'name': 'TORNTPOWER'
+'date': '2025-10-08'
+'entry_time': '00:19:43'
+'entry_price': 40.94
+'buy_sell': 'BUY'
+'qty': 375
+'sl': np.float64(38.8)
+'exit_time': None
+'exit_price': None
+'pnl': None
+'remark': None
+'traded': 'yes'
+'options_name': 'TORNTPOWER 28 OCT 1240 CALL'
+'max_holding_time': datetime.datetime(2025, 10, 8, 2, 19, 43, 363920)
+'entry_orderid': 'PAPER_1000'
+'tsl': np.float64(38.8)
+'sl_orderid': 'PAPER_1001'
+
+[2025-10-08 00:20:03]  Order Status for PAPER_1001: PENDING
+[2025-10-08 00:20:10]   ORDER MODIFIED: PAPER_1001 | TSL: 38.80 → 39.70
+[2025-10-08 00:20:30]  Order Status for PAPER_1001: PENDING
+[2025-10-08 00:20:57]  Order Status for PAPER_1001: PENDING
+[2025-10-08 00:21:24]  Order Status for PAPER_1001: PENDING
+[2025-10-08 00:21:53]  Order Status for PAPER_1001: PENDING
+[2025-10-08 00:22:25]  Order Status for PAPER_1001: PENDING
+
+================================================================================
+Paper Trading Session Started: 2025-10-08 00:31:49.408777
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-08 00:31:49] Paper Trading Simulator Initialized
+[2025-10-08 00:32:34]  ORDER PLACED: MARKET BUY 375 TORNTPOWER 28 OCT 1240 CALL @ 40.94 (Order ID: PAPER_1000)
+[2025-10-08 00:32:34]     Balance reduced: 15,352.50 | New Balance: 34,647.50
+[2025-10-08 00:32:34]  Executed Price for PAPER_1000: 40.94
+[2025-10-08 00:32:36]  ORDER PLACED: STOPLIMIT SELL 375 TORNTPOWER 28 OCT 1240 CALL @ 38.80 (Order ID: PAPER_1001)
+[2025-10-08 00:32:36]  TELEGRAM ALERT:
+CE Entry Done - TORNTPOWER (TORNTPOWER 28 OCT 1240 CALL)
+
+'name': 'TORNTPOWER'
+'date': '2025-10-08'
+'entry_time': '00:32:31'
+'entry_price': 40.94
+'buy_sell': 'BUY'
+'qty': 375
+'sl': np.float64(38.8)
+'exit_time': None
+'exit_price': None
+'pnl': None
+'remark': None
+'traded': 'yes'
+'options_name': 'TORNTPOWER 28 OCT 1240 CALL'
+'max_holding_time': datetime.datetime(2025, 10, 8, 2, 32, 31, 731964)
+'entry_orderid': 'PAPER_1000'
+'tsl': np.float64(38.8)
+'sl_orderid': 'PAPER_1001'
+
+
+================================================================================
+Paper Trading Session Started: 2025-10-08 00:52:08.966246
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-08 00:52:08] Paper Trading Simulator Initialized
+[2025-10-08 00:52:55]  ORDER PLACED: MARKET BUY 375 TORNTPOWER 28 OCT 1240 CALL @ 40.94 (Order ID: PAPER_1000)
+[2025-10-08 00:52:55]     Balance reduced: 15,352.50 | New Balance: 34,647.50
+[2025-10-08 00:52:55]  Executed Price for PAPER_1000: 40.94
+[2025-10-08 00:52:58]  ORDER PLACED: STOPLIMIT SELL 375 TORNTPOWER 28 OCT 1240 CALL @ 38.80 (Order ID: PAPER_1001)
+[2025-10-08 00:52:58] 📱 SENDING TELEGRAM ALERT:
+📈 CALL OPTION ENTRY
+
+📊 Symbol: TORNTPOWER
+🎯 Option: TORNTPOWER 28 OCT 1240 CALL
+📍 Strike: ATM
+
+💵 Entry Price: ₹40.94
+🔻 Stop Loss: ₹38.80
+🎯 Target: ₹47.36
+
+📦 Quantity: 375
+💰 Position Value: ₹15352.50
+
+⏰ Entry Time: 00:52:53
+📊 Direction: BUY
+
+🔄 Trade Type: MIS
+📝 Status: Position ACTIVE
+
+[2025-10-08 00:52:59] ✅ Telegram alert sent successfully
+[2025-10-08 00:53:15]  Order Status for PAPER_1001: PENDING
+[2025-10-08 00:53:22]   ORDER MODIFIED: PAPER_1001 | TSL: 38.80 → 39.70
+[2025-10-08 00:53:42]  Order Status for PAPER_1001: PENDING
+[2025-10-08 00:54:09]  Order Status for PAPER_1001: PENDING
+[2025-10-08 00:54:35]  Order Status for PAPER_1001: PENDING
+
+================================================================================
+Paper Trading Session Started: 2025-10-08 01:14:52.115989
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-08 01:14:52] Paper Trading Simulator Initialized
+[2025-10-08 01:15:43]  ORDER PLACED: MARKET BUY 375 TORNTPOWER 28 OCT 1240 CALL @ 40.94 (Order ID: PAPER_1000)
+[2025-10-08 01:15:43]     Balance reduced: 15,352.50 | New Balance: 34,647.50
+[2025-10-08 01:15:43]  Executed Price for PAPER_1000: 40.94
+[2025-10-08 01:15:46]  ORDER PLACED: STOPLIMIT SELL 375 TORNTPOWER 28 OCT 1240 CALL @ 38.80 (Order ID: PAPER_1001)
+[2025-10-08 01:15:46] 📱 SENDING TELEGRAM ALERT:
+📈 CALL OPTION ENTRY
+
+📊 Symbol: TORNTPOWER
+🎯 Option: TORNTPOWER 28 OCT 1240 CALL
+📍 Strike: ATM
+
+💵 Entry Price: ₹40.94
+🔻 Stop Loss: ₹38.80
+🎯 Target: ₹47.36
+
+📦 Quantity: 375
+💰 Position Value: ₹15352.50
+
+⏰ Entry Time: 01:15:40
+📊 Direction: BUY
+
+🔄 Trade Type: MIS
+📝 Status: Position ACTIVE
+
+[2025-10-08 01:15:47] ✅ Telegram alert sent successfully
+[2025-10-08 01:16:02]  Order Status for PAPER_1001: PENDING
+[2025-10-08 01:16:07]   ORDER MODIFIED: PAPER_1001 | TSL: 38.80 → 39.70
+[2025-10-08 01:16:27]  Order Status for PAPER_1001: PENDING
+
+================================================================================
+Paper Trading Session Started: 2025-10-08 09:22:40.785699
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-08 09:22:40] Paper Trading Simulator Initialized
+[2025-10-08 09:23:17]  ORDER PLACED: MARKET BUY 400 INFY 28 OCT 1480 CALL @ 37.04 (Order ID: PAPER_1000)
+[2025-10-08 09:23:17]     Balance reduced: 14,816.00 | New Balance: 35,184.00
+[2025-10-08 09:23:17]  Executed Price for PAPER_1000: 37.04
+[2025-10-08 09:23:20]  ORDER PLACED: STOPLIMIT SELL 400 INFY 28 OCT 1480 CALL @ 33.30 (Order ID: PAPER_1001)
+[2025-10-08 09:23:20] 📱 SENDING TELEGRAM ALERT:
+📈 CALL OPTION ENTRY
+
+📊 Symbol: INFY
+🎯 Option: INFY 28 OCT 1480 CALL
+📍 Strike: ATM
+
+💵 Entry Price: ₹37.04
+🔻 Stop Loss: ₹33.30
+🎯 Target: ₹48.26
+
+📦 Quantity: 400
+💰 Position Value: ₹14816.00
+
+⏰ Entry Time: 09:23:15
+📊 Direction: BUY
+
+🔄 Trade Type: MIS
+📝 Status: Position ACTIVE
+
+[2025-10-08 09:23:21] ✅ Telegram alert sent successfully
+[2025-10-08 09:23:26]  Order Status for PAPER_1001: PENDING
+[2025-10-08 09:23:28]  ORDER CANCELLED: PAPER_1001
+[2025-10-08 09:23:32]  ORDER PLACED: MARKET SELL 400 INFY 28 OCT 1480 CALL @ 36.41 (Order ID: PAPER_1002)
+[2025-10-08 09:23:32]     Balance increased: 14,564.00 | New Balance: 49,748.00
+[2025-10-08 09:23:32]  Executed Price for PAPER_1002: 36.41
+[2025-10-08 09:23:32] 📱 SENDING TELEGRAM ALERT:
+📉 TECHNICAL EXIT
+
+📊 Symbol: INFY
+🎯 Option: INFY 28 OCT 1480 CALL
+
+💵 Entry Price: ₹37.04
+💵 Exit Price: ₹36.41
+
+📉 P&L: ₹-252.00
+📦 Quantity: 400
+
+⏰ Entry Time: 09:23:15
+⏰ Exit Time: 09:23:26
+
+⚠️ Exit Reason: Close below Long_Stop
+📝 Remark: Close_Below_LongStop_Exit
+
+[2025-10-08 09:23:36] ✅ Telegram alert sent successfully
+[2025-10-08 09:23:47]  Order Status for PAPER_1001: CANCELLED
+[2025-10-08 09:23:49]  ORDER CANCELLED: PAPER_1001
+[2025-10-08 09:23:53]  ORDER PLACED: MARKET SELL 400 INFY 28 OCT 1480 CALL @ 36.46 (Order ID: PAPER_1003)
+[2025-10-08 09:23:53]     Balance increased: 14,584.00 | New Balance: 64,332.00
+[2025-10-08 09:23:53]  Executed Price for PAPER_1003: 36.46
+[2025-10-08 09:23:53] 📱 SENDING TELEGRAM ALERT:
+📉 TECHNICAL EXIT
+
+📊 Symbol: INFY
+🎯 Option: INFY 28 OCT 1480 CALL
+
+💵 Entry Price: ₹37.04
+💵 Exit Price: ₹36.46
+
+📉 P&L: ₹-232.00
+📦 Quantity: 400
+
+⏰ Entry Time: 09:23:15
+⏰ Exit Time: 09:23:47
+
+⚠️ Exit Reason: Close below Long_Stop
+📝 Remark: Close_Below_LongStop_Exit
+
+[2025-10-08 09:23:54] ✅ Telegram alert sent successfully
+[2025-10-08 09:24:05]  Order Status for PAPER_1001: CANCELLED
+[2025-10-08 09:24:10]   ORDER MODIFIED: PAPER_1001 | TSL: 33.30 → 36.40
+[2025-10-08 09:24:20]  Order Status for PAPER_1001: CANCELLED
+[2025-10-08 09:24:25]   ORDER MODIFIED: PAPER_1001 | TSL: 36.40 → 37.50
+[2025-10-08 09:24:35]  Order Status for PAPER_1001: CANCELLED
+[2025-10-08 09:24:39]   ORDER MODIFIED: PAPER_1001 | TSL: 37.50 → 38.10
+[2025-10-08 09:24:50]  Order Status for PAPER_1001: CANCELLED
+[2025-10-08 09:25:05]  Order Status for PAPER_1001: CANCELLED
+[2025-10-08 09:25:20]  Order Status for PAPER_1001: CANCELLED
+[2025-10-08 09:25:34]  Order Status for PAPER_1001: CANCELLED
+[2025-10-08 09:25:48]  Order Status for PAPER_1001: CANCELLED
+[2025-10-08 09:26:03]  Order Status for PAPER_1001: CANCELLED
+[2025-10-08 09:26:17]  Order Status for PAPER_1001: CANCELLED
+
+================================================================================
+Paper Trading Session Started: 2025-10-08 10:20:02.133360
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-08 10:20:02] Paper Trading Simulator Initialized
+
+================================================================================
+Paper Trading Session Started: 2025-10-08 10:24:42.452296
+Initial Balance: 50,000.00
+================================================================================
+
+[2025-10-08 10:24:42] Paper Trading Simulator Initialized
+[2025-10-08 10:25:23]  ORDER PLACED: MARKET BUY 100 DIVISLAB 28 OCT 6200 CALL @ 167.27 (Order ID: PAPER_1000)
+[2025-10-08 10:25:23]     Balance reduced: 16,727.00 | New Balance: 33,273.00
+[2025-10-08 10:25:23]  Executed Price for PAPER_1000: 167.27
+[2025-10-08 10:25:26]  ORDER PLACED: STOPLIMIT SELL 100 DIVISLAB 28 OCT 6200 CALL @ 142.90 (Order ID: PAPER_1001)
+[2025-10-08 10:25:26] 📱 SENDING TELEGRAM ALERT:
+📈 CALL OPTION ENTRY
+
+📊 Symbol: DIVISLAB
+🎯 Option: DIVISLAB 28 OCT 6200 CALL
+📍 Strike: ATM
+
+💵 Entry Price: ₹167.27
+🔻 Stop Loss: ₹142.90
+🎯 Target: ₹240.38
+
+📦 Quantity: 100
+💰 Position Value: ₹16727.00
+
+⏰ Entry Time: 10:25:21
+📊 Direction: BUY
+
+🔄 Trade Type: MIS
+📝 Status: Position ACTIVE
+
+[2025-10-08 10:25:30] ✅ Telegram alert sent successfully
+[2025-10-08 10:25:35]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:25:40]   ORDER MODIFIED: PAPER_1001 | TSL: 142.90 → 162.00
+[2025-10-08 10:25:50]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:25:54]   ORDER MODIFIED: PAPER_1001 | TSL: 162.00 → 163.80
+[2025-10-08 10:26:04]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:26:09]   ORDER MODIFIED: PAPER_1001 | TSL: 163.80 → 164.50
+[2025-10-08 10:26:19]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:26:23]   ORDER MODIFIED: PAPER_1001 | TSL: 164.50 → 165.30
+[2025-10-08 10:26:33]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:26:48]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:27:02]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:27:17]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:27:31]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:27:45]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:28:00]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:28:05]   ORDER MODIFIED: PAPER_1001 | TSL: 165.30 → 165.80
+[2025-10-08 10:28:15]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:28:20]   ORDER MODIFIED: PAPER_1001 | TSL: 165.80 → 168.50
+[2025-10-08 10:28:30]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:28:34]   ORDER MODIFIED: PAPER_1001 | TSL: 168.50 → 168.60
+[2025-10-08 10:28:45]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:29:00]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:29:15]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:29:20]   ORDER MODIFIED: PAPER_1001 | TSL: 168.60 → 171.30
+[2025-10-08 10:29:30]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:29:34]   ORDER MODIFIED: PAPER_1001 | TSL: 171.30 → 171.60
+[2025-10-08 10:29:44]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:29:59]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:30:14]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:30:29]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:30:44]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:30:59]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:31:15]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:31:30]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:31:45]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:32:00]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:32:15]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:32:30]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:32:35]   ORDER MODIFIED: PAPER_1001 | TSL: 171.60 → 174.90
+[2025-10-08 10:32:45]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:32:50]   ORDER MODIFIED: PAPER_1001 | TSL: 174.90 → 175.00
+[2025-10-08 10:33:00]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:33:16]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:33:32]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:33:47]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:34:01]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:34:16]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:34:31]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:34:46]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:35:01]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:35:15]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:35:30]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:35:44]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:35:59]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:36:14]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:36:18]   ORDER MODIFIED: PAPER_1001 | TSL: 175.00 → 175.60
+[2025-10-08 10:36:29]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:36:44]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:36:58]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:37:13]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:37:28]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:37:42]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:37:57]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:38:12]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:38:27]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:38:42]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:38:47]   ORDER MODIFIED: PAPER_1001 | TSL: 175.60 → 177.50
+[2025-10-08 10:38:57]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:39:12]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:39:28]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:39:43]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:39:48]   ORDER MODIFIED: PAPER_1001 | TSL: 177.50 → 185.70
+[2025-10-08 10:39:58]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:40:13]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:40:27]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:40:44]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:40:58]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:41:13]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:41:28]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:41:42]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:41:57]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:42:12]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:42:28]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:42:43]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:42:58]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:43:13]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:43:27]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:43:42]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:43:58]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:44:13]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:44:28]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:44:43]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:44:58]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:45:14]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:45:29]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:45:45]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:46:00]  Order Status for PAPER_1001: PENDING
+[2025-10-08 10:46:03]  ORDER CANCELLED: PAPER_1001
+[2025-10-08 10:46:06]  ORDER PLACED: MARKET SELL 100 DIVISLAB 28 OCT 6200 CALL @ 181.47 (Order ID: PAPER_1002)
+[2025-10-08 10:46:06]     Balance increased: 18,147.00 | New Balance: 51,420.00
+[2025-10-08 10:46:06]  Executed Price for PAPER_1002: 181.47
+[2025-10-08 10:46:06] 📱 SENDING TELEGRAM ALERT:
+📉 TECHNICAL EXIT
+
+📊 Symbol: DIVISLAB
+🎯 Option: DIVISLAB 28 OCT 6200 CALL
+
+💵 Entry Price: ₹167.27
+💵 Exit Price: ₹181.47
+
+💰 P&L: ₹1420.00
+📦 Quantity: 100
+
+⏰ Entry Time: 10:25:21
+⏰ Exit Time: 10:46:00
+
+⚠️ Exit Reason: Close below Long_Stop
+📝 Remark: Close_Below_LongStop_Exit
+
+[2025-10-08 10:46:09] ✅ Telegram alert sent successfully
+[2025-10-08 10:49:09]  ORDER PLACED: MARKET BUY 900 PATANJALI 28 OCT 600 PUT @ 18.22 (Order ID: PAPER_1003)
+[2025-10-08 10:49:09]     Balance reduced: 16,398.00 | New Balance: 35,022.00
+[2025-10-08 10:49:09]  Executed Price for PAPER_1003: 18.22
+[2025-10-08 10:49:12]  ORDER PLACED: STOPLIMIT SELL 900 PATANJALI 28 OCT 600 PUT @ 17.70 (Order ID: PAPER_1004)
+[2025-10-08 10:49:12] 📱 SENDING TELEGRAM ALERT:
+📉 PUT OPTION ENTRY
+
+📊 Symbol: PATANJALI
+🎯 Option: PATANJALI 28 OCT 600 PUT
+📍 Strike: ATM
+
+💵 Entry Price: ₹18.22
+🔻 Stop Loss: ₹17.70
+🎯 Target: ₹19.78
+
+📦 Quantity: 900
+💰 Position Value: ₹16398.00
+
+⏰ Entry Time: 10:49:07
+📊 Direction: BUY
+
+🔄 Trade Type: MIS
+📝 Status: Position ACTIVE
+
+[2025-10-08 10:49:13] ✅ Telegram alert sent successfully
+[2025-10-08 10:49:19]  Order Status for PAPER_1004: PENDING
+[2025-10-08 10:49:36]  Order Status for PAPER_1004: PENDING
+[2025-10-08 10:49:52]  Order Status for PAPER_1004: PENDING
+[2025-10-08 10:50:08]  Order Status for PAPER_1004: PENDING
+[2025-10-08 10:50:23]  Order Status for PAPER_1004: PENDING
+[2025-10-08 10:50:39]  Order Status for PAPER_1004: PENDING
+[2025-10-08 10:50:54]  Order Status for PAPER_1004: PENDING
+[2025-10-08 10:51:09]  Order Status for PAPER_1004: PENDING
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
