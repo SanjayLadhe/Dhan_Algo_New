@@ -1,0 +1,180 @@
+2025-10-07 10:13:38,161 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:13:52,920 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='BHARTIARTL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:13:56,484 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:14:21,621 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='APOLLOHOSP', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:14:25,268 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='APOLLOHOSP 28 OCT 7700 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:14:59,705 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:15:08,037 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='ICICIBANK', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:15:11,514 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='ICICIBANK 28 OCT 1380 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:15:15,379 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='BHARTIARTL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:15:18,903 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:15:22,017 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:15:24,746 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1000') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:15:24,762 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:15:27,805 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:15:33,837 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:15:33,853 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:15:34,869 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:15:37,595 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1002') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:15:42,848 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:15:48,866 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:15:48,884 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:15:49,900 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:15:52,635 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:15:57,884 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:16:03,960 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:16:03,977 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:16:04,994 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:16:07,730 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1004') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:16:12,977 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:16:19,157 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:16:19,173 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:16:20,191 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:16:23,122 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:16:29,454 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:16:35,510 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:16:35,527 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:16:36,544 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:16:39,306 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1006') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:16:44,476 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:16:50,654 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:16:50,676 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:16:51,942 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:16:54,817 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1007') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:17:00,123 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:17:06,205 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:17:06,221 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:17:07,236 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:17:09,969 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1008') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:17:15,231 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:17:21,280 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:17:21,295 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:17:22,311 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:17:25,046 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1009') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:17:30,210 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:17:36,585 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:17:36,622 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:17:37,664 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:17:41,375 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1010') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:17:46,642 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:17:52,931 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:17:52,947 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:17:53,964 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:17:56,699 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1011') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:18:01,950 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:18:08,023 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:18:08,039 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:18:09,056 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:18:11,793 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1012') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:18:17,069 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:18:23,111 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:18:23,128 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:18:24,144 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:18:26,883 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1013') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:18:32,159 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:18:38,667 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:18:38,684 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:18:39,701 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:18:42,530 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1014') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:18:48,977 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 10:18:55,052 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 10:18:55,069 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:18:56,087 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BHARTIARTL 28 OCT 1940 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 10:18:59,442 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1015') - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:10:09,497 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 13:10:22,866 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='BSE', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:10:26,036 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='BSE 28 OCT 2250 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:10:29,205 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='AMBER', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:10:31,888 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:10:32,582 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='ICICIBANK', Expiry=0) - Queue size after add: 2, Max allowed: 18
+2025-10-07 13:10:36,959 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='ICICIBANK 28 OCT 1380 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:10:45,183 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='INDUSINDBK', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:10:48,192 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='INDUSINDBK 28 OCT 750 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:10:57,417 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='NESTLEIND', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:11:00,775 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='NESTLEIND 28 OCT 1180 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:11:40,309 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 13:11:47,539 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='BSE', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:11:50,482 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='BSE 28 OCT 2250 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:11:53,565 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='AMBER', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:11:56,270 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:11:57,103 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='ICICIBANK', Expiry=0) - Queue size after add: 2, Max allowed: 18
+2025-10-07 13:12:00,254 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='ICICIBANK 28 OCT 1380 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:12:07,995 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='DIXON', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:12:11,525 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='DIXON 28 OCT 17250 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:12:14,533 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='DIXON 28 OCT 17250 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 13:12:17,195 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1000') - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:12:17,211 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='DIXON 28 OCT 17250 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-07 13:12:20,133 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 13:12:26,109 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 13:12:29,040 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['DIXON 28 OCT 17250 CALL']) - Queue size after add: 1, Max allowed: 1
+2025-10-07 13:12:31,148 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1001', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-07 13:12:36,312 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:51:55,301 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:52:06,546 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='TORNTPOWER', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 16:52:09,371 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 16:52:12,066 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 16:52:14,673 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1000') - Queue size after add: 1, Max allowed: 18
+2025-10-07 16:52:14,684 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-07 16:52:17,444 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:52:22,699 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 16:52:25,364 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['TORNTPOWER 28 OCT 1240 CALL']) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:52:27,454 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1001', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-07 16:52:32,644 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:52:37,863 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 16:52:40,541 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['TORNTPOWER 28 OCT 1240 CALL']) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:52:47,641 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:52:53,113 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 16:52:55,783 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['TORNTPOWER 28 OCT 1240 CALL']) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:53:02,881 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:53:08,199 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 16:53:10,865 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['TORNTPOWER 28 OCT 1240 CALL']) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:53:17,956 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:53:23,408 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 16:53:26,078 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['TORNTPOWER 28 OCT 1240 CALL']) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:53:33,172 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:53:38,464 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 16:53:41,106 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['TORNTPOWER 28 OCT 1240 CALL']) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:53:48,203 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:53:53,486 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 16:53:56,208 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['TORNTPOWER 28 OCT 1240 CALL']) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:54:03,303 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:54:08,812 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 16:54:11,530 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['TORNTPOWER 28 OCT 1240 CALL']) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:54:18,626 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:54:24,104 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 16:54:26,815 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['TORNTPOWER 28 OCT 1240 CALL']) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:54:33,943 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:54:39,268 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 16:54:41,977 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['TORNTPOWER 28 OCT 1240 CALL']) - Queue size after add: 1, Max allowed: 1
+2025-10-07 16:54:49,078 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 18:09:46,785 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 18:09:56,492 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='OBEROIRLTY', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 18:09:59,145 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='OBEROIRLTY 28 OCT 1640 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 18:10:02,163 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='PHOENIXLTD', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 18:10:04,830 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='PHOENIXLTD 28 OCT 1600 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 18:10:07,468 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='TORNTPOWER', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 18:10:10,182 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 18:10:12,720 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 18:10:15,322 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1000') - Queue size after add: 1, Max allowed: 18
+2025-10-07 18:10:15,346 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-07 18:10:18,424 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 18:10:23,548 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 18:10:28,153 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['TORNTPOWER 28 OCT 1240 CALL']) - Queue size after add: 1, Max allowed: 1
+2025-10-07 18:10:30,224 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1001', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-07 18:10:35,391 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 18:10:40,427 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 18:10:44,976 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['TORNTPOWER 28 OCT 1240 CALL']) - Queue size after add: 1, Max allowed: 1
+2025-10-07 23:44:21,637 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 23:44:28,459 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='PHOENIXLTD', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 23:44:31,280 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='PHOENIXLTD 28 OCT 1600 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 23:44:34,111 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='TORNTPOWER', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-07 23:44:36,690 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-07 23:44:39,130 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-07 23:44:41,739 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1000') - Queue size after add: 1, Max allowed: 18
+2025-10-07 23:44:41,740 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='TORNTPOWER 28 OCT 1240 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-07 23:44:44,693 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 23:44:49,559 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-07 23:44:54,295 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['TORNTPOWER 28 OCT 1240 CALL']) - Queue size after add: 1, Max allowed: 1
+2025-10-07 23:44:56,373 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1001', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-07 23:45:01,488 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-07 23:45:06,373 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18

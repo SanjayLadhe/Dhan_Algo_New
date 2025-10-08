@@ -1,0 +1,308 @@
+INFO:2025-10-08 00:08:40,754:MainThread:Dhan.py  started system
+INFO:2025-10-08 00:08:40,754:MainThread:STARTED THE PROGRAM
+ERROR:2025-10-08 00:08:56,556:MainThread:Exception in dhanhq>>intraday_history_minute_charts: HTTPSConnectionPool(host='api.dhan.co', port=443): Max retries exceeded with url: /v2/charts/historical (Caused by SSLError(SSLCertVerificationError(1, "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'api.dhan.co'. (_ssl.c:1006)")))
+INFO:2025-10-08 00:10:16,440:MainThread:Dhan.py  started system
+INFO:2025-10-08 00:10:16,440:MainThread:STARTED THE PROGRAM
+INFO:2025-10-08 00:11:13,724:MainThread:Dhan.py  started system
+INFO:2025-10-08 00:11:13,724:MainThread:STARTED THE PROGRAM
+INFO:2025-10-08 00:18:41,721:MainThread:Dhan.py  started system
+INFO:2025-10-08 00:18:41,721:MainThread:STARTED THE PROGRAM
+INFO:2025-10-08 00:31:47,672:MainThread:Dhan.py  started system
+INFO:2025-10-08 00:31:47,672:MainThread:STARTED THE PROGRAM
+INFO:2025-10-08 00:52:06,568:MainThread:Dhan.py  started system
+INFO:2025-10-08 00:52:06,568:MainThread:STARTED THE PROGRAM
+INFO:2025-10-08 01:14:49,569:MainThread:Dhan.py  started system
+INFO:2025-10-08 01:14:49,575:MainThread:STARTED THE PROGRAM
+INFO:2025-10-08 09:22:38,953:MainThread:Dhan.py  started system
+INFO:2025-10-08 09:22:38,953:MainThread:STARTED THE PROGRAM
+INFO:2025-10-08 10:19:19,691:MainThread:Dhan.py  started system
+INFO:2025-10-08 10:19:19,697:MainThread:STARTED THE PROGRAM
+ERROR:2025-10-08 10:20:02,133:MainThread:Exception in dhanhq>>intraday_history_minute_charts: HTTPSConnectionPool(host='api.dhan.co', port=443): Max retries exceeded with url: /v2/charts/historical (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000002729F80ECD0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+ERROR:2025-10-08 10:20:24,341:MainThread:Exception at calling ltp as {'status': 'failure', 'remarks': {'error_code': None, 'error_type': None, 'error_message': None}, 'data': {'data': {'808': 'Authentication Failed - Client ID or Token invalid'}, 'status': 'failed'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 829, in get_ltp_data
+    raise Exception(data)
+Exception: {'status': 'failure', 'remarks': {'error_code': None, 'error_type': None, 'error_message': None}, 'data': {'data': {'808': 'Authentication Failed - Client ID or Token invalid'}, 'status': 'failed'}}
+ERROR:2025-10-08 10:20:27,824:ThreadPoolExecutor-1_0:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:28,105:ThreadPoolExecutor-1_4:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:28,147:ThreadPoolExecutor-1_3:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:29,189:ThreadPoolExecutor-1_1:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:29,209:ThreadPoolExecutor-1_2:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:33,392:ThreadPoolExecutor-2_2:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:33,429:ThreadPoolExecutor-2_3:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:33,813:ThreadPoolExecutor-2_1:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:33,885:ThreadPoolExecutor-2_0:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:33,885:ThreadPoolExecutor-2_4:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:37,902:ThreadPoolExecutor-3_2:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:37,954:ThreadPoolExecutor-3_0:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:37,954:ThreadPoolExecutor-3_4:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:37,954:ThreadPoolExecutor-3_1:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:38,818:ThreadPoolExecutor-3_3:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:42,327:ThreadPoolExecutor-4_0:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:42,328:ThreadPoolExecutor-4_2:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:20:42,328:ThreadPoolExecutor-4_1:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:17,623:MainThread:Exception at calling ltp as {'status': 'failure', 'remarks': {'error_code': None, 'error_type': None, 'error_message': None}, 'data': {'data': {'808': 'Authentication Failed - Client ID or Token invalid'}, 'status': 'failed'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 829, in get_ltp_data
+    raise Exception(data)
+Exception: {'status': 'failure', 'remarks': {'error_code': None, 'error_type': None, 'error_message': None}, 'data': {'data': {'808': 'Authentication Failed - Client ID or Token invalid'}, 'status': 'failed'}}
+ERROR:2025-10-08 10:21:21,345:ThreadPoolExecutor-5_2:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:21,365:ThreadPoolExecutor-5_1:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:21,738:ThreadPoolExecutor-5_4:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:21,760:ThreadPoolExecutor-5_3:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:21,761:ThreadPoolExecutor-5_0:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:26,220:ThreadPoolExecutor-6_0:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:26,221:ThreadPoolExecutor-6_1:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:26,533:ThreadPoolExecutor-6_4:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:26,574:ThreadPoolExecutor-6_3:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:26,574:ThreadPoolExecutor-6_2:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:31,349:ThreadPoolExecutor-7_0:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:31,536:ThreadPoolExecutor-7_4:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:31,574:ThreadPoolExecutor-7_2:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:31,614:ThreadPoolExecutor-7_1:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:31,615:ThreadPoolExecutor-7_3:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:35,423:ThreadPoolExecutor-8_1:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:35,424:ThreadPoolExecutor-8_2:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:21:35,471:ThreadPoolExecutor-8_0:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:09,051:MainThread:Exception at calling ltp as {'status': 'failure', 'remarks': {'error_code': None, 'error_type': None, 'error_message': None}, 'data': {'data': {'808': 'Authentication Failed - Client ID or Token invalid'}, 'status': 'failed'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 829, in get_ltp_data
+    raise Exception(data)
+Exception: {'status': 'failure', 'remarks': {'error_code': None, 'error_type': None, 'error_message': None}, 'data': {'data': {'808': 'Authentication Failed - Client ID or Token invalid'}, 'status': 'failed'}}
+ERROR:2025-10-08 10:22:12,369:ThreadPoolExecutor-9_0:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:12,369:ThreadPoolExecutor-9_3:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:12,442:ThreadPoolExecutor-9_1:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:12,480:ThreadPoolExecutor-9_4:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:12,481:ThreadPoolExecutor-9_2:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:16,010:ThreadPoolExecutor-10_2:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:16,053:ThreadPoolExecutor-10_3:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:16,182:ThreadPoolExecutor-10_4:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:16,182:ThreadPoolExecutor-10_0:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:16,182:ThreadPoolExecutor-10_1:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:19,700:ThreadPoolExecutor-11_1:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:19,965:ThreadPoolExecutor-11_2:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:19,980:ThreadPoolExecutor-11_0:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:20,040:ThreadPoolExecutor-11_3:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:20,041:ThreadPoolExecutor-11_4:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:23,248:ThreadPoolExecutor-12_0:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:23,263:ThreadPoolExecutor-12_1:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+ERROR:2025-10-08 10:22:23,279:ThreadPoolExecutor-12_2:Exception in Getting OHLC data as {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+Traceback (most recent call last):
+  File "C:\Users\SANJAY\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 621, in get_historical_data
+    raise Exception(ohlc)
+Exception: {'status': 'failure', 'remarks': {'error_code': 'DH-901', 'error_type': 'Invalid_Authentication', 'error_message': 'Client ID or user generated access token is invalid or expired.'}, 'data': {'errorType': 'Invalid_Authentication', 'errorCode': 'DH-901', 'errorMessage': 'Client ID or user generated access token is invalid or expired.'}}
+INFO:2025-10-08 10:23:58,509:MainThread:Dhan.py  started system
+INFO:2025-10-08 10:23:58,515:MainThread:STARTED THE PROGRAM
+ERROR:2025-10-08 10:24:42,450:MainThread:Exception in dhanhq>>intraday_history_minute_charts: HTTPSConnectionPool(host='api.dhan.co', port=443): Max retries exceeded with url: /v2/charts/historical (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x0000017578EB8B10>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))

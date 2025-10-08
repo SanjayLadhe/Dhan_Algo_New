@@ -1,0 +1,82 @@
+INFO:2025-10-07 10:12:51,830:MainThread:Dhan.py  started system
+INFO:2025-10-07 10:12:51,831:MainThread:STARTED THE PROGRAM
+INFO:2025-10-07 13:09:53,960:MainThread:Dhan.py  started system
+INFO:2025-10-07 13:09:53,960:MainThread:STARTED THE PROGRAM
+ERROR:2025-10-07 13:10:31,923:MainThread:Enter valid Script Name
+NoneType: None
+ERROR:2025-10-07 13:10:31,942:MainThread:Exception in Getting OHLC data as 'NoneType' object has no attribute 'upper'
+Traceback (most recent call last):
+  File "C:\Users\Sanjay.Ladhe\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 547, in get_historical_data
+    tradingsymbol = tradingsymbol.upper()
+                    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'upper'
+ERROR:2025-10-07 13:11:56,298:MainThread:Enter valid Script Name
+NoneType: None
+ERROR:2025-10-07 13:11:56,314:MainThread:Exception in Getting OHLC data as 'NoneType' object has no attribute 'upper'
+Traceback (most recent call last):
+  File "C:\Users\Sanjay.Ladhe\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 547, in get_historical_data
+    tradingsymbol = tradingsymbol.upper()
+                    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'upper'
+ERROR:2025-10-07 13:12:26,499:MainThread:Exception in Getting OHLC data as interval value must be ['1','5','15','25','60','DAY']
+Traceback (most recent call last):
+  File "C:\Users\Sanjay.Ladhe\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 600, in get_historical_data
+    raise Exception("interval value must be ['1','5','15','25','60','DAY']")
+Exception: interval value must be ['1','5','15','25','60','DAY']
+INFO:2025-10-07 16:51:38,405:MainThread:Dhan.py  started system
+INFO:2025-10-07 16:51:38,406:MainThread:STARTED THE PROGRAM
+ERROR:2025-10-07 16:52:22,956:MainThread:Exception in Getting OHLC data as interval value must be ['1','5','15','25','60','DAY']
+Traceback (most recent call last):
+  File "C:\Users\Sanjay.Ladhe\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 600, in get_historical_data
+    raise Exception("interval value must be ['1','5','15','25','60','DAY']")
+Exception: interval value must be ['1','5','15','25','60','DAY']
+ERROR:2025-10-07 16:52:38,122:MainThread:Exception in Getting OHLC data as interval value must be ['1','5','15','25','60','DAY']
+Traceback (most recent call last):
+  File "C:\Users\Sanjay.Ladhe\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 600, in get_historical_data
+    raise Exception("interval value must be ['1','5','15','25','60','DAY']")
+Exception: interval value must be ['1','5','15','25','60','DAY']
+ERROR:2025-10-07 16:52:53,375:MainThread:Exception in Getting OHLC data as interval value must be ['1','5','15','25','60','DAY']
+Traceback (most recent call last):
+  File "C:\Users\Sanjay.Ladhe\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 600, in get_historical_data
+    raise Exception("interval value must be ['1','5','15','25','60','DAY']")
+Exception: interval value must be ['1','5','15','25','60','DAY']
+ERROR:2025-10-07 16:53:08,449:MainThread:Exception in Getting OHLC data as interval value must be ['1','5','15','25','60','DAY']
+Traceback (most recent call last):
+  File "C:\Users\Sanjay.Ladhe\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 600, in get_historical_data
+    raise Exception("interval value must be ['1','5','15','25','60','DAY']")
+Exception: interval value must be ['1','5','15','25','60','DAY']
+ERROR:2025-10-07 16:53:23,658:MainThread:Exception in Getting OHLC data as interval value must be ['1','5','15','25','60','DAY']
+Traceback (most recent call last):
+  File "C:\Users\Sanjay.Ladhe\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 600, in get_historical_data
+    raise Exception("interval value must be ['1','5','15','25','60','DAY']")
+Exception: interval value must be ['1','5','15','25','60','DAY']
+ERROR:2025-10-07 16:53:38,704:MainThread:Exception in Getting OHLC data as interval value must be ['1','5','15','25','60','DAY']
+Traceback (most recent call last):
+  File "C:\Users\Sanjay.Ladhe\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 600, in get_historical_data
+    raise Exception("interval value must be ['1','5','15','25','60','DAY']")
+Exception: interval value must be ['1','5','15','25','60','DAY']
+ERROR:2025-10-07 16:53:53,748:MainThread:Exception in Getting OHLC data as interval value must be ['1','5','15','25','60','DAY']
+Traceback (most recent call last):
+  File "C:\Users\Sanjay.Ladhe\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 600, in get_historical_data
+    raise Exception("interval value must be ['1','5','15','25','60','DAY']")
+Exception: interval value must be ['1','5','15','25','60','DAY']
+ERROR:2025-10-07 16:54:09,066:MainThread:Exception in Getting OHLC data as interval value must be ['1','5','15','25','60','DAY']
+Traceback (most recent call last):
+  File "C:\Users\Sanjay.Ladhe\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 600, in get_historical_data
+    raise Exception("interval value must be ['1','5','15','25','60','DAY']")
+Exception: interval value must be ['1','5','15','25','60','DAY']
+ERROR:2025-10-07 16:54:24,360:MainThread:Exception in Getting OHLC data as interval value must be ['1','5','15','25','60','DAY']
+Traceback (most recent call last):
+  File "C:\Users\Sanjay.Ladhe\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 600, in get_historical_data
+    raise Exception("interval value must be ['1','5','15','25','60','DAY']")
+Exception: interval value must be ['1','5','15','25','60','DAY']
+ERROR:2025-10-07 16:54:39,524:MainThread:Exception in Getting OHLC data as interval value must be ['1','5','15','25','60','DAY']
+Traceback (most recent call last):
+  File "C:\Users\Sanjay.Ladhe\PycharmProjects\Dhan_Algo_New\Paper\Dhan_Tradehull_V3.py", line 600, in get_historical_data
+    raise Exception("interval value must be ['1','5','15','25','60','DAY']")
+Exception: interval value must be ['1','5','15','25','60','DAY']
+INFO:2025-10-07 18:09:31,006:MainThread:Dhan.py  started system
+INFO:2025-10-07 18:09:31,006:MainThread:STARTED THE PROGRAM
+INFO:2025-10-07 23:43:36,500:MainThread:Dhan.py  started system
+INFO:2025-10-07 23:43:36,500:MainThread:STARTED THE PROGRAM
+ERROR:2025-10-07 23:44:05,807:MainThread:Exception in dhanhq>>intraday_history_minute_charts: HTTPSConnectionPool(host='api.dhan.co', port=443): Max retries exceeded with url: /v2/charts/historical (Caused by SSLError(SSLCertVerificationError(1, "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'api.dhan.co'. (_ssl.c:1006)")))

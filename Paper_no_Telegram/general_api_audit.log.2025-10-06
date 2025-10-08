@@ -1,0 +1,92 @@
+2025-10-06 15:26:03,716 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 15:26:23,510 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='POLYCAB', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:26:26,383 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='POLYCAB 28 OCT 7600 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:26:34,328 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='JSWSTEEL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:26:37,027 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:26:43,714 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='COLPAL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:26:46,366 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='COLPAL 28 OCT 2240 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:27:19,554 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 15:27:34,278 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='POLYCAB', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:27:36,865 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='POLYCAB 28 OCT 7600 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:27:44,030 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='JSWSTEEL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:27:46,631 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:27:49,144 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:27:51,739 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1000') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:27:51,750 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:27:54,439 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 15:27:59,471 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:27:59,481 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:28:00,491 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:28:03,091 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1002') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:28:08,502 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 15:28:23,962 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='POLYCAB', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:28:26,635 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='POLYCAB 28 OCT 7600 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:28:33,736 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='JSWSTEEL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:28:36,328 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:28:38,793 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:28:41,387 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:28:41,396 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:28:44,140 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 15:28:49,309 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1004') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:28:49,319 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1004') - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:28:50,327 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:28:52,908 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:28:58,042 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 15:29:12,478 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='POLYCAB', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:29:15,051 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='POLYCAB 28 OCT 7600 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:29:21,724 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='JSWSTEEL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:29:24,302 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:29:26,745 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:29:29,325 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1006') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:29:29,333 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:29:32,057 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 15:29:37,091 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1007') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:29:37,101 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1007') - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:29:38,111 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:29:40,711 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1008') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:29:45,942 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 15:30:00,761 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='POLYCAB', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:30:03,422 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='POLYCAB 28 OCT 7600 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:30:12,048 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='JSWSTEEL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:30:14,762 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:30:17,600 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:30:20,244 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1009') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:30:20,252 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:30:23,019 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 15:30:28,210 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1010') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:30:28,218 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1010') - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:30:29,228 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:30:31,808 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1011') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:30:36,972 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 15:30:52,508 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='POLYCAB', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:30:55,104 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='POLYCAB 28 OCT 7600 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:31:02,357 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='JSWSTEEL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:31:05,001 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:31:07,517 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-06 15:31:09,116 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1012') - Queue size after add: 1, Max allowed: 18
+2025-10-06 15:31:09,125 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-06 17:59:55,393 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 18:00:14,445 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='POLYCAB', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 18:00:17,165 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='POLYCAB 28 OCT 7600 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 18:00:24,529 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='JSWSTEEL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2025-10-06 18:00:27,190 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL') - Queue size after add: 1, Max allowed: 18
+2025-10-06 18:00:29,721 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-06 18:00:32,337 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1000') - Queue size after add: 1, Max allowed: 18
+2025-10-06 18:00:32,347 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2025-10-06 18:00:35,092 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 18:00:40,349 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-06 18:00:40,359 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-06 18:00:41,368 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-06 18:00:43,958 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1002') - Queue size after add: 1, Max allowed: 18
+2025-10-06 18:00:49,298 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 18:00:55,021 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-06 18:00:55,030 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-06 18:00:56,039 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-06 18:00:58,641 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2025-10-06 18:01:03,749 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 18:01:08,851 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2025-10-06 18:01:08,860 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1001') - Queue size after add: 1, Max allowed: 25
+2025-10-06 18:01:09,869 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='JSWSTEEL 28 OCT 1160 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2025-10-06 18:01:12,454 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1004') - Queue size after add: 1, Max allowed: 18
+2025-10-06 18:01:17,608 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
+2025-10-06 18:15:46,956 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=watchlist) - Queue size after add: 1, Max allowed: 1
