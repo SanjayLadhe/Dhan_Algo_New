@@ -22,6 +22,74 @@ from rate_limiter import (
 )
 
 
+def check_bid_ask_spread(tsl, option_symbol, max_spread=0.50):
+    """
+    Check if bid-ask spread is within acceptable limits and display detailed quote info.
+
+    Args:
+        tsl: Tradehull API client instance
+        option_symbol: Option symbol to check
+        max_spread: Maximum acceptable spread (default 0.50)
+
+    Returns:
+        tuple: (is_acceptable: bool, spread: float or None, quote_info: dict or None)
+    """
+    try:
+        data_api_limiter.wait(call_description=f"tsl.get_quote_data(['{option_symbol}'])")
+        quote_data = tsl.get_quote_data([option_symbol])
+
+        if not quote_data or option_symbol not in quote_data:
+            print(f"  ⚠️ No quote data available for {option_symbol}")
+            return False, None, None
+
+        data = quote_data[option_symbol]
+        bid_price = data.get('top_bid_price') or data.get('bid_price')
+        ask_price = data.get('top_ask_price') or data.get('ask_price')
+        ltp = data.get('last_price') or data.get('ltp')
+        bid_qty = data.get('top_bid_quantity') or data.get('bid_qty')
+        ask_qty = data.get('top_ask_quantity') or data.get('ask_qty')
+
+        if not bid_price or not ask_price:
+            print(f"  ⚠️ Bid-Ask data not available for {option_symbol}")
+            return False, None, None
+
+        spread = ask_price - bid_price
+        mid_price = (bid_price + ask_price) / 2
+        spread_pct = (spread / mid_price * 100) if mid_price else 0
+        is_acceptable = spread <= max_spread
+
+        quote_info = {
+            'ltp': ltp,
+            'bid': bid_price,
+            'ask': ask_price,
+            'bid_qty': bid_qty,
+            'ask_qty': ask_qty,
+            'spread': spread,
+            'spread_pct': spread_pct,
+            'mid_price': mid_price
+        }
+
+        # Display detailed quote information
+        print(f"\n  {'='*70}")
+        print(f"  📊 QUOTE DATA FOR {option_symbol}")
+        print(f"  {'='*70}")
+        print(f"  💰 LTP:           ₹{ltp:.2f}")
+        print(f"  📉 Bid:           ₹{bid_price:.2f} (Qty: {bid_qty})")
+        print(f"  📈 Ask:           ₹{ask_price:.2f} (Qty: {ask_qty})")
+        print(f"  📊 Mid Price:     ₹{mid_price:.2f}")
+        print(f"  📏 Spread:        ₹{spread:.2f} ({spread_pct:.2f}%)")
+        print(f"  ✅ Acceptable:    {'YES' if is_acceptable else 'NO'} (Max: ₹{max_spread})")
+        print(f"  {'='*70}\n")
+
+        return is_acceptable, spread, quote_info
+
+    except Exception as e:
+        print(f"  ❌ Error checking bid-ask spread for {option_symbol}: {e}")
+        import traceback
+        traceback.print_exc()
+        return False, None, None
+
+
 def check_ce_entry_conditions(chart, name, orderbook, no_of_orders_placed):
     """
     Check if CE (Call Option) entry conditions are met for the underlying stock.
@@ -350,14 +418,30 @@ def execute_ce_entry(tsl, name, chart, orderbook, no_of_orders_placed, atr_multi
         # Check CE option conditions
         if not check_ce_option_conditions(options_chart_Res, ce_name, name, orderbook, no_of_orders_placed):
             return False, "CE option conditions not met"
-        
+
+        # Check bid-ask spread (only for options)
+        print(f"\n🔍 Checking Bid-Ask Spread for CE Option: {ce_name}")
+        spread_ok, spread, quote_info = check_bid_ask_spread(tsl, ce_name, max_spread=0.50)
+        if not spread_ok:
+            return False, f"Bid-Ask spread too wide for {ce_name} (spread=₹{spread:.2f if spread else 'N/A'})"
+
+        print(f"✅ Bid-Ask spread check PASSED for {ce_name}")
+
         # Place entry order
         success = place_ce_entry_order(
             tsl, name, ce_name, lot_size, options_chart_Res,
             atr_multipler, orderbook, bot_token, receiver_chat_id
         )
-        
+
         if success:
+            # Subscribe to WebSocket for real-time monitoring after successful entry
+            try:
+                from websocket_manager import subscribe_for_position
+                subscribe_for_position(tsl, ce_name)
+                print(f"  ✅ Subscribed to WebSocket for real-time monitoring: {ce_name}")
+            except Exception as e:
+                print(f"  ⚠️ WebSocket subscription failed (will use API polling): {e}")
+
             return True, f"CE entry executed successfully for {name} ({ce_name})"
         else:
             return False, "Failed to place CE entry order"

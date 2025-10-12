@@ -15,14 +15,21 @@ how to use the spread in trading logic.
 import time
 import pandas as pd
 from Dhan_Tradehull_V3 import Tradehull
-from rate_limiter import ltp_api_limiter, retry_api_call
+from rate_limiter import RateLimiter, retry_api_call
+
+# Option chain specific rate limiter: 1 request per 3 seconds
+option_chain_limiter = RateLimiter(
+    max_calls=1,
+    period=3.0,
+    name="OPTION_CHAIN_API"
+)
 
 
 # ==================================
 # DHAN API CREDENTIALS
 # ==================================
 CLIENT_CODE = "1106090196"
-TOKEN_ID = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzYwMTU3ODc0LCJpYXQiOjE3NjAwNzE0NzQsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTA2MDkwMTk2In0.ImOjfGYDGG-ZSlSVBXEtCi563cyJoJY5jwosRpcr64O99LzUdG_j4LnW7zAPVsA3LSROy-LGy-Apdn4vtRjnrw"
+TOKEN_ID = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzYwMjk3OTE3LCJpYXQiOjE3NjAyMTE1MTcsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTA2MDkwMTk2In0.41DHmyMFKCC3wDsyOC7ykPAiAvw_1mOozwo3UGiF9CgjEUFPmgL8gGuDuyge-avesde78QsJTNgMfE6vEPe5rQ"
 tsl = Tradehull(CLIENT_CODE, TOKEN_ID)
 
 
@@ -34,19 +41,18 @@ def get_option_chain_with_spread(symbol: str, num_strikes: int = 0):
     Fetch option chain for latest expiry (expiry=0) and calculate bid-ask spread.
     """
     try:
-        # Enforce 1 req/sec
-        ltp_api_limiter.wait(call_description=f"get_option_chain({symbol})")
+        # Enforce 1 req per 3 seconds
+        option_chain_limiter.wait(call_description=f"get_option_chain({symbol})")
 
-        # ✅ Correct: positional args only, matching working call
-        result = retry_api_call(
-            tsl.get_option_chain,  # target function
-            2,                     # retries
-            1.0,                   # delay (seconds)
-            symbol,                # positional arg 1
-            "NFO",                 # positional arg 2
-            0,                     # expiry = 0 (latest)
-            num_strikes            # positional arg 4 (num_strikes)
-        )
+        # ✅ Direct call to see errors
+        print(f"  Calling get_option_chain for {symbol}...")
+        result = tsl.get_option_chain(symbol, "NFO", 0, 0)
+
+        print(f"  Result type: {type(result)}, Result: {result if not isinstance(result, tuple) else f'tuple with {len(result)} elements'}")
+
+        if result is None:
+            print(f"⚠️ get_option_chain returned None for {symbol}")
+            return None
 
         if not isinstance(result, tuple) or len(result) < 2:
             print(f"⚠️ Invalid response for {symbol}: {result}")
@@ -92,9 +98,9 @@ if __name__ == "__main__":
     print("=================================\n")
 
     symbol = "LUPIN"
-    num_strikes = 2   # 0 = full chain, else ±N strikes around ATM
+    num_strikes = 0   # 0 = full chain (hardcoded in function)
 
-    df = get_option_chain_with_spread(symbol, num_strikes)
+    df = get_option_chain_with_spread(symbol, num_strikes=0)
 
     # ==============================
     # 🧪 TESTING: USING SPREAD VALUES

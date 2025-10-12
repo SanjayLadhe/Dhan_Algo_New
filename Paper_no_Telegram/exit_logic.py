@@ -8,6 +8,7 @@ This module handles exit conditions for active trades including:
 - Trailing Stop Loss updates
 - Time-based exits
 - Custom exit conditions
+- Real-time market depth monitoring for timely exits
 """
 
 import datetime
@@ -16,7 +17,8 @@ import traceback
 from rate_limiter import (
     ntrading_api_limiter,
     order_api_limiter,
-    retry_api_call
+    retry_api_call,
+    ltp_api_limiter
 )
 
 
@@ -790,12 +792,13 @@ def process_exit_conditions(tsl, name, orderbook, all_ltp, process_start_time,
     """
     Main function to check and process all exit conditions for a trade.
 
-    Exit priority:
-    1. Stop Loss (highest priority)
-    2. Target Hit
-    3. RSI/LongStop Technical Exit (CUSTOM)
-    4. Time Exit (if in loss)
-    5. Update TSL (if none of above)
+    Exit priority (UPDATED):
+    1. Trailing Stop Loss (TSL) - HIGHEST PRIORITY for exit
+    2. Stop Loss hit
+    3. Target Hit
+    4. RSI/LongStop Technical Exit (CUSTOM)
+    5. Time Exit (if in loss)
+    6. Update TSL (if none of above)
 
     Args:
         tsl: Tradehull API client
@@ -825,7 +828,8 @@ def process_exit_conditions(tsl, name, orderbook, all_ltp, process_start_time,
         if orderbook[name].get('buy_sell') != "BUY":
             return "not_buy_position"
 
-        # Priority 1: Check Stop Loss (HIGHEST PRIORITY)
+        # Priority 1: Check Trailing Stop Loss (TSL) - HIGHEST PRIORITY FOR EXIT
+        # This checks if the current SL order (which includes TSL) has been triggered
         if check_sl_hit(tsl, name, orderbook):
             if handle_sl_exit(tsl, name, orderbook, process_start_time,
                              bot_token, receiver_chat_id, reentry, completed_orders, single_order):
@@ -883,7 +887,8 @@ def process_exit_conditions(tsl, name, orderbook, all_ltp, process_start_time,
                                bot_token, receiver_chat_id, reentry, completed_orders, single_order):
                 return "time_exit"
 
-        # Priority 5: Update TSL
+        # Priority 5: Update TSL if price has moved favorably
+        # This continuously updates the trailing stop to lock in profits
         # Pass pre-fetched 3-min data to avoid duplicate API call
         if update_trailing_stop_loss(tsl, name, orderbook, atr_multipler, options_chart_3min):
             return "tsl_updated"
