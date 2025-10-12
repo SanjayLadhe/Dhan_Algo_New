@@ -90,6 +90,7 @@ reentry = "no"  # "yes/no"
 # ============================
 MONITOR_INTERVAL = 5    # Check every 5 seconds when IN a position
 SCAN_INTERVAL = 30      # Scan for entry every 30 seconds when NO position
+WATCHLIST_REFRESH_INTERVAL = 15 * 60  # Refresh watchlist every 15 minutes (900 seconds)
 
 # ============================
 # WATCHLIST FUNCTIONS
@@ -157,10 +158,61 @@ completed_orders_sheet.range("A2:Z100").value = None
 
 # Get dynamic watchlist
 watchlist = get_dynamic_watchlist()
+last_watchlist_refresh_time = time.time()  # Track when watchlist was last refreshed
 
 # Initialize orderbook
 for name in watchlist:
     orderbook[name] = single_order.copy()
+
+
+# ============================
+# REFRESH WATCHLIST FROM SECTORS
+# ============================
+def refresh_watchlist_if_needed(last_refresh_time):
+    """
+    Refresh watchlist from sectors if 15 minutes have passed.
+
+    Args:
+        last_refresh_time: Timestamp of last watchlist refresh
+
+    Returns:
+        tuple: (new_watchlist, new_refresh_time)
+    """
+    global watchlist, orderbook
+
+    current_time = time.time()
+    time_since_refresh = current_time - last_refresh_time
+
+    if time_since_refresh >= WATCHLIST_REFRESH_INTERVAL:
+        print("\n" + "="*80)
+        print(f"🔄 REFRESHING WATCHLIST - 15 minutes elapsed since last refresh")
+        print("="*80)
+
+        # Get new watchlist from sectors
+        new_watchlist = get_dynamic_watchlist()
+
+        # Update orderbook with new symbols (preserve existing active positions)
+        for name in new_watchlist:
+            if name not in orderbook:
+                orderbook[name] = single_order.copy()
+                print(f"  ➕ Added new symbol: {name}")
+
+        # Remove symbols no longer in watchlist (only if they have no active position)
+        symbols_to_remove = []
+        for name in orderbook:
+            if name not in new_watchlist and orderbook[name].get('qty', 0) == 0:
+                symbols_to_remove.append(name)
+
+        for name in symbols_to_remove:
+            del orderbook[name]
+            print(f"  ➖ Removed symbol: {name}")
+
+        print(f"✅ Watchlist refreshed: {len(new_watchlist)} symbols")
+        print("="*80 + "\n")
+
+        return new_watchlist, current_time
+
+    return watchlist, last_refresh_time
 
 
 # ============================
@@ -460,13 +512,17 @@ def main():
     Main trading loop with single-trade focus strategy
     - Scans every 30 seconds when NO position
     - Monitors every 5 seconds when IN position
+    - Refreshes watchlist from sectors every 15 minutes
     """
+    global watchlist, last_watchlist_refresh_time
+
     print("\n" + "="*100)
     print("🚀 SINGLE TRADE FOCUS BOT STARTED")
     print("="*100)
     print(f"📊 Strategy: Focus on ONE high-quality trade at a time")
     print(f"⏰ Scan Interval (No Position): {SCAN_INTERVAL} seconds")
     print(f"👁️ Monitor Interval (In Position): {MONITOR_INTERVAL} seconds")
+    print(f"🔄 Watchlist Refresh Interval: {WATCHLIST_REFRESH_INTERVAL // 60} minutes")
     print(f"💰 Risk per Trade: ₹{risk_per_trade:,.2f}")
     print(f"📈 Risk Reward Ratio: 1:{risk_reward}")
     print(f"📋 Watchlist: {len(watchlist)} symbols")
@@ -546,13 +602,17 @@ def main():
                 # ============================
                 # SCAN MODE - Check every 30 seconds
                 # ============================
+
+                # Refresh watchlist from sectors if 15 minutes have passed
+                watchlist, last_watchlist_refresh_time = refresh_watchlist_if_needed(last_watchlist_refresh_time)
+
                 current_time_sec = time.time()
                 time_since_last_scan = current_time_sec - last_scan_time
 
                 if time_since_last_scan >= SCAN_INTERVAL:
                     entry_executed = scan_for_entry(all_ltp)
                     last_scan_time = current_time_sec
-                    
+
                     if entry_executed:
                         # Position entered, switch to monitor mode immediately
                         continue
