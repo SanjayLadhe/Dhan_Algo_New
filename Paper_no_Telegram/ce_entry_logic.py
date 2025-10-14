@@ -107,17 +107,22 @@ def check_bid_ask_spread(tsl, option_symbol, max_spread=0.50):
             'mid_price': mid_price
         }
 
+        # Format values for display
+        ltp_display = f"{ltp:.2f}" if not pd.isna(ltp) else "N/A"
+        bid_qty_display = int(bid_qty) if not pd.isna(bid_qty) else 0
+        ask_qty_display = int(ask_qty) if not pd.isna(ask_qty) else 0
+
         # Display detailed quote information
-        print(f"\n  {'='*70}")
+        print(f"\n  {'=' * 70}")
         print(f"  📊 OPTION CHAIN DATA FOR {option_symbol}")
-        print(f"  {'='*70}")
-        print(f"  💰 LTP:           ₹{ltp:.2f if not pd.isna(ltp) else 0}")
-        print(f"  📉 Bid:           ₹{bid_price:.2f} (Qty: {bid_qty if not pd.isna(bid_qty) else 0})")
-        print(f"  📈 Ask:           ₹{ask_price:.2f} (Qty: {ask_qty if not pd.isna(ask_qty) else 0})")
+        print(f"  {'=' * 70}")
+        print(f"  💰 LTP:           ₹{ltp_display}")
+        print(f"  📉 Bid:           ₹{bid_price:.2f} (Qty: {bid_qty_display})")
+        print(f"  📈 Ask:           ₹{ask_price:.2f} (Qty: {ask_qty_display})")
         print(f"  📊 Mid Price:     ₹{mid_price:.2f}")
         print(f"  📏 Spread:        ₹{spread:.2f} ({spread_pct:.2f}%)")
         print(f"  ✅ Acceptable:    {'YES' if is_acceptable else 'NO'} (Max: ₹{max_spread})")
-        print(f"  {'='*70}\n")
+        print(f"  {'=' * 70}\n")
 
         return is_acceptable, spread, quote_info
 
@@ -153,7 +158,7 @@ def check_ce_entry_conditions(chart, name, orderbook, no_of_orders_placed):
         Crossabove = pta.above(chart['rsi'], chart['ma_rsi'])
         
         # Buy entry conditions for underlying
-        bc1 = cc['rsi'] > 50
+        bc1 = cc['rsi'] > 60
         bc2 = bool(Crossabove.iloc[-2])
         bc3 = cc_close > long_stop
         bc4 = cc_close > fractal_high
@@ -276,7 +281,7 @@ def check_ce_option_conditions(options_chart_Res, ce_name, name, orderbook, no_o
         Crossabove_opt = pta.above(options_chart_Res['rsi'], options_chart_Res['ma_rsi'])
         
         # Buy entry conditions for CE option
-        bc1_opt = rc_options_cc['rsi'] > 50
+        bc1_opt = rc_options_cc['rsi'] > 60
         bc2_opt = bool(Crossabove_opt.iloc[-2])
         bc3_opt = cc_close > long_stop_opt
         bc4_opt = cc_close > fractal_high_opt

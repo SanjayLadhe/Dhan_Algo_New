@@ -454,84 +454,108 @@ class SectorPerformanceAnalyzer:
         return all_indices_data, all_stocks_by_index
 
     def get_best_performing_sector_stocks(self, all_indices_data, all_stocks_by_index, top_sectors=5):
-        """
-        Get stocks from best performing sectors using pre-fetched data
-        Returns list of stock symbols for trading
-        """
-        if not all_indices_data:
-            return None
+	    """
+		Get stocks from best performing sectors using pre-fetched data
+		For each sector, selects top 5 gainers AND top 5 losers
+		Returns list of stock symbols for trading
+		"""
+	    if not all_indices_data:
+		    return None
 
-        df_indices = pd.DataFrame(all_indices_data).sort_values("Change %", ascending=False)
-        top_gainers = df_indices.head(top_sectors)
+	    df_indices = pd.DataFrame(all_indices_data).sort_values("Change %", ascending=False)
+	    top_gainers = df_indices.head(top_sectors)
 
-        best_stocks = []
-        
-        print(f"\nSelecting stocks from top {top_sectors} performing sectors:")
-        
-        for _, row in top_gainers.iterrows():
-            sector_name = row['Sector']
-            print(f"  📈 {sector_name} ({row['Change %']:+.2f}%)")
+	    best_stocks = []
 
-            if sector_name in all_stocks_by_index:
-                stocks = all_stocks_by_index[sector_name]
-                stocks_df = pd.DataFrame(stocks).sort_values('Change %', ascending=False)
-                top_stocks = stocks_df.head(5)['Symbol'].tolist()
-                
-                best_stocks.extend(top_stocks)
-                print(f"      Added {len(top_stocks)} stocks: {', '.join(top_stocks)}")
-            else:
-                print(f"      ⚠️ No constituent stocks available")
+	    print(f"\nSelecting stocks from top {top_sectors} performing sectors:")
 
-        # Remove duplicates while preserving order
-        unique_stocks = []
-        seen = set()
-        for stock in best_stocks:
-            if stock not in seen:
-                unique_stocks.append(stock)
-                seen.add(stock)
+	    for _, row in top_gainers.iterrows():
+		    sector_name = row['Sector']
+		    print(f"  📈 {sector_name} ({row['Change %']:+.2f}%)")
 
-        print(f"\nTotal unique stocks selected: {len(unique_stocks)}")
-        return unique_stocks
+		    if sector_name in all_stocks_by_index:
+			    stocks = all_stocks_by_index[sector_name]
+			    stocks_df = pd.DataFrame(stocks).sort_values('Change %', ascending=False)
+
+			    # Get top 5 gainers from this sector
+			    top_5_gainers = stocks_df.head(5)['Symbol'].tolist()
+
+			    # Get top 5 losers from this sector
+			    top_5_losers = stocks_df.tail(5)['Symbol'].tolist()
+			    top_5_losers.reverse()  # Reverse to show worst first
+
+			    # Combine gainers and losers
+			    sector_stocks = top_5_gainers + top_5_losers
+			    best_stocks.extend(sector_stocks)
+
+			    print(f"      Added {len(sector_stocks)} stocks:")
+			    print(f"        Gainers: {', '.join(top_5_gainers)}")
+			    print(f"        Losers:  {', '.join(top_5_losers)}")
+		    else:
+			    print(f"      ⚠️ No constituent stocks available")
+
+	    # Remove duplicates while preserving order
+	    unique_stocks = []
+	    seen = set()
+	    for stock in best_stocks:
+		    if stock not in seen:
+			    unique_stocks.append(stock)
+			    seen.add(stock)
+
+	    print(f"\nTotal unique stocks selected: {len(unique_stocks)}")
+	    return unique_stocks
 
     def get_worst_performing_sector_stocks(self, all_indices_data, all_stocks_by_index, top_sectors=5):
-        """
-        Get stocks from worst performing sectors using pre-fetched data
-        Returns list of stock symbols for trading
-        """
-        if not all_indices_data:
-            return None
+	    """
+		Get stocks from worst performing sectors using pre-fetched data
+		For each sector, selects top 5 gainers AND top 5 losers
+		Returns list of stock symbols for trading
+		"""
+	    if not all_indices_data:
+		    return None
 
-        df_indices = pd.DataFrame(all_indices_data).sort_values("Change %", ascending=True)
-        top_losers = df_indices.head(top_sectors)
+	    df_indices = pd.DataFrame(all_indices_data).sort_values("Change %", ascending=True)
+	    top_losers = df_indices.head(top_sectors)
 
-        worst_stocks = []
-        
-        print(f"\nSelecting stocks from top {top_sectors} worst performing sectors:")
-        
-        for _, row in top_losers.iterrows():
-            sector_name = row['Sector']
-            print(f"  📉 {sector_name} ({row['Change %']:+.2f}%)")
+	    worst_stocks = []
 
-            if sector_name in all_stocks_by_index:
-                stocks = all_stocks_by_index[sector_name]
-                stocks_df = pd.DataFrame(stocks).sort_values('Change %', ascending=False)
-                top_stocks = stocks_df.head(5)['Symbol'].tolist()
-                
-                worst_stocks.extend(top_stocks)
-                print(f"      Added {len(top_stocks)} stocks: {', '.join(top_stocks)}")
-            else:
-                print(f"      ⚠️ No constituent stocks available")
+	    print(f"\nSelecting stocks from top {top_sectors} worst performing sectors:")
 
-        # Remove duplicates while preserving order
-        unique_stocks = []
-        seen = set()
-        for stock in worst_stocks:
-            if stock not in seen:
-                unique_stocks.append(stock)
-                seen.add(stock)
+	    for _, row in top_losers.iterrows():
+		    sector_name = row['Sector']
+		    print(f"  📉 {sector_name} ({row['Change %']:+.2f}%)")
 
-        print(f"\nTotal unique stocks selected from worst sectors: {len(unique_stocks)}")
-        return unique_stocks
+		    if sector_name in all_stocks_by_index:
+			    stocks = all_stocks_by_index[sector_name]
+			    stocks_df = pd.DataFrame(stocks).sort_values('Change %', ascending=False)
+
+			    # Get top 5 gainers from this sector
+			    top_5_gainers = stocks_df.head(5)['Symbol'].tolist()
+
+			    # Get top 5 losers from this sector
+			    top_5_losers = stocks_df.tail(5)['Symbol'].tolist()
+			    top_5_losers.reverse()  # Reverse to show worst first
+
+			    # Combine gainers and losers
+			    sector_stocks = top_5_gainers + top_5_losers
+			    worst_stocks.extend(sector_stocks)
+
+			    print(f"      Added {len(sector_stocks)} stocks:")
+			    print(f"        Gainers: {', '.join(top_5_gainers)}")
+			    print(f"        Losers:  {', '.join(top_5_losers)}")
+		    else:
+			    print(f"      ⚠️ No constituent stocks available")
+
+	    # Remove duplicates while preserving order
+	    unique_stocks = []
+	    seen = set()
+	    for stock in worst_stocks:
+		    if stock not in seen:
+			    unique_stocks.append(stock)
+			    seen.add(stock)
+
+	    print(f"\nTotal unique stocks selected from worst sectors: {len(unique_stocks)}")
+	    return unique_stocks
 
     def get_fno_stocks_from_best_sectors(self, all_indices_data, all_stocks_by_index, top_sectors=5, apply_lot_filter=True):
         """

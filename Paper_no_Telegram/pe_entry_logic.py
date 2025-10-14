@@ -107,17 +107,22 @@ def check_bid_ask_spread(tsl, option_symbol, max_spread=0.50):
             'mid_price': mid_price
         }
 
+        # Format values for display
+        ltp_display = f"{ltp:.2f}" if not pd.isna(ltp) else "N/A"
+        bid_qty_display = int(bid_qty) if not pd.isna(bid_qty) else 0
+        ask_qty_display = int(ask_qty) if not pd.isna(ask_qty) else 0
+
         # Display detailed quote information
-        print(f"\n  {'='*70}")
+        print(f"\n  {'=' * 70}")
         print(f"  📊 OPTION CHAIN DATA FOR {option_symbol}")
-        print(f"  {'='*70}")
-        print(f"  💰 LTP:           ₹{ltp:.2f if not pd.isna(ltp) else 0}")
-        print(f"  📉 Bid:           ₹{bid_price:.2f} (Qty: {bid_qty if not pd.isna(bid_qty) else 0})")
-        print(f"  📈 Ask:           ₹{ask_price:.2f} (Qty: {ask_qty if not pd.isna(ask_qty) else 0})")
+        print(f"  {'=' * 70}")
+        print(f"  💰 LTP:           ₹{ltp_display}")
+        print(f"  📉 Bid:           ₹{bid_price:.2f} (Qty: {bid_qty_display})")
+        print(f"  📈 Ask:           ₹{ask_price:.2f} (Qty: {ask_qty_display})")
         print(f"  📊 Mid Price:     ₹{mid_price:.2f}")
         print(f"  📏 Spread:        ₹{spread:.2f} ({spread_pct:.2f}%)")
         print(f"  ✅ Acceptable:    {'YES' if is_acceptable else 'NO'} (Max: ₹{max_spread})")
-        print(f"  {'='*70}\n")
+        print(f"  {'=' * 70}\n")
 
         return is_acceptable, spread, quote_info
 

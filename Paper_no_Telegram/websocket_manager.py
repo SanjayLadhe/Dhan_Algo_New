@@ -19,6 +19,9 @@ import traceback
 from datetime import datetime
 from threading import Thread, Lock
 from collections import defaultdict
+import pandas as pd
+import os
+import glob
 
 
 class WebSocketMarketData:
@@ -32,29 +35,74 @@ class WebSocketMarketData:
     - Volume and Open Interest
     """
 
-    def __init__(self, dhan_client):
+    def __init__(self, dhan_client, instrument_file=None):
         """
         Initialize WebSocket manager.
 
         Args:
             dhan_client: Dhan API client instance (tsl object)
+            instrument_file: Path to instrument master CSV file (optional, will auto-detect from Dependencies folder)
         """
         self.dhan = dhan_client
+        self.instrument_file = instrument_file or self._find_instrument_file()
         self.subscribed_instruments = {}  # {symbol: security_id}
         self.market_data = defaultdict(dict)  # {symbol: {ltp, bid, ask, ...}}
         self.lock = Lock()
         self.ws_thread = None
         self.is_running = False
         self.callbacks = []  # List of callback functions for data updates
+        self._instrument_df = None  # Will be loaded on first use
 
         print("✅ WebSocket Market Data Manager initialized")
+        if self.instrument_file:
+            print(f"   📂 Instrument file: {self.instrument_file}")
+
+    def _find_instrument_file(self):
+        """
+        Auto-detect instrument CSV file from Dependencies folder.
+
+        Returns:
+            str: Path to instrument file or None if not found
+        """
+        try:
+            # Look for Dependencies folder in current directory and parent directory
+            search_paths = [
+                "Dependencies",
+                "./Dependencies",
+                "../Dependencies",
+                "../../Dependencies"
+            ]
+
+            for search_path in search_paths:
+                if os.path.exists(search_path) and os.path.isdir(search_path):
+                    # Search for any CSV file in Dependencies folder
+                    csv_files = glob.glob(os.path.join(search_path, "*.csv"))
+
+                    if csv_files:
+                        # Prefer files with "instrument" or "scrip" in the name
+                        preferred_files = [f for f in csv_files if 'instrument' in f.lower() or 'scrip' in f.lower()]
+
+                        if preferred_files:
+                            instrument_file = preferred_files[0]
+                        else:
+                            instrument_file = csv_files[0]
+
+                        print(f"   🔍 Auto-detected instrument file: {instrument_file}")
+                        return instrument_file
+
+            print("   ⚠️ Could not auto-detect instrument file in Dependencies folder")
+            return None
+
+        except Exception as e:
+            print(f"   ⚠️ Error finding instrument file: {e}")
+            return None
 
     def subscribe(self, option_symbol, security_id=None):
         """
         Subscribe to real-time data for an option symbol.
 
         Args:
-            option_symbol: Option trading symbol (e.g., "NIFTY 28 OCT 25000 CE")
+            option_symbol: Option trading symbol (e.g., "TECHM 28 OCT 1480 CALL")
             security_id: Dhan security ID (optional, will lookup if not provided)
 
         Returns:
@@ -265,18 +313,52 @@ class WebSocketMarketData:
         Get Dhan security ID for an option symbol.
 
         Args:
-            option_symbol: Option trading symbol
+            option_symbol: Option trading symbol (e.g., "TECHM 28 OCT 1480 CALL")
 
         Returns:
-            str: Security ID or None if not found
+            str: Security ID (SEM_SMST_SECURITY_ID) or None if not found
         """
         try:
-            # Try to lookup from instrument file
-            # This is a placeholder - implement actual lookup logic
-            return None
+            # Load instrument file (cached for efficiency)
+            if self._instrument_df is None:
+                if self.instrument_file is None:
+                    print(f"  ❌ No instrument file configured")
+                    return None
+
+                if not os.path.exists(self.instrument_file):
+                    print(f"  ❌ Instrument file not found: {self.instrument_file}")
+                    return None
+
+                # Cache the instrument dataframe
+                self._instrument_df = pd.read_csv(self.instrument_file)
+                print(f"  📋 Loaded {len(self._instrument_df)} instruments from file")
+
+            # Direct lookup using SEM_CUSTOM_SYMBOL
+            result = self._instrument_df[
+                self._instrument_df['SEM_CUSTOM_SYMBOL'] == option_symbol
+            ]
+
+            if not result.empty:
+                security_id = result.iloc[0]['SEM_SMST_SECURITY_ID']
+                print(f"  ✅ Found security ID: {security_id} for {option_symbol}")
+                return str(security_id)
+            else:
+                print(f"  ❌ Symbol not found in instrument file: {option_symbol}")
+                # Print similar symbols for debugging
+                underlying = option_symbol.split()[0] if option_symbol else ""
+                if underlying:
+                    similar = self._instrument_df[
+                        self._instrument_df['SEM_CUSTOM_SYMBOL'].str.startswith(underlying, na=False)
+                    ].head(3)
+                    if not similar.empty:
+                        print(f"     Similar symbols found:")
+                        for _, row in similar.iterrows():
+                            print(f"       - {row['SEM_CUSTOM_SYMBOL']}")
+                return None
 
         except Exception as e:
             print(f"  ⚠️ Error getting security ID: {e}")
+            traceback.print_exc()
             return None
 
     def register_callback(self, callback_func):

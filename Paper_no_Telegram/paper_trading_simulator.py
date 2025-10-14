@@ -130,6 +130,19 @@ class PaperTradingSimulator:
     def ATM_Strike_Selection(self, Underlying, Expiry):
         """Pass through to real API"""
         return self.real_tsl.ATM_Strike_Selection(Underlying, Expiry)
+
+    def get_option_chain(self, Underlying, exchange, expiry, num_strikes=10):
+	    """Pass through to real API for option chain data"""
+	    return self.real_tsl.get_option_chain(
+		    Underlying=Underlying,
+		    exchange=exchange,
+		    expiry=expiry,
+		    num_strikes=num_strikes
+	    )
+
+    def format_option_chain(self, data):
+	    """Pass through to real API for option chain formatting"""
+	    return self.real_tsl.format_option_chain(data)
     
     def get_lot_size(self, tradingsymbol):
         """Pass through to real API"""
