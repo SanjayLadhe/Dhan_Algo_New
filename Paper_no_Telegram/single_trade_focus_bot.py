@@ -51,8 +51,7 @@ pd.set_option('display.expand_frame_repr', False)
 # API CREDENTIALS
 # ============================
 client_code = "1106090196"
-token_id = ("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzU5OTg1NTkzLCJpYXQiOjE3NTk4OTkxOTMsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTA2MDkwMTk2In0.bqF4PigSwXUam1Cn7EKlWxagPwgu9sflmuiA7ouO1IBNd0KAPHnD69mGTyCN6nv5bdbKHfDbv-Wiox3nTYYlRw"
-            "")
+token_id = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzYwNDcwMTAwLCJpYXQiOjE3NjAzODM3MDAsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTA2MDkwMTk2In0.ddRJdmScZqgOmuP2ptb0QQUd6byIXOUNfJaz-CN4NiH3OzeqWEDiI2_dYXgTzy9A6RrTlOV41FV0AJe9V3HxVg"
 tsl = get_trading_instance(client_code, token_id)
 # ============================
 # RISK MANAGEMENT PARAMETERS

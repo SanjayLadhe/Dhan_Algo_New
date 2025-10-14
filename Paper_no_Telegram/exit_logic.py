@@ -124,6 +124,16 @@ def handle_sl_exit(tsl, name, orderbook, process_start_time,
 
         print(f"✅ SL Exit processed for {name}, PnL: {orderbook[name]['pnl']}")
 
+        # Unsubscribe from WebSocket
+        try:
+            from websocket_manager import unsubscribe_position
+            option_name = orderbook[name].get('options_name')
+            if option_name:
+                unsubscribe_position(option_name)
+                print(f"  ✅ Unsubscribed from WebSocket: {option_name}")
+        except Exception as e:
+            print(f"  ⚠️ WebSocket unsubscribe warning: {e}")
+
         # Always move to completed orders and reset orderbook
         completed_orders.append(orderbook[name].copy())
         orderbook[name] = single_order.copy()
@@ -284,6 +294,16 @@ def handle_target_exit(tsl, name, orderbook, process_start_time,
 
         print(f"✅ Target exit processed for {name}, PnL: {orderbook[name]['pnl']}")
 
+        # Unsubscribe from WebSocket
+        try:
+            from websocket_manager import unsubscribe_position
+            option_name = orderbook[name].get('options_name')
+            if option_name:
+                unsubscribe_position(option_name)
+                print(f"  ✅ Unsubscribed from WebSocket: {option_name}")
+        except Exception as e:
+            print(f"  ⚠️ WebSocket unsubscribe warning: {e}")
+
         # Always move to completed orders and reset orderbook
         completed_orders.append(orderbook[name].copy())
         orderbook[name] = single_order.copy()
@@ -437,6 +457,16 @@ def handle_time_exit(tsl, name, orderbook, process_start_time, all_ltp,
             tsl.send_telegram_alert(message=message, receiver_chat_id=receiver_chat_id, bot_token=bot_token)
 
         print(f"✅ Time exit processed for {name}, PnL: {orderbook[name]['pnl']}")
+
+        # Unsubscribe from WebSocket
+        try:
+            from websocket_manager import unsubscribe_position
+            option_name = orderbook[name].get('options_name')
+            if option_name:
+                unsubscribe_position(option_name)
+                print(f"  ✅ Unsubscribed from WebSocket: {option_name}")
+        except Exception as e:
+            print(f"  ⚠️ WebSocket unsubscribe warning: {e}")
 
         # Always move to completed orders and reset orderbook
         completed_orders.append(orderbook[name].copy())
@@ -773,6 +803,16 @@ def handle_rsi_longstop_exit(tsl, name, orderbook, process_start_time, exit_reas
             tsl.send_telegram_alert(message=message,receiver_chat_id=receiver_chat_id,bot_token=bot_token)
 
         print(f"✅ Technical exit processed for {name}: {reason_text}, PnL: {orderbook[name]['pnl']}")
+
+        # Unsubscribe from WebSocket
+        try:
+            from websocket_manager import unsubscribe_position
+            option_name = orderbook[name].get('options_name')
+            if option_name:
+                unsubscribe_position(option_name)
+                print(f"  ✅ Unsubscribed from WebSocket: {option_name}")
+        except Exception as e:
+            print(f"  ⚠️ WebSocket unsubscribe warning: {e}")
 
         # Always move to completed orders and reset orderbook
         completed_orders.append(orderbook[name].copy())

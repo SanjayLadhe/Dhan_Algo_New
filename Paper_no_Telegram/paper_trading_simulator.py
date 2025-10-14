@@ -122,7 +122,11 @@ class PaperTradingSimulator:
     def get_ltp_data(self, names):
         """Pass through to real API for LTP data"""
         return self.real_tsl.get_ltp_data(names)
-    
+
+    def get_quote_data(self, names, debug="NO"):
+        """Pass through to real API for quote data (bid-ask spreads)"""
+        return self.real_tsl.get_quote_data(names, debug)
+
     def ATM_Strike_Selection(self, Underlying, Expiry):
         """Pass through to real API"""
         return self.real_tsl.ATM_Strike_Selection(Underlying, Expiry)

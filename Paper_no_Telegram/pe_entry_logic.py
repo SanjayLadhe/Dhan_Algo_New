@@ -24,32 +24,70 @@ from rate_limiter import (
 
 def check_bid_ask_spread(tsl, option_symbol, max_spread=0.50):
     """
-    Check if bid-ask spread is within acceptable limits and display detailed quote info.
+    Check if bid-ask spread is within acceptable limits using option chain data.
 
     Args:
         tsl: Tradehull API client instance
-        option_symbol: Option symbol to check
+        option_symbol: Option symbol to check (e.g., "KOTAKBANK 28 OCT 2160 PUT")
         max_spread: Maximum acceptable spread (default 0.50)
 
     Returns:
         tuple: (is_acceptable: bool, spread: float or None, quote_info: dict or None)
     """
     try:
-        data_api_limiter.wait(call_description=f"tsl.get_quote_data(['{option_symbol}'])")
-        quote_data = tsl.get_quote_data([option_symbol])
-
-        if not quote_data or option_symbol not in quote_data:
-            print(f"  ⚠️ No quote data available for {option_symbol}")
+        # Parse option symbol to extract underlying and strike
+        # Format: "SYMBOL DD MMM STRIKE CALL/PUT"
+        parts = option_symbol.split()
+        if len(parts) < 4:
+            print(f"  ⚠️ Invalid option symbol format: {option_symbol}")
             return False, None, None
 
-        data = quote_data[option_symbol]
-        bid_price = data.get('top_bid_price') or data.get('bid_price')
-        ask_price = data.get('top_ask_price') or data.get('ask_price')
-        ltp = data.get('last_price') or data.get('ltp')
-        bid_qty = data.get('top_bid_quantity') or data.get('bid_qty')
-        ask_qty = data.get('top_ask_quantity') or data.get('ask_qty')
+        underlying = parts[0]
+        option_type = parts[-1]  # CALL or PUT
+        strike = float(parts[-2])
 
-        if not bid_price or not ask_price:
+        # Fetch option chain for the underlying
+        data_api_limiter.wait(call_description=f"tsl.get_option_chain({underlying}, NFO, 0, 0)")
+        result = tsl.get_option_chain(underlying, "NFO", 0, 0)
+
+        if result is None or not isinstance(result, tuple) or len(result) < 2:
+            print(f"  ⚠️ Failed to fetch option chain for {underlying}")
+            return False, None, None
+
+        atm_strike, option_chain = result
+
+        if option_chain is None or option_chain.empty:
+            print(f"  ⚠️ No option chain data available for {underlying}")
+            return False, None, None
+
+        # Find the row with matching strike price
+        strike_row = option_chain[option_chain['Strike Price'] == strike]
+
+        if strike_row.empty:
+            print(f"  ⚠️ Strike {strike} not found in option chain for {underlying}")
+            return False, None, None
+
+        strike_row = strike_row.iloc[0]
+
+        # Extract bid-ask data based on option type
+        if option_type == "CALL":
+            bid_price = strike_row.get('CE Bid')
+            ask_price = strike_row.get('CE Ask')
+            ltp = strike_row.get('CE LTP')
+            bid_qty = strike_row.get('CE Bid Qty')
+            ask_qty = strike_row.get('CE Ask Qty')
+        elif option_type == "PUT":
+            bid_price = strike_row.get('PE Bid')
+            ask_price = strike_row.get('PE Ask')
+            ltp = strike_row.get('PE LTP')
+            bid_qty = strike_row.get('PE Bid Qty')
+            ask_qty = strike_row.get('PE Ask Qty')
+        else:
+            print(f"  ⚠️ Unknown option type: {option_type}")
+            return False, None, None
+
+        # Check if bid-ask data is available
+        if pd.isna(bid_price) or pd.isna(ask_price) or bid_price == 0 or ask_price == 0:
             print(f"  ⚠️ Bid-Ask data not available for {option_symbol}")
             return False, None, None
 
@@ -62,8 +100,8 @@ def check_bid_ask_spread(tsl, option_symbol, max_spread=0.50):
             'ltp': ltp,
             'bid': bid_price,
             'ask': ask_price,
-            'bid_qty': bid_qty,
-            'ask_qty': ask_qty,
+            'bid_qty': bid_qty if not pd.isna(bid_qty) else 0,
+            'ask_qty': ask_qty if not pd.isna(ask_qty) else 0,
             'spread': spread,
             'spread_pct': spread_pct,
             'mid_price': mid_price
@@ -71,11 +109,11 @@ def check_bid_ask_spread(tsl, option_symbol, max_spread=0.50):
 
         # Display detailed quote information
         print(f"\n  {'='*70}")
-        print(f"  📊 QUOTE DATA FOR {option_symbol}")
+        print(f"  📊 OPTION CHAIN DATA FOR {option_symbol}")
         print(f"  {'='*70}")
-        print(f"  💰 LTP:           ₹{ltp:.2f}")
-        print(f"  📉 Bid:           ₹{bid_price:.2f} (Qty: {bid_qty})")
-        print(f"  📈 Ask:           ₹{ask_price:.2f} (Qty: {ask_qty})")
+        print(f"  💰 LTP:           ₹{ltp:.2f if not pd.isna(ltp) else 0}")
+        print(f"  📉 Bid:           ₹{bid_price:.2f} (Qty: {bid_qty if not pd.isna(bid_qty) else 0})")
+        print(f"  📈 Ask:           ₹{ask_price:.2f} (Qty: {ask_qty if not pd.isna(ask_qty) else 0})")
         print(f"  📊 Mid Price:     ₹{mid_price:.2f}")
         print(f"  📏 Spread:        ₹{spread:.2f} ({spread_pct:.2f}%)")
         print(f"  ✅ Acceptable:    {'YES' if is_acceptable else 'NO'} (Max: ₹{max_spread})")
@@ -424,7 +462,8 @@ def execute_pe_entry(tsl, name, chart, orderbook, no_of_orders_placed, atr_multi
         print(f"\n🔍 Checking Bid-Ask Spread for PE Option: {pe_name}")
         spread_ok, spread, quote_info = check_bid_ask_spread(tsl, pe_name, max_spread=0.50)
         if not spread_ok:
-            return False, f"Bid-Ask spread too wide for {pe_name} (spread=₹{spread:.2f if spread else 'N/A'})"
+            spread_str = f"₹{spread:.2f}" if spread is not None else "N/A"
+            return False, f"Bid-Ask spread too wide for {pe_name} (spread={spread_str})"
 
         print(f"✅ Bid-Ask spread check PASSED for {pe_name}")
 
@@ -435,6 +474,14 @@ def execute_pe_entry(tsl, name, chart, orderbook, no_of_orders_placed, atr_multi
         )
 
         if success:
+            # Subscribe to WebSocket for real-time monitoring after successful entry
+            try:
+                from websocket_manager import subscribe_for_position
+                subscribe_for_position(tsl, pe_name)
+                print(f"  ✅ Subscribed to WebSocket for real-time monitoring: {pe_name}")
+            except Exception as e:
+                print(f"  ⚠️ WebSocket subscription failed (will use API polling): {e}")
+
             return True, f"PE entry executed successfully for {name} ({pe_name})"
         else:
             return False, "Failed to place PE entry order"
