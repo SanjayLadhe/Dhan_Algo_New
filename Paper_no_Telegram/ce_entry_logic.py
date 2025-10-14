@@ -22,7 +22,7 @@ from rate_limiter import (
 )
 
 
-def check_bid_ask_spread(tsl, option_symbol, max_spread=0.50):
+def check_bid_ask_spread(tsl, option_symbol, max_spread=2):
     """
     Check if bid-ask spread is within acceptable limits using option chain data.
 
@@ -158,7 +158,7 @@ def check_ce_entry_conditions(chart, name, orderbook, no_of_orders_placed):
         Crossabove = pta.above(chart['rsi'], chart['ma_rsi'])
         
         # Buy entry conditions for underlying
-        bc1 = cc['rsi'] > 60
+        bc1 = cc['rsi'] > 50
         bc2 = bool(Crossabove.iloc[-2])
         bc3 = cc_close > long_stop
         bc4 = cc_close > fractal_high
@@ -281,7 +281,7 @@ def check_ce_option_conditions(options_chart_Res, ce_name, name, orderbook, no_o
         Crossabove_opt = pta.above(options_chart_Res['rsi'], options_chart_Res['ma_rsi'])
         
         # Buy entry conditions for CE option
-        bc1_opt = rc_options_cc['rsi'] > 60
+        bc1_opt = rc_options_cc['rsi'] > 50
         bc2_opt = bool(Crossabove_opt.iloc[-2])
         bc3_opt = cc_close > long_stop_opt
         bc4_opt = cc_close > fractal_high_opt
@@ -465,7 +465,7 @@ def execute_ce_entry(tsl, name, chart, orderbook, no_of_orders_placed, atr_multi
 
         # Check bid-ask spread (only for options)
         print(f"\n🔍 Checking Bid-Ask Spread for CE Option: {ce_name}")
-        spread_ok, spread, quote_info = check_bid_ask_spread(tsl, ce_name, max_spread=0.50)
+        spread_ok, spread, quote_info = check_bid_ask_spread(tsl, ce_name)
         if not spread_ok:
             spread_str = f"₹{spread:.2f}" if spread is not None else "N/A"
             return False, f"Bid-Ask spread too wide for {ce_name} (spread={spread_str})"
@@ -482,7 +482,7 @@ def execute_ce_entry(tsl, name, chart, orderbook, no_of_orders_placed, atr_multi
             # Subscribe to WebSocket for real-time monitoring after successful entry
             try:
                 from websocket_manager import subscribe_for_position
-                subscribe_for_position(tsl, ce_name)
+                subscribe_for_position(tsl.ClientCode, tsl.token_id, ce_name)
                 print(f"  ✅ Subscribed to WebSocket for real-time monitoring: {ce_name}")
             except Exception as e:
                 print(f"  ⚠️ WebSocket subscription failed (will use API polling): {e}")

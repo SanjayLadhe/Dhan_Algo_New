@@ -6,7 +6,7 @@ This module manages WebSocket connections for real-time market data streaming.
 Used for monitoring active positions with live bid/ask/LTP updates.
 
 Features:
-- Real-time LTP, Bid, Ask prices
+- Real-time LTP, Bid, Ask prices using DhanFeed WebSocket
 - Market depth streaming
 - Automatic reconnection
 - Subscription management for active positions
@@ -22,11 +22,12 @@ from collections import defaultdict
 import pandas as pd
 import os
 import glob
+from dhanhq import marketfeed
 
 
 class WebSocketMarketData:
     """
-    Manages WebSocket connection for real-time option market data.
+    Manages WebSocket connection for real-time option market data using DhanFeed API.
 
     This provides continuous streaming of:
     - Last Traded Price (LTP)
@@ -35,25 +36,28 @@ class WebSocketMarketData:
     - Volume and Open Interest
     """
 
-    def __init__(self, dhan_client, instrument_file=None):
+    def __init__(self, client_id, access_token, instrument_file=None):
         """
-        Initialize WebSocket manager.
+        Initialize WebSocket manager with DhanFeed.
 
         Args:
-            dhan_client: Dhan API client instance (tsl object)
+            client_id: Dhan client ID
+            access_token: Dhan access token
             instrument_file: Path to instrument master CSV file (optional, will auto-detect from Dependencies folder)
         """
-        self.dhan = dhan_client
+        self.client_id = client_id
+        self.access_token = access_token
         self.instrument_file = instrument_file or self._find_instrument_file()
         self.subscribed_instruments = {}  # {symbol: security_id}
         self.market_data = defaultdict(dict)  # {symbol: {ltp, bid, ask, ...}}
         self.lock = Lock()
         self.ws_thread = None
         self.is_running = False
-        self.callbacks = []  # List of callback functions for data updates
         self._instrument_df = None  # Will be loaded on first use
+        self.dhan_feed = None  # DhanFeed instance
+        self.instruments_list = []  # List of (exchange_segment, security_id) tuples for DhanFeed
 
-        print("✅ WebSocket Market Data Manager initialized")
+        print("✅ WebSocket Market Data Manager initialized (DhanFeed)")
         if self.instrument_file:
             print(f"   📂 Instrument file: {self.instrument_file}")
 
@@ -134,15 +138,21 @@ class WebSocketMarketData:
                     'volume': 0,
                     'oi': 0,
                     'last_update': None,
-                    'bid_depth': [],
-                    'ask_depth': []
+                    'security_id': security_id
                 }
+
+                # Add to DhanFeed instruments list (NFO exchange for options)
+                self.instruments_list.append((marketfeed.NSE_FNO, str(security_id)))
 
                 print(f"  ✅ Subscribed to {option_symbol} (Security ID: {security_id})")
 
-                # Start WebSocket if not running
-                if not self.is_running:
-                    self.start()
+                # Restart WebSocket with updated instrument list
+                if self.is_running:
+                    print(f"  🔄 Restarting WebSocket with updated subscriptions...")
+                    self.stop()
+                    time.sleep(0.5)
+
+                self.start()
 
                 return True
 
@@ -164,10 +174,30 @@ class WebSocketMarketData:
         try:
             with self.lock:
                 if option_symbol in self.subscribed_instruments:
+                    security_id = self.subscribed_instruments[option_symbol]
+
+                    # Remove from instruments list
+                    self.instruments_list = [
+                        (exch, sid) for exch, sid in self.instruments_list
+                        if sid != str(security_id)
+                    ]
+
                     del self.subscribed_instruments[option_symbol]
                     if option_symbol in self.market_data:
                         del self.market_data[option_symbol]
+
                     print(f"  ✅ Unsubscribed from {option_symbol}")
+
+                    # Restart WebSocket with updated instrument list
+                    if self.is_running and len(self.instruments_list) > 0:
+                        print(f"  🔄 Restarting WebSocket with updated subscriptions...")
+                        self.stop()
+                        time.sleep(0.5)
+                        self.start()
+                    elif len(self.instruments_list) == 0:
+                        # No more instruments, stop WebSocket
+                        self.stop()
+
                     return True
                 return False
 
@@ -191,8 +221,13 @@ class WebSocketMarketData:
                 if option_symbol not in self.market_data:
                     return None
 
-                # Return a copy to avoid thread safety issues
-                return self.market_data[option_symbol].copy()
+                data = self.market_data[option_symbol].copy()
+
+                # Return None if no valid LTP data yet
+                if data.get('ltp', 0) == 0 and data.get('last_update') is None:
+                    return None
+
+                return data
 
         except Exception as e:
             print(f"  ❌ Error getting market data for {option_symbol}: {e}")
@@ -230,6 +265,10 @@ class WebSocketMarketData:
         """
         Start WebSocket connection in background thread.
         """
+        if len(self.instruments_list) == 0:
+            print("  ⚠️ No instruments to subscribe, skipping WebSocket start")
+            return
+
         if self.is_running:
             print("  ℹ️  WebSocket already running")
             return
@@ -244,30 +283,42 @@ class WebSocketMarketData:
         Stop WebSocket connection.
         """
         self.is_running = False
+
+        # Close DhanFeed connection
+        if self.dhan_feed:
+            try:
+                self.dhan_feed.close_connection()
+            except:
+                pass
+            self.dhan_feed = None
+
         if self.ws_thread:
             self.ws_thread.join(timeout=5)
+
         print("  ✅ WebSocket stopped")
 
     def _run_websocket(self):
         """
         Run WebSocket connection (internal method).
-        This runs in a background thread.
+        This runs in a background thread using DhanFeed.
         """
         try:
-            # Note: Dhan API WebSocket implementation
-            # This is a placeholder - needs to be implemented with actual Dhan WebSocket API
-            print("  🔄 WebSocket connection started (streaming market data)")
+            print("  🔄 WebSocket connection starting with DhanFeed...")
+            print(f"  📊 Subscribing to {len(self.instruments_list)} instruments")
 
-            while self.is_running:
-                try:
-                    # TODO: Implement actual Dhan WebSocket connection
-                    # For now, use polling as fallback
-                    self._poll_market_data()
-                    time.sleep(1)  # Poll every second
+            # Create DhanFeed instance with v2 API
+            self.dhan_feed = marketfeed.DhanFeed(
+                client_id=self.client_id,
+                access_token=self.access_token,
+                instruments=self.instruments_list,
+                version='v2'
+            )
 
-                except Exception as e:
-                    print(f"  ⚠️ WebSocket error: {e}")
-                    time.sleep(5)  # Wait before reconnecting
+            # Set callback for market data updates
+            self.dhan_feed.on_ticks = self._on_market_data
+
+            # Run WebSocket (blocking call)
+            self.dhan_feed.run_forever()
 
         except Exception as e:
             print(f"  ❌ Fatal WebSocket error: {e}")
@@ -275,38 +326,79 @@ class WebSocketMarketData:
         finally:
             self.is_running = False
 
-    def _poll_market_data(self):
+    def _on_market_data(self, tick_data):
         """
-        Fallback: Poll market data using API calls.
+        Callback for market data updates from DhanFeed.
 
-        Note: This is less efficient than WebSocket but provides
-        continuous updates. Should be replaced with actual WebSocket
-        when Dhan WebSocket API is properly configured.
+        Args:
+            tick_data: Market data packet from DhanFeed
         """
         try:
-            with self.lock:
-                symbols = list(self.subscribed_instruments.keys())
+            # DhanFeed returns data in dictionary format
+            # Example: {'type': 'Ticker', 'data': {...}}
 
-            if not symbols:
+            if not tick_data:
                 return
 
-            # Get LTP data for all subscribed symbols
-            # Using get_ltp_data which is more efficient than individual calls
-            try:
-                ltp_data = self.dhan.get_ltp_data(names=symbols)
+            # Process based on data type
+            data_type = tick_data.get('type', '')
+            data = tick_data.get('data', {})
 
-                if ltp_data:
-                    with self.lock:
-                        for symbol in symbols:
-                            if symbol in ltp_data:
-                                self.market_data[symbol]['ltp'] = ltp_data[symbol]
-                                self.market_data[symbol]['last_update'] = datetime.now()
+            if not data:
+                return
 
-            except Exception as e:
-                print(f"  ⚠️ Error polling market data: {e}")
+            # Get security ID from the tick
+            security_id = str(data.get('security_id', ''))
+
+            if not security_id:
+                return
+
+            # Find the symbol for this security ID
+            symbol = None
+            with self.lock:
+                for sym, sid in self.subscribed_instruments.items():
+                    if str(sid) == security_id:
+                        symbol = sym
+                        break
+
+            if not symbol:
+                return
+
+            # Update market data based on packet type
+            with self.lock:
+                if symbol not in self.market_data:
+                    self.market_data[symbol] = {}
+
+                # Extract LTP
+                if 'LTP' in data:
+                    self.market_data[symbol]['ltp'] = float(data['LTP'])
+
+                # Extract bid/ask from depth data if available
+                if 'bid' in data and isinstance(data['bid'], list) and len(data['bid']) > 0:
+                    self.market_data[symbol]['bid_price'] = float(data['bid'][0].get('price', 0))
+                    self.market_data[symbol]['bid_qty'] = int(data['bid'][0].get('quantity', 0))
+
+                if 'ask' in data and isinstance(data['ask'], list) and len(data['ask']) > 0:
+                    self.market_data[symbol]['ask_price'] = float(data['ask'][0].get('price', 0))
+                    self.market_data[symbol]['ask_qty'] = int(data['ask'][0].get('quantity', 0))
+
+                # Extract volume and OI
+                if 'volume' in data:
+                    self.market_data[symbol]['volume'] = int(data.get('volume', 0))
+
+                if 'OI' in data:
+                    self.market_data[symbol]['oi'] = int(data.get('OI', 0))
+
+                # Update timestamp
+                self.market_data[symbol]['last_update'] = datetime.now()
+
+                # Debug: Print first update for each symbol
+                if self.market_data[symbol].get('ltp', 0) > 0:
+                    print(f"  📡 WebSocket Update: {symbol} LTP=₹{self.market_data[symbol]['ltp']:.2f}")
 
         except Exception as e:
-            print(f"  ❌ Error in poll_market_data: {e}")
+            print(f"  ⚠️ Error processing market data: {e}")
+            # Don't print full traceback for every tick to avoid spam
 
     def _get_security_id(self, option_symbol):
         """
@@ -330,7 +422,7 @@ class WebSocketMarketData:
                     return None
 
                 # Cache the instrument dataframe
-                self._instrument_df = pd.read_csv(self.instrument_file)
+                self._instrument_df = pd.read_csv(self.instrument_file, low_memory=False)
                 print(f"  📋 Loaded {len(self._instrument_df)} instruments from file")
 
             # Direct lookup using SEM_CUSTOM_SYMBOL
@@ -361,40 +453,18 @@ class WebSocketMarketData:
             traceback.print_exc()
             return None
 
-    def register_callback(self, callback_func):
-        """
-        Register a callback function to be called on market data updates.
-
-        Args:
-            callback_func: Function(symbol, data) to call on updates
-        """
-        self.callbacks.append(callback_func)
-
-    def _notify_callbacks(self, symbol, data):
-        """
-        Notify all registered callbacks of market data update.
-
-        Args:
-            symbol: Option symbol that was updated
-            data: Updated market data
-        """
-        for callback in self.callbacks:
-            try:
-                callback(symbol, data)
-            except Exception as e:
-                print(f"  ⚠️ Error in callback: {e}")
-
 
 # Global WebSocket manager instance (singleton pattern)
 _ws_manager = None
 
 
-def get_websocket_manager(dhan_client=None):
+def get_websocket_manager(client_id=None, access_token=None):
     """
     Get or create the global WebSocket manager instance.
 
     Args:
-        dhan_client: Dhan API client (required for first call)
+        client_id: Dhan client ID (required for first call)
+        access_token: Dhan access token (required for first call)
 
     Returns:
         WebSocketMarketData: Global WebSocket manager instance
@@ -402,25 +472,26 @@ def get_websocket_manager(dhan_client=None):
     global _ws_manager
 
     if _ws_manager is None:
-        if dhan_client is None:
-            raise ValueError("dhan_client required for first initialization")
-        _ws_manager = WebSocketMarketData(dhan_client)
+        if client_id is None or access_token is None:
+            raise ValueError("client_id and access_token required for first initialization")
+        _ws_manager = WebSocketMarketData(client_id, access_token)
 
     return _ws_manager
 
 
-def subscribe_for_position(tsl, option_symbol):
+def subscribe_for_position(client_id, access_token, option_symbol):
     """
     Convenience function to subscribe to market data for an active position.
 
     Args:
-        tsl: Dhan API client
+        client_id: Dhan client ID
+        access_token: Dhan access token
         option_symbol: Option symbol to monitor
 
     Returns:
         bool: True if subscription successful
     """
-    ws_manager = get_websocket_manager(tsl)
+    ws_manager = get_websocket_manager(client_id, access_token)
     return ws_manager.subscribe(option_symbol)
 
 

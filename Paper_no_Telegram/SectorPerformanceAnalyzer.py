@@ -19,7 +19,9 @@ class SectorPerformanceAnalyzer:
         self.nse = NseUtils()
         self.lot_size_csv_path = lot_size_csv_path
         self.lot_size_df = None
+        self.fno_stocks = None  # Cache F&O stock list
         self.load_lot_size_data()
+        self.load_fno_stocks()
         
         self.sectoral_indices = [
             "NIFTY INDIA CONSUMPTION",
@@ -54,6 +56,17 @@ class SectorPerformanceAnalyzer:
             "NIFTY CONSUMER DURABLES"
         ]
 
+    def load_fno_stocks(self):
+        """
+        Load F&O stock list from NSE
+        """
+        try:
+            self.fno_stocks = set(nsepython.fnolist())
+            print(f"✅ Loaded F&O stock list: {len(self.fno_stocks)} stocks")
+        except Exception as e:
+            print(f"⚠️ Error loading F&O stocks: {e}")
+            self.fno_stocks = set()
+
     def load_lot_size_data(self):
         """
         Load lot size data from CSV file
@@ -63,16 +76,16 @@ class SectorPerformanceAnalyzer:
                 print(f"⚠️ Warning: Lot size CSV file not found at {self.lot_size_csv_path}")
                 print("   Lot size filtering will be skipped.")
                 return
-            
+
             # Read CSV file
             self.lot_size_df = pd.read_csv(self.lot_size_csv_path)
-            
+
             # Clean column names
             self.lot_size_df.columns = self.lot_size_df.columns.str.strip()
-            
+
             print(f"✅ Loaded lot size data: {len(self.lot_size_df)} stocks")
             print(f"   Columns: {list(self.lot_size_df.columns)}")
-            
+
         except Exception as e:
             print(f"⚠️ Error loading lot size CSV: {e}")
             print("   Lot size filtering will be skipped.")
@@ -276,10 +289,11 @@ class SectorPerformanceAnalyzer:
         except Exception as e:
             return None
 
-    def smart_extract_stocks_from_df(self, df, index_name):
+    def smart_extract_stocks_from_df(self, df, index_name, filter_fno=True):
         """
         Intelligently extract stocks from DataFrame returned by get_index_details()
         Handles multiple possible DataFrame structures
+        Filters for F&O stocks directly when extracting (if filter_fno=True)
         Returns: (index_info, stocks_list)
         """
         try:
@@ -288,6 +302,7 @@ class SectorPerformanceAnalyzer:
 
             index_info = None
             stocks = []
+            fno_stocks_only = []  # Separate list for F&O stocks
 
             SYMBOL_COLS = ['symbol', 'Symbol', 'SYMBOL', 'stock', 'Stock', 'ticker', 'Ticker']
             NAME_COLS = ['name', 'Name', 'companyName', 'Company', 'company', 'stockName']
@@ -330,17 +345,26 @@ class SectorPerformanceAnalyzer:
                     if pd.isna(symbol) or symbol == "" or symbol == index_name:
                         continue
 
+                    # Filter F&O stocks at extraction time
+                    if filter_fno and self.fno_stocks and symbol not in self.fno_stocks:
+                        continue  # Skip non-F&O stocks
+
                     company = row[name_col] if name_col else symbol
                     stock_ltp = self.safe_float_convert(row[ltp_col]) if ltp_col else 0.0
                     stock_change = self.safe_float_convert(row[change_col]) if change_col else 0.0
 
                     if symbol and (stock_ltp > 0 or stock_change != 0):
-                        stocks.append({
+                        stock_info = {
                             'Symbol': str(symbol).strip(),
                             'Company': str(company).strip() if company else str(symbol).strip(),
                             'LTP': stock_ltp,
                             'Change %': stock_change
-                        })
+                        }
+
+                        if filter_fno:
+                            fno_stocks_only.append(stock_info)
+                        else:
+                            stocks.append(stock_info)
 
             else:
                 if len(df) > 0 and ltp_col and change_col:
@@ -361,7 +385,9 @@ class SectorPerformanceAnalyzer:
                         "Change %": self.safe_float_convert(df.iloc[0][change_col])
                     }
 
-            return index_info, stocks if stocks else None
+            # Return F&O stocks if filtering, otherwise return all stocks
+            result_stocks = fno_stocks_only if filter_fno else stocks
+            return index_info, result_stocks if result_stocks else None
 
         except Exception as e:
             return None, None
@@ -411,15 +437,16 @@ class SectorPerformanceAnalyzer:
         df = pd.DataFrame(sector_data).sort_values("Change %", ascending=False)
         return df
 
-    def fetch_all_sector_data(self):
+    def fetch_all_sector_data(self, filter_fno=True):
         """
         Fetch all sector data once and return for reuse
-        Returns (all_indices_data, all_stocks_by_index)
+        Filters F&O stocks directly at sector level if filter_fno=True
+        Returns (all_indices_data, all_fno_stocks_by_index)
         """
         all_indices_data = []
         all_stocks_by_index = {}
 
-        print("Fetching sectoral data with constituent stocks...")
+        print(f"Fetching sectoral data with {'F&O ' if filter_fno else ''}constituent stocks...")
 
         for idx, sector in enumerate(self.sectoral_indices, 1):
             print(f"[{idx:2d}/{len(self.sectoral_indices)}] {sector:<35}", end=" ")
@@ -431,7 +458,8 @@ class SectorPerformanceAnalyzer:
                     print("❌ No data")
                     continue
 
-                index_info, stocks = self.smart_extract_stocks_from_df(df, sector)
+                # Extract stocks with F&O filtering at source
+                index_info, stocks = self.smart_extract_stocks_from_df(df, sector, filter_fno=filter_fno)
 
                 if index_info is None:
                     print("❌ Extraction failed")
@@ -441,9 +469,11 @@ class SectorPerformanceAnalyzer:
 
                 if stocks and len(stocks) > 0:
                     all_stocks_by_index[sector] = stocks
-                    print(f"✅ {index_info['Change %']:>6.2f}% | {len(stocks)} stocks")
+                    stock_label = "F&O stocks" if filter_fno else "stocks"
+                    print(f"✅ {index_info['Change %']:>6.2f}% | {len(stocks)} {stock_label}")
                 else:
-                    print(f"✅ {index_info['Change %']:>6.2f}% | No stocks")
+                    stock_label = "F&O stocks" if filter_fno else "stocks"
+                    print(f"✅ {index_info['Change %']:>6.2f}% | No {stock_label}")
 
             except Exception as e:
                 print(f"❌ Error: {str(e)}")

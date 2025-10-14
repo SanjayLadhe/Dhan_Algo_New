@@ -51,7 +51,7 @@ pd.set_option('display.expand_frame_repr', False)
 # API CREDENTIALS
 # ============================
 client_code = "1106090196"
-token_id = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzYwNDcwMTAwLCJpYXQiOjE3NjAzODM3MDAsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTA2MDkwMTk2In0.ddRJdmScZqgOmuP2ptb0QQUd6byIXOUNfJaz-CN4NiH3OzeqWEDiI2_dYXgTzy9A6RrTlOV41FV0AJe9V3HxVg"
+token_id = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzYwNTU3MDE0LCJpYXQiOjE3NjA0NzA2MTQsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTA2MDkwMTk2In0.bqQgOLmUX0yO8qy7aZdnL8rsecUa1-3mDdq2KkUo_xJhrCWIDZZSpXmN12h6A1a3gF4SvABB-2c7MWS-gEPshg"
 tsl = get_trading_instance(client_code, token_id)
 # ============================
 # RISK MANAGEMENT PARAMETERS
@@ -561,26 +561,58 @@ def main():
             # Check if we have an active position
             has_position, active_positions = is_position_active()
 
-            # Build LTP fetch list (watchlist + active option symbols)
-            ltp_fetch_list = watchlist.copy()
+            # Build LTP fetch list
+            all_ltp = {}
 
             if has_position:
-                # Add option symbols from active positions to LTP fetch
+                # ============================
+                # POSITION ACTIVE: Try WebSocket first, fallback to API
+                # ============================
+
+                # Get option symbol from active position
                 for symbol_name in active_positions.index:
                     option_symbol = orderbook[symbol_name].get('options_name')
-                    if option_symbol and option_symbol not in ltp_fetch_list:
-                        ltp_fetch_list.append(option_symbol)
 
-            # Fetch LTP for watchlist + active options
-            ltp_api_limiter.wait(call_description=f"tsl.get_ltp_data(names={len(ltp_fetch_list)} symbols)")
-            all_ltp_raw = retry_api_call(tsl.get_ltp_data, retries=1, delay=1.0, names=ltp_fetch_list)
+                    if option_symbol:
+                        # Try to get WebSocket data first
+                        try:
+                            from websocket_manager import get_live_market_data
+                            ws_data = get_live_market_data(option_symbol)
 
-            if all_ltp_raw is None:
-                print("⚠️ Failed to fetch LTP data. Retrying in 5 seconds...")
-                time.sleep(5)
-                continue
+                            if ws_data and ws_data.get('ltp', 0) > 0:
+                                all_ltp[option_symbol] = ws_data['ltp']
+                                print(f"📡 WebSocket LTP for {option_symbol}: ₹{ws_data['ltp']:.2f}")
+                            else:
+                                # WebSocket data not available, use API
+                                print(f"⚠️ WebSocket data not available for {option_symbol}, using API fallback")
+                                ltp_api_limiter.wait(call_description=f"tsl.get_ltp_data(names=['{option_symbol}'])")
+                                api_ltp = retry_api_call(tsl.get_ltp_data, retries=1, delay=1.0, names=[option_symbol])
+                                if api_ltp:
+                                    all_ltp.update(api_ltp)
+                        except Exception as e:
+                            print(f"⚠️ Error getting WebSocket data for {option_symbol}: {e}")
+                            print(f"   Using API fallback...")
+                            # Fallback to API
+                            ltp_api_limiter.wait(call_description=f"tsl.get_ltp_data(names=['{option_symbol}'])")
+                            api_ltp = retry_api_call(tsl.get_ltp_data, retries=1, delay=1.0, names=[option_symbol])
+                            if api_ltp:
+                                all_ltp.update(api_ltp)
 
-            all_ltp = all_ltp_raw
+            else:
+                # ============================
+                # NO POSITION: Fetch LTP for watchlist using API
+                # ============================
+                ltp_fetch_list = watchlist.copy()
+
+                ltp_api_limiter.wait(call_description=f"tsl.get_ltp_data(names={len(ltp_fetch_list)} symbols)")
+                all_ltp_raw = retry_api_call(tsl.get_ltp_data, retries=1, delay=1.0, names=ltp_fetch_list)
+
+                if all_ltp_raw is None:
+                    print("⚠️ Failed to fetch LTP data. Retrying in 5 seconds...")
+                    time.sleep(5)
+                    continue
+
+                all_ltp = all_ltp_raw
 
             if has_position:
                 # ============================
