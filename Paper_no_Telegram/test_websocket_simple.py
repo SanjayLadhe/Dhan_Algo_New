@@ -19,7 +19,7 @@ TOKEN_ID = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lckl
 # ============================
 # CHANGE THIS TO YOUR SYMBOL
 # ============================
-TEST_SYMBOL = "ICICIGI 28 OCT 1860 CALL"  # Replace with your option symbol
+TEST_SYMBOL = "PRESTIGE 28 OCT 1700 CALL"  # Replace with your option symbol
 
 # How many updates to show (each update is 2 seconds apart)
 NUM_UPDATES = 30  # 30 updates = 1 minute

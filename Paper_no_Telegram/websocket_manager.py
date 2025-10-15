@@ -53,9 +53,10 @@ class WebSocketMarketData:
         self.lock = Lock()
         self.ws_thread = None
         self.is_running = False
+        self.is_connected = False
         self._instrument_df = None  # Will be loaded on first use
         self.dhan_feed = None  # DhanFeed instance
-        self.instruments_list = []  # List of (exchange_segment, security_id) tuples for DhanFeed
+        self.instruments_list = []  # List of (exchange_segment, security_id, subscription_mode) tuples for DhanFeed
 
         print("✅ WebSocket Market Data Manager initialized (DhanFeed)")
         if self.instrument_file:
@@ -101,13 +102,15 @@ class WebSocketMarketData:
             print(f"   ⚠️ Error finding instrument file: {e}")
             return None
 
-    def subscribe(self, option_symbol, security_id=None):
+    def subscribe(self, option_symbol, security_id=None, subscription_mode=None):
         """
         Subscribe to real-time data for an option symbol.
 
         Args:
             option_symbol: Option trading symbol (e.g., "TECHM 28 OCT 1480 CALL")
             security_id: Dhan security ID (optional, will lookup if not provided)
+            subscription_mode: Data mode - marketfeed.Ticker (15), marketfeed.Quote (17), or marketfeed.Full (21)
+                             Default is Full for complete data including depth
 
         Returns:
             bool: True if subscription successful
@@ -137,12 +140,20 @@ class WebSocketMarketData:
                     'ask_qty': 0,
                     'volume': 0,
                     'oi': 0,
+                    'open': 0,
+                    'high': 0,
+                    'low': 0,
+                    'close': 0,
                     'last_update': None,
                     'security_id': security_id
                 }
 
+                # Set default subscription mode to Full (includes depth)
+                if subscription_mode is None:
+                    subscription_mode = marketfeed.Full
+
                 # Add to DhanFeed instruments list (NFO exchange for options)
-                self.instruments_list.append((marketfeed.NSE_FNO, str(security_id)))
+                self.instruments_list.append((marketfeed.NSE_FNO, str(security_id), subscription_mode))
 
                 print(f"  ✅ Subscribed to {option_symbol} (Security ID: {security_id})")
 
@@ -178,7 +189,7 @@ class WebSocketMarketData:
 
                     # Remove from instruments list
                     self.instruments_list = [
-                        (exch, sid) for exch, sid in self.instruments_list
+                        (exch, sid, mode) for exch, sid, mode in self.instruments_list
                         if sid != str(security_id)
                     ]
 
@@ -283,6 +294,7 @@ class WebSocketMarketData:
         Stop WebSocket connection.
         """
         self.is_running = False
+        self.is_connected = False
 
         # Close DhanFeed connection
         if self.dhan_feed:
@@ -297,16 +309,36 @@ class WebSocketMarketData:
 
         print("  ✅ WebSocket stopped")
 
+    def on_connect(self):
+        """Callback when WebSocket connects."""
+        self.is_connected = True
+        print("  ✅ WebSocket connected successfully!")
+
+    def on_disconnect(self):
+        """Callback when WebSocket disconnects."""
+        self.is_connected = False
+        print("  ⚠️ WebSocket disconnected!")
+
+    def on_ticks(self, tick_data):
+        """Callback for incoming tick data."""
+        self._on_market_data(tick_data)
+
     def _run_websocket(self):
         """
         Run WebSocket connection (internal method).
         This runs in a background thread using DhanFeed.
         """
+        loop = None
         try:
             print("  🔄 WebSocket connection starting with DhanFeed...")
             print(f"  📊 Subscribing to {len(self.instruments_list)} instruments")
 
-            # Create DhanFeed instance with v2 API
+            # CRITICAL FIX: Create and set event loop FIRST, before creating DhanFeed
+            # This fixes the "There is no current event loop in thread" error
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+
+            # Now create DhanFeed instance (it will use the loop we just created)
             self.dhan_feed = marketfeed.DhanFeed(
                 client_id=self.client_id,
                 access_token=self.access_token,
@@ -314,41 +346,87 @@ class WebSocketMarketData:
                 version='v2'
             )
 
-            # Set callback for market data updates
-            self.dhan_feed.on_ticks = self._on_market_data
+            # IMPORTANT: DhanFeed v2 doesn't support these callbacks, but we'll handle data manually
+            print("  ✅ DhanFeed instance created successfully")
+            print("  🚀 Starting WebSocket connection...")
 
-            # Run WebSocket (blocking call)
-            self.dhan_feed.run_forever()
+            # Run the async connection task
+            loop.run_until_complete(self._async_stream())
 
         except Exception as e:
             print(f"  ❌ Fatal WebSocket error: {e}")
             traceback.print_exc()
         finally:
             self.is_running = False
+            self.is_connected = False
+            if loop and not loop.is_closed():
+                try:
+                    loop.close()
+                except:
+                    pass
+            print("  🛑 WebSocket thread ended")
+
+    async def _async_stream(self):
+        """
+        Async method to connect and continuously receive data.
+        """
+        try:
+            # Connect to WebSocket
+            await self.dhan_feed.connect()
+            self.is_connected = True
+            print("  ✅ Connected and subscribed! Listening for data...")
+
+            # Continuously receive and process data
+            while self.is_running and self.is_connected:
+                try:
+                    # Get data from WebSocket (this waits for incoming messages)
+                    data = await self.dhan_feed.get_instrument_data()
+
+                    if data:
+                        # Process the received data through our callback
+                        self._on_market_data(data)
+
+                except asyncio.CancelledError:
+                    print("  ⚠️ WebSocket task cancelled")
+                    break
+                except Exception as e:
+                    if self.is_running:  # Only show errors if we're still supposed to be running
+                        print(f"  ⚠️ Error receiving data: {e}")
+                        # Try to reconnect after a delay
+                        await asyncio.sleep(2)
+                        if self.is_running:
+                            print("  🔄 Attempting to reconnect...")
+                            try:
+                                await self.dhan_feed.connect()
+                                self.is_connected = True
+                                print("  ✅ Reconnected successfully!")
+                            except:
+                                print("  ❌ Reconnection failed")
+                                self.is_connected = False
+                                break
+
+        except Exception as e:
+            print(f"  ❌ Connection error: {e}")
+            traceback.print_exc()
+            self.is_connected = False
 
     def _on_market_data(self, tick_data):
         """
         Callback for market data updates from DhanFeed.
 
         Args:
-            tick_data: Market data packet from DhanFeed
+            tick_data: Market data packet from DhanFeed (dict format)
+                      Example: {'type': 'Ticker Data', 'exchange_segment': 2,
+                               'security_id': 1102757, 'LTP': '123.45', 'LTT': '10:30:45'}
         """
         try:
-            # DhanFeed returns data in dictionary format
-            # Example: {'type': 'Ticker', 'data': {...}}
-
             if not tick_data:
                 return
 
-            # Process based on data type
+            # DhanFeed passes the processed dict directly from marketfeed.py
+            # The 'type' field indicates the packet type
             data_type = tick_data.get('type', '')
-            data = tick_data.get('data', {})
-
-            if not data:
-                return
-
-            # Get security ID from the tick
-            security_id = str(data.get('security_id', ''))
+            security_id = str(tick_data.get('security_id', ''))
 
             if not security_id:
                 return
@@ -369,36 +447,101 @@ class WebSocketMarketData:
                 if symbol not in self.market_data:
                     self.market_data[symbol] = {}
 
-                # Extract LTP
-                if 'LTP' in data:
-                    self.market_data[symbol]['ltp'] = float(data['LTP'])
+                # Extract data based on type
+                if data_type in ['Ticker Data', 'Quote Data', 'Full Data']:
+                    # Extract LTP (comes as string from DhanFeed, need to convert)
+                    if 'LTP' in tick_data:
+                        try:
+                            self.market_data[symbol]['ltp'] = float(tick_data['LTP'])
+                        except (ValueError, TypeError):
+                            pass
 
-                # Extract bid/ask from depth data if available
-                if 'bid' in data and isinstance(data['bid'], list) and len(data['bid']) > 0:
-                    self.market_data[symbol]['bid_price'] = float(data['bid'][0].get('price', 0))
-                    self.market_data[symbol]['bid_qty'] = int(data['bid'][0].get('quantity', 0))
+                if data_type in ['Quote Data', 'Full Data']:
+                    # Extract volume and OHLC fields
+                    if 'volume' in tick_data:
+                        try:
+                            self.market_data[symbol]['volume'] = int(tick_data['volume'])
+                        except (ValueError, TypeError):
+                            pass
 
-                if 'ask' in data and isinstance(data['ask'], list) and len(data['ask']) > 0:
-                    self.market_data[symbol]['ask_price'] = float(data['ask'][0].get('price', 0))
-                    self.market_data[symbol]['ask_qty'] = int(data['ask'][0].get('quantity', 0))
+                    if 'open' in tick_data:
+                        try:
+                            self.market_data[symbol]['open'] = float(tick_data['open'])
+                        except (ValueError, TypeError):
+                            pass
 
-                # Extract volume and OI
-                if 'volume' in data:
-                    self.market_data[symbol]['volume'] = int(data.get('volume', 0))
+                    if 'high' in tick_data:
+                        try:
+                            self.market_data[symbol]['high'] = float(tick_data['high'])
+                        except (ValueError, TypeError):
+                            pass
 
-                if 'OI' in data:
-                    self.market_data[symbol]['oi'] = int(data.get('OI', 0))
+                    if 'low' in tick_data:
+                        try:
+                            self.market_data[symbol]['low'] = float(tick_data['low'])
+                        except (ValueError, TypeError):
+                            pass
+
+                    if 'close' in tick_data:
+                        try:
+                            self.market_data[symbol]['close'] = float(tick_data['close'])
+                        except (ValueError, TypeError):
+                            pass
+
+                if data_type == 'Full Data':
+                    # Extract OI
+                    if 'OI' in tick_data:
+                        try:
+                            self.market_data[symbol]['oi'] = int(tick_data['OI'])
+                        except (ValueError, TypeError):
+                            pass
+
+                    # Extract bid/ask from depth (Full packet has depth)
+                    if 'depth' in tick_data and isinstance(tick_data['depth'], list) and len(tick_data['depth']) > 0:
+                        try:
+                            best_depth = tick_data['depth'][0]
+                            self.market_data[symbol]['bid_price'] = float(best_depth.get('bid_price', 0))
+                            self.market_data[symbol]['bid_qty'] = int(best_depth.get('bid_quantity', 0))
+                            self.market_data[symbol]['ask_price'] = float(best_depth.get('ask_price', 0))
+                            self.market_data[symbol]['ask_qty'] = int(best_depth.get('ask_quantity', 0))
+                        except (ValueError, TypeError, KeyError):
+                            pass
+
+                if data_type == 'Market Depth':
+                    # Extract bid/ask from depth (Market Depth packet)
+                    if 'depth' in tick_data and isinstance(tick_data['depth'], list) and len(tick_data['depth']) > 0:
+                        try:
+                            best_depth = tick_data['depth'][0]
+                            self.market_data[symbol]['bid_price'] = float(best_depth.get('bid_price', 0))
+                            self.market_data[symbol]['bid_qty'] = int(best_depth.get('bid_quantity', 0))
+                            self.market_data[symbol]['ask_price'] = float(best_depth.get('ask_price', 0))
+                            self.market_data[symbol]['ask_qty'] = int(best_depth.get('ask_quantity', 0))
+                        except (ValueError, TypeError, KeyError):
+                            pass
+
+                if data_type == 'OI Data':
+                    # OI-only packet
+                    if 'OI' in tick_data:
+                        try:
+                            self.market_data[symbol]['oi'] = int(tick_data['OI'])
+                        except (ValueError, TypeError):
+                            pass
 
                 # Update timestamp
                 self.market_data[symbol]['last_update'] = datetime.now()
 
-                # Debug: Print first update for each symbol
-                if self.market_data[symbol].get('ltp', 0) > 0:
-                    print(f"  📡 WebSocket Update: {symbol} LTP=₹{self.market_data[symbol]['ltp']:.2f}")
+                # Debug: Print updates (only when LTP is available)
+                ltp = self.market_data[symbol].get('ltp', 0)
+                if ltp > 0:
+                    bid = self.market_data[symbol].get('bid_price', 0)
+                    ask = self.market_data[symbol].get('ask_price', 0)
+                    print(f"  📡 {symbol}: LTP=₹{ltp:.2f} Bid=₹{bid:.2f} Ask=₹{ask:.2f} [{data_type}]")
 
         except Exception as e:
             print(f"  ⚠️ Error processing market data: {e}")
-            # Don't print full traceback for every tick to avoid spam
+            # Only print traceback for unexpected errors, not every tick
+            if not isinstance(e, (ValueError, TypeError, KeyError)):
+                traceback.print_exc()
 
     def _get_security_id(self, option_symbol):
         """

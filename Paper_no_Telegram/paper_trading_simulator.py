@@ -35,14 +35,16 @@ class PaperTradingSimulator:
     Simulates trading operations for paper trading.
     Mocks the Tradehull API interface.
     """
-    
+
     def __init__(self, real_tsl_instance):
         """
         Initialize paper trading simulator.
         
         Args:
             real_tsl_instance: Real Tradehull instance (used for data fetching only)
+
         """
+        self.ClientCode = "PAPER_TRADER"  # Or some dummy value for paper trading
         self.real_tsl = real_tsl_instance
         self.balance = pt_config.PAPER_TRADING_BALANCE
         self.order_counter = 1000
