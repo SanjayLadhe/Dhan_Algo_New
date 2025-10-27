@@ -43,7 +43,8 @@ class PaperTradingSimulator:
 			real_tsl_instance: Real Tradehull instance (used for data fetching only)
 
 		"""
-		self.ClientCode = "PAPER_TRADER"  # Or some dummy value for paper trading
+		self.ClientCode = real_tsl_instance.ClientCode  # Use real client code for WebSocket
+		self.token_id = real_tsl_instance.token_id  # Use real token_id for WebSocket
 		self.real_tsl = real_tsl_instance
 		self.balance = pt_config.PAPER_TRADING_BALANCE
 		self.order_counter = 1000
@@ -191,9 +192,28 @@ class PaperTradingSimulator:
 		except:
 			current_ltp = price if price > 0 else 100
 
-		# Calculate executed price based on order type
+		# ✅ Calculate executed price based on order type
+		# For MARKET orders, use realistic bid/ask prices from WebSocket
 		if order_type == 'MARKET':
-			executed_price = self._simulate_slippage(current_ltp, transaction_type)
+			# Try to get bid/ask from WebSocket for realistic execution
+			try:
+				from websocket_manager import get_live_market_data
+				ws_data = get_live_market_data(tradingsymbol)
+
+				if ws_data and transaction_type == 'SELL':
+					# SELL market orders get filled at BID price
+					bid_price = ws_data.get('bid_price', current_ltp)
+					executed_price = self._simulate_slippage(bid_price, transaction_type)
+				elif ws_data and transaction_type == 'BUY':
+					# BUY market orders get filled at ASK price
+					ask_price = ws_data.get('ask_price', current_ltp)
+					executed_price = self._simulate_slippage(ask_price, transaction_type)
+				else:
+					# Fallback to LTP if WebSocket data not available
+					executed_price = self._simulate_slippage(current_ltp, transaction_type)
+			except:
+				# Fallback to LTP-based execution
+				executed_price = self._simulate_slippage(current_ltp, transaction_type)
 		elif order_type == 'LIMIT':
 			executed_price = price
 		elif order_type == 'STOPLIMIT':
@@ -260,6 +280,9 @@ class PaperTradingSimulator:
 		"""
 		Get order status.
 
+		✅ CRITICAL FIX: Auto-triggers STOPLIMIT orders when price hits trigger level
+		This simulates real broker behavior where SL orders execute automatically.
+
 		Args:
 			orderid: Order ID
 
@@ -273,11 +296,66 @@ class PaperTradingSimulator:
 		order = self.orders[orderid]
 		status = order.get('status', 'PENDING')
 
-		# Simulate SL trigger for stop loss orders
+		# ✅ AUTO-TRIGGER STOPLIMIT ORDERS - Simulates real broker behavior
 		if order['order_type'] == 'STOPLIMIT' and status == 'PENDING':
-			if pt_config.SL_ALWAYS_EXECUTES:
-				# In paper trading, we can simulate SL trigger by checking current price
-				# For now, return PENDING (will be triggered by exit logic)
+			try:
+				tradingsymbol = order['tradingsymbol']
+				trigger_price = order['trigger_price']
+
+				# Get current market data (LTP + Bid/Ask)
+				ltp_data = self.get_ltp_data([tradingsymbol])
+				current_ltp = ltp_data.get(tradingsymbol, None)
+
+				if current_ltp is not None:
+					# For SELL stop-loss orders, trigger when LTP <= trigger_price
+					if order['transaction_type'] == 'SELL' and current_ltp <= trigger_price:
+						# Get bid price for realistic execution (SELL gets filled at BID)
+						try:
+							from websocket_manager import get_live_market_data
+							ws_data = get_live_market_data(tradingsymbol)
+							bid_price = ws_data.get('bid_price', current_ltp) if ws_data else current_ltp
+						except:
+							bid_price = current_ltp
+
+						# Execute at bid price with slippage
+						order['status'] = 'TRADED'
+						order['executed_price'] = self._simulate_slippage(bid_price, 'SELL')
+
+						# Update balance
+						cost = order['executed_price'] * order['quantity']
+						self.balance += cost
+
+						self._log(f"✅ STOPLIMIT AUTO-TRIGGERED: {orderid} @ ₹{order['executed_price']:.2f}")
+						self._log(f"   Trigger: ₹{trigger_price:.2f} | LTP: ₹{current_ltp:.2f} | Bid: ₹{bid_price:.2f}")
+						self._log(f"   Balance increased: {cost:,.2f} | New Balance: {self.balance:,.2f}")
+
+						return 'TRADED'
+
+					# For BUY stop orders (if used), trigger when LTP >= trigger_price
+					elif order['transaction_type'] == 'BUY' and current_ltp >= trigger_price:
+						# Get ask price for realistic execution (BUY gets filled at ASK)
+						try:
+							from websocket_manager import get_live_market_data
+							ws_data = get_live_market_data(tradingsymbol)
+							ask_price = ws_data.get('ask_price', current_ltp) if ws_data else current_ltp
+						except:
+							ask_price = current_ltp
+
+						order['status'] = 'TRADED'
+						order['executed_price'] = self._simulate_slippage(ask_price, 'BUY')
+
+						# Update balance
+						cost = order['executed_price'] * order['quantity']
+						self.balance -= cost
+
+						self._log(f"✅ STOPLIMIT AUTO-TRIGGERED: {orderid} @ ₹{order['executed_price']:.2f}")
+						self._log(f"   Trigger: ₹{trigger_price:.2f} | LTP: ₹{current_ltp:.2f} | Ask: ₹{ask_price:.2f}")
+						self._log(f"   Balance reduced: {cost:,.2f} | New Balance: {self.balance:,.2f}")
+
+						return 'TRADED'
+
+			except Exception as e:
+				# Silently continue if check fails
 				pass
 
 		self._log(f" Order Status for {orderid}: {status}")

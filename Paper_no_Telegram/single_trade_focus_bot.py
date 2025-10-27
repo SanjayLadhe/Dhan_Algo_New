@@ -51,7 +51,7 @@ pd.set_option('display.expand_frame_repr', False)
 # API CREDENTIALS
 # ============================
 client_code = "1106090196"
-token_id = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzYwNTU3MDE0LCJpYXQiOjE3NjA0NzA2MTQsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTA2MDkwMTk2In0.bqQgOLmUX0yO8qy7aZdnL8rsecUa1-3mDdq2KkUo_xJhrCWIDZZSpXmN12h6A1a3gF4SvABB-2c7MWS-gEPshg"
+token_id = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzYxNjM3NDI2LCJpYXQiOjE3NjE1NTEwMjYsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTA2MDkwMTk2In0.0QiAdbNRJOZoYyD6mK6wCVatGA2zsZrzdztyDixXvkyoM8sCNovEJwwo1z-gfkUmvfmweWBOIjv6Isyjmo73Xg"
 tsl = get_trading_instance(client_code, token_id)
 # ============================
 # RISK MANAGEMENT PARAMETERS
@@ -69,10 +69,18 @@ market_money_risk = (market_money * 1) / 100
 base_capital_risk = (base_capital * 0.5) / 100
 max_risk_for_today = base_capital_risk + market_money_risk
 
-max_order_for_today = 2
+max_order_for_today = 2  # Maximum orders allowed for the day
+max_simultaneous_positions = 2  # ✅ NEW: Allow 2 positions at the same time
 risk_per_trade = (max_risk_for_today / max_order_for_today)
 atr_multipler = 3
 risk_reward = 3
+
+# ============================
+# OPTION STOP LOSS CONFIGURATION
+# ============================
+# Percentage-based stop loss for options (more reliable than ATR for volatile premiums)
+option_sl_percentage = 0.15  # 15% stop loss from entry price
+# This gives options breathing room while still protecting capital
 
 # ============================
     # TELEGRAM CONFIGURATION - DISABLED
@@ -85,11 +93,15 @@ risk_reward = 3
 reentry = "no"  # "yes/no"
 
 # ============================
-# TIMING PARAMETERS (SINGLE TRADE FOCUS)
+# TIMING PARAMETERS (MULTI-POSITION TRADING)
 # ============================
-MONITOR_INTERVAL = 5    # Check every 5 seconds when IN a position
-SCAN_INTERVAL = 30      # Scan for entry every 30 seconds when NO position
+MONITOR_INTERVAL = 5    # Check every 5 seconds when IN position(s)
+SCAN_INTERVAL = 30      # Scan for entry every 30 seconds when NOT at max positions
 WATCHLIST_REFRESH_INTERVAL = 15 * 60  # Refresh watchlist every 15 minutes (900 seconds)
+REENTRY_COOLDOWN = 10 * 60  # Cooldown period after exit before re-entering same symbol (10 minutes)
+
+# Track last exit time for each symbol (prevents immediate re-entry)
+symbol_exit_times = {}
 
 # ============================
 # WATCHLIST FUNCTIONS
@@ -215,22 +227,83 @@ def refresh_watchlist_if_needed(last_refresh_time):
 
 
 # ============================
+# HEIKIN ASHI TRANSFORMATION
+# ============================
+def heikin_ashi(df):
+    """
+    Convert regular candlesticks to Heikin Ashi candlesticks
+    """
+    try:
+        if df.empty:
+            return df
+
+        # Ensure the DataFrame has the required columns
+        required_columns = ['open', 'high', 'low', 'close', 'timestamp']
+        if not all(col in df.columns for col in required_columns):
+            print(f"⚠️ Warning: DataFrame missing required columns for Heikin Ashi")
+            return df
+
+        # Prepare Heikin-Ashi columns
+        ha_close = (df['open'] + df['high'] + df['low'] + df['close']) / 4
+        ha_open = [df['open'].iloc[0]]  # Initialize the first open value
+        ha_high = []
+        ha_low = []
+
+        # Compute Heikin-Ashi values
+        for i in range(1, len(df)):
+            ha_open.append((ha_open[-1] + ha_close.iloc[i - 1]) / 2)
+            ha_high.append(max(df['high'].iloc[i], ha_open[-1], ha_close.iloc[i]))
+            ha_low.append(min(df['low'].iloc[i], ha_open[-1], ha_close.iloc[i]))
+
+        # Append first values for high and low
+        ha_high.insert(0, df['high'].iloc[0])
+        ha_low.insert(0, df['low'].iloc[0])
+
+        # Create a new DataFrame for Heikin-Ashi values, preserving other columns
+        ha_df = df.copy()
+        ha_df['open'] = ha_open
+        ha_df['high'] = ha_high
+        ha_df['low'] = ha_low
+        ha_df['close'] = ha_close
+
+        return ha_df
+    except Exception as e:
+        print(f"❌ Error in Heikin-Ashi calculation: {e}")
+        return df
+
+
+# ============================
 # FETCH HISTORICAL WITH RATE LIMITER
 # ============================
-def fetch_historical(name):
-    """Fetch historical data for a symbol with rate limiting"""
+def fetch_historical(name, use_heikin_ashi=False):
+    """
+    Fetch historical data for a symbol with rate limiting
+
+    Args:
+        name: Symbol name
+        use_heikin_ashi: Whether to apply Heikin Ashi transformation (default: False)
+    """
     exchange = "INDEX" if name == "NIFTY" else "NSE"
     data_api_limiter.wait(
         call_description=f"tsl.get_historical_data(tradingsymbol='{name}', exchange='{exchange}', timeframe='1')")
     fetch_time = datetime.datetime.now()
     print(f"📊 Fetching historical data for {name} at {fetch_time.strftime('%H:%M:%S')}")
-    
+
     Data = tsl.get_historical_data(tradingsymbol=name, exchange=exchange, timeframe="1")
     if Data is None:
         print(f"[ERROR] Failed to fetch historical data for {name}. Returned None.")
         return name, None, fetch_time
-    
+
+    # Resample to 3-minute timeframe - NO HEIKIN ASHI TRANSFORMATION
     chart = tsl.resample_timeframe(Data, timeframe="3T")
+
+    # Apply Heikin Ashi transformation ONLY if explicitly requested (disabled by default)
+    if use_heikin_ashi:
+        chart = heikin_ashi(chart)
+        print(f"🕯️ Applied Heikin Ashi transformation to {name}")
+    else:
+        print(f"📊 Using regular candles for {name} (No Heikin Ashi)")
+
     Data = Data.reset_index()
     complete_time = datetime.datetime.now()
     print(f"✅ Completed fetching for {name} at {complete_time.strftime('%H:%M:%S')}")
@@ -246,7 +319,7 @@ def compute_indicators(chart):
         # VWAP
         chart["vwap"] = calculate_vwap_daily(chart["high"], chart["low"], chart["close"], chart["volume"],
                                              chart["timestamp"])
-        
+
         # RSI
         chart['rsi'] = pta.rsi(chart['close'], timeperiod=14)
         chart['ma_rsi'] = pta.sma(chart['rsi'], timeperiod=20)
@@ -269,6 +342,10 @@ def compute_indicators(chart):
         df_with_signals = Fractal_Chaos_Bands.get_fcb_signals(df_with_bands)
         chart[['fractal_high', 'fractal_low', 'signal']] = df_with_signals[['fractal_high', 'fractal_low', 'signal']]
 
+        # ADX (Average Directional Index) - For directional movement
+        from adx_indicator import calculate_adx_indicators
+        chart = calculate_adx_indicators(chart, period=14)
+
         return chart
     except Exception as e:
         print(f"❌ Error computing indicators: {e}")
@@ -280,22 +357,46 @@ def compute_indicators(chart):
 # CHECK IF POSITION ACTIVE
 # ============================
 def is_position_active():
-    """Check if there's any active position in the orderbook"""
+    """
+    Check if there are any active positions in the orderbook
+
+    Returns:
+        tuple: (has_position: bool, active_positions: DataFrame, position_count: int)
+    """
     orderbook_df = pd.DataFrame(orderbook).T
     active_positions = orderbook_df[orderbook_df['qty'] > 0]
-    return len(active_positions) > 0, active_positions
+    position_count = len(active_positions)
+    return position_count > 0, active_positions, position_count
 
 
 # ============================
-# GET ACTIVE POSITION SYMBOL
+# CHECK IF CAN TAKE NEW POSITION
 # ============================
-def get_active_position_symbol():
-    """Get the symbol name of the active position"""
+def can_take_new_position():
+    """
+    Check if we can take a new position based on max_simultaneous_positions limit
+
+    Returns:
+        tuple: (can_enter: bool, current_count: int, max_allowed: int)
+    """
+    _, _, position_count = is_position_active()
+    can_enter = position_count < max_simultaneous_positions
+    return can_enter, position_count, max_simultaneous_positions
+
+
+# ============================
+# GET ACTIVE POSITION SYMBOLS
+# ============================
+def get_active_position_symbols():
+    """
+    Get all active position symbol names
+
+    Returns:
+        list: List of symbol names with active positions
+    """
     orderbook_df = pd.DataFrame(orderbook).T
     active_positions = orderbook_df[orderbook_df['qty'] > 0]
-    if len(active_positions) > 0:
-        return active_positions.index[0]
-    return None
+    return active_positions.index.tolist()
 
 
 # ============================
@@ -304,12 +405,20 @@ def get_active_position_symbol():
 def scan_for_entry(all_ltp):
     """
     Scan all symbols in watchlist for entry opportunities
-    Only called when NO position is active
+    Stops scanning when max_simultaneous_positions is reached
     """
+    # Check if we can take new position
+    can_enter, current_positions, max_positions = can_take_new_position()
+
+    if not can_enter:
+        print(f"\n⏸️ Max positions reached ({current_positions}/{max_positions}) - No scanning")
+        return False
+
     print("\n" + "="*80)
     print(f"🔍 SCANNING FOR ENTRY - {datetime.datetime.now().strftime('%H:%M:%S')}")
+    print(f"📊 Current Positions: {current_positions}/{max_positions}")
     print("="*80)
-    
+
     # Calculate current number of orders placed
     orderbook_df = pd.DataFrame(orderbook).T
     no_of_orders_placed = orderbook_df[orderbook_df['qty'] > 0].shape[0]
@@ -341,6 +450,17 @@ def scan_for_entry(all_ltp):
                 print(f"⏭️ Skipping {name} - No chart data")
                 continue
 
+            # ✅ CHECK COOLDOWN - Prevent re-entry too soon after exit
+            if name in symbol_exit_times:
+                time_since_exit = time.time() - symbol_exit_times[name]
+                if time_since_exit < REENTRY_COOLDOWN:
+                    remaining_cooldown = REENTRY_COOLDOWN - time_since_exit
+                    print(f"⏸️ Skipping {name} - Cooldown active ({remaining_cooldown/60:.1f} min remaining)")
+                    continue
+                else:
+                    # Cooldown expired, remove from tracking
+                    del symbol_exit_times[name]
+
             try:
                 # Compute indicators
                 chart = compute_indicators(chart)
@@ -364,7 +484,15 @@ def scan_for_entry(all_ltp):
                     print(f"✅ ENTRY EXECUTED: {ce_message}")
                     print(f"{'='*80}\n")
                     update_excel_sheets()
-                    return True  # Entry executed, stop scanning
+
+                    # Check if we've reached max positions
+                    _, new_position_count, _ = can_take_new_position()
+                    if not can_take_new_position()[0]:  # Max positions reached
+                        print(f"🛑 Max positions ({max_simultaneous_positions}) reached - Stopping scan")
+                        return True
+                    else:
+                        print(f"✅ Position {new_position_count + 1}/{max_simultaneous_positions} taken - Can take 1 more")
+                        return True  # Entry executed, stop this scan iteration
 
                 # ============================
                 # ✅ PE ENTRY - Using Modular Function
@@ -385,7 +513,15 @@ def scan_for_entry(all_ltp):
                     print(f"✅ ENTRY EXECUTED: {pe_message}")
                     print(f"{'='*80}\n")
                     update_excel_sheets()
-                    return True  # Entry executed, stop scanning
+
+                    # Check if we've reached max positions
+                    _, new_position_count, _ = can_take_new_position()
+                    if not can_take_new_position()[0]:  # Max positions reached
+                        print(f"🛑 Max positions ({max_simultaneous_positions}) reached - Stopping scan")
+                        return True
+                    else:
+                        print(f"✅ Position {new_position_count + 1}/{max_simultaneous_positions} taken - Can take 1 more")
+                        return True  # Entry executed, stop this scan iteration
 
             except Exception as e:
                 print(f"❌ Error processing {name}: {e}")
@@ -447,6 +583,11 @@ def monitor_active_position(symbol_name, all_ltp):
             print(f"\n{'='*80}")
             print(f"🚪 EXIT EXECUTED: {exit_status} for {symbol_name}")
             print(f"{'='*80}\n")
+
+            # ✅ Record exit time for cooldown tracking
+            symbol_exit_times[symbol_name] = time.time()
+            print(f"⏰ Cooldown started for {symbol_name} ({REENTRY_COOLDOWN/60:.0f} minutes)")
+
             update_excel_sheets()
             return True  # Position exited
         elif exit_status == "tsl_updated":
@@ -512,18 +653,21 @@ def main():
     - Scans every 30 seconds when NO position
     - Monitors every 5 seconds when IN position
     - Refreshes watchlist from sectors every 15 minutes
+    - Enforces cooldown period after exits to prevent immediate re-entry
     """
-    global watchlist, last_watchlist_refresh_time
+    global watchlist, last_watchlist_refresh_time, symbol_exit_times
 
     print("\n" + "="*100)
-    print("🚀 SINGLE TRADE FOCUS BOT STARTED")
+    print("🚀 MULTI-POSITION TRADING BOT STARTED")
     print("="*100)
-    print(f"📊 Strategy: Focus on ONE high-quality trade at a time")
+    print(f"📊 Strategy: Manage up to {max_simultaneous_positions} simultaneous positions")
     print(f"⏰ Scan Interval (No Position): {SCAN_INTERVAL} seconds")
     print(f"👁️ Monitor Interval (In Position): {MONITOR_INTERVAL} seconds")
     print(f"🔄 Watchlist Refresh Interval: {WATCHLIST_REFRESH_INTERVAL // 60} minutes")
+    print(f"⏸️ Re-Entry Cooldown: {REENTRY_COOLDOWN // 60} minutes (prevents immediate re-entry)")
     print(f"💰 Risk per Trade: ₹{risk_per_trade:,.2f}")
     print(f"📈 Risk Reward Ratio: 1:{risk_reward}")
+    print(f"🔢 Max Simultaneous Positions: {max_simultaneous_positions}")
     print(f"📋 Watchlist: {len(watchlist)} symbols")
     print("="*100 + "\n")
 
@@ -558,8 +702,8 @@ def main():
                 break
                 """
 
-            # Check if we have an active position
-            has_position, active_positions = is_position_active()
+            # Check if we have any active positions
+            has_position, active_positions, position_count = is_position_active()
 
             # Build LTP fetch list
             all_ltp = {}
@@ -616,18 +760,32 @@ def main():
 
             if has_position:
                 # ============================
-                # MONITOR MODE - Check every 5 seconds
+                # MONITOR MODE - Check ALL active positions every 5 seconds
                 # ============================
-                active_symbol = get_active_position_symbol()
-                position_exited = monitor_active_position(active_symbol, all_ltp)
-                
-                if position_exited:
-                    print(f"✅ Position exited for {active_symbol}")
+                active_symbols = get_active_position_symbols()
+                print(f"\n📊 Monitoring {len(active_symbols)} active position(s): {', '.join(active_symbols)}")
+
+                any_position_exited = False
+                for active_symbol in active_symbols:
+                    position_exited = monitor_active_position(active_symbol, all_ltp)
+                    if position_exited:
+                        print(f"✅ Position exited for {active_symbol}")
+                        any_position_exited = True
+
+                if any_position_exited:
                     # Reset scan timer to start looking for next entry
                     last_scan_time = time.time() - SCAN_INTERVAL
-                
+
                 # Wait MONITOR_INTERVAL before next check
                 time.sleep(MONITOR_INTERVAL)
+
+                # ✅ NEW: Check if we can take another position while monitoring
+                can_enter, current_pos, max_pos = can_take_new_position()
+                if can_enter and (time.time() - last_scan_time >= SCAN_INTERVAL):
+                    # We have room for another position and it's time to scan
+                    print(f"\n🔍 Room for another position ({current_pos}/{max_pos}) - Initiating scan while monitoring")
+                    scan_for_entry(all_ltp)
+                    last_scan_time = time.time()
 
             else:
                 # ============================
@@ -658,6 +816,17 @@ def main():
 
         except KeyboardInterrupt:
             print("\n⚠️ Bot stopped by user (Ctrl+C)")
+            print("🛑 Cleaning up WebSocket connections...")
+
+            # Cleanup WebSocket connections
+            try:
+                from websocket_manager import _ws_manager
+                if _ws_manager:
+                    _ws_manager.stop()
+                    print("✅ WebSocket cleanup complete")
+            except Exception as cleanup_error:
+                print(f"⚠️ WebSocket cleanup warning: {cleanup_error}")
+
             break
         except Exception as e:
             print(f"\n❌ ERROR in main loop: {e}")
@@ -667,7 +836,31 @@ def main():
 
 
 # ============================
+# CLEANUP FUNCTION
+# ============================
+def cleanup_on_exit():
+    """Cleanup resources on bot exit"""
+    try:
+        from websocket_manager import _ws_manager
+        if _ws_manager:
+            print("\n🛑 Cleaning up WebSocket connections...")
+            _ws_manager.stop()
+            print("✅ WebSocket cleanup complete")
+    except:
+        pass
+
+
+# ============================
 # RUN THE BOT
 # ============================
 if __name__ == "__main__":
-    main()
+    import atexit
+    # Register cleanup function to run on exit
+    atexit.register(cleanup_on_exit)
+
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n⚠️ Bot interrupted")
+    finally:
+        cleanup_on_exit()

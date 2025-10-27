@@ -22,7 +22,7 @@ from rate_limiter import (
 )
 
 
-def check_bid_ask_spread(tsl, option_symbol, max_spread=2):
+def check_bid_ask_spread(tsl, option_symbol, max_spread=0.70):
     """
     Check if bid-ask spread is within acceptable limits using option chain data.
 
@@ -136,41 +136,49 @@ def check_bid_ask_spread(tsl, option_symbol, max_spread=2):
 def check_ce_entry_conditions(chart, name, orderbook, no_of_orders_placed):
     """
     Check if CE (Call Option) entry conditions are met for the underlying stock.
-    
+
     Args:
         chart: DataFrame with OHLCV data and indicators
         name: Stock symbol name
         orderbook: Order tracking dictionary
         no_of_orders_placed: Current number of active orders
-    
+
     Returns:
         bool: True if all entry conditions are met, False otherwise
     """
     try:
         last = chart.iloc[-1]
         cc = chart.iloc[-2]
-        
+
         last_close = float(last['close'])
         cc_close = float(cc['close'])
         long_stop = pd.to_numeric(cc['Long_Stop'], errors='coerce')
+        Stop_Loss = pd.to_numeric(cc['Stop_Loss'], errors='coerce')
         fractal_high = pd.to_numeric(cc['fractal_high'], errors='coerce')
         vwap = pd.to_numeric(last['vwap'], errors='coerce')
         Crossabove = pta.above(chart['rsi'], chart['ma_rsi'])
-        
+
         # Buy entry conditions for underlying
-        bc1 = cc['rsi'] > 50
+        bc1 = cc['rsi'] > 60
         bc2 = bool(Crossabove.iloc[-2])
-        bc3 = cc_close > long_stop
+        bc3 = cc_close > Stop_Loss
         bc4 = cc_close > fractal_high
         bc5 = cc_close > vwap
         bc6 = orderbook[name]['traded'] is None
         bc7 = no_of_orders_placed < 5
-        
-        print(f" CE Buy Condition {name} : RSI>60={bc1} - {cc['rsi']}, CrossAbove={bc2} - {Crossabove.iloc[-2]}, "
-              f"Close>LongStop={bc3} - {long_stop}, Close>FractalHigh={bc4} - {fractal_high}, Close>VWAP={bc5} - {vwap}")
-        
-        return bc1 and bc2 and bc3 and bc4 and bc5 and bc6 and bc7
-        
+
+        # ✅ NEW: ADX Condition for CE (Bullish Directional Movement)
+        # ADX rising, > 23, and +DI crossed above -DI
+        from adx_indicator import check_adx_ce_condition
+        adx_met, adx_val, plus_di, minus_di, adx_details = check_adx_ce_condition(chart, adx_threshold=23, lookback=2)
+        bc8 = adx_met
+
+        print(f" CE Buy Condition {name} : RSI>60={bc1} - {cc['rsi']:.2f}, CrossAbove={bc2} - {Crossabove.iloc[-2]}, "
+              f"Close>Stop_Loss={bc3} - {long_stop:.2f}, Close>FractalHigh={bc4} - {fractal_high:.2f}, Close>VWAP={bc5} - {vwap:.2f}")
+        print(f" ADX Condition {name} : {adx_details}")
+
+        return bc1 and bc2 and bc3 and bc4 and bc5 and bc6 and bc7 and bc8
+
     except Exception as e:
         print(f"Error checking CE entry conditions for {name}: {e}")
         traceback.print_exc()
@@ -246,7 +254,11 @@ def process_ce_option_data(tsl, ce_name):
         options_chart_Res[['fractal_high', 'fractal_low', 'signal']] = df_with_signals[
             ['fractal_high', 'fractal_low', 'signal']
         ]
-        
+
+        # ADX (Average Directional Index) - For directional movement
+        from adx_indicator import calculate_adx_indicators
+        options_chart_Res = calculate_adx_indicators(options_chart_Res, period=14)
+
         return options_chart_Res
         
     except Exception as e:
@@ -272,27 +284,37 @@ def check_ce_option_conditions(options_chart_Res, ce_name, name, orderbook, no_o
     try:
         rc_options = options_chart_Res.iloc[-1]
         rc_options_cc = options_chart_Res.iloc[-2]
-        
+
         last_close = float(rc_options['close'])
         cc_close = float(rc_options_cc['close'])
-        long_stop_opt = pd.to_numeric(rc_options['Long_Stop'], errors='coerce')
-        fractal_high_opt = pd.to_numeric(rc_options['fractal_high'], errors='coerce')
+        long_stop_opt = pd.to_numeric(rc_options_cc['Long_Stop'], errors='coerce')  # ✅ Changed from rc_options to rc_options_cc
+        stop_loss_opt = pd.to_numeric(rc_options_cc['Stop_Loss'],errors='coerce')  # ✅ Changed from rc_options to rc_options_cc
+        fractal_high_opt = pd.to_numeric(rc_options_cc['fractal_high'], errors='coerce')  # ✅ Changed from rc_options to rc_options_cc
         vwap_opt = pd.to_numeric(rc_options['vwap'], errors='coerce')
         Crossabove_opt = pta.above(options_chart_Res['rsi'], options_chart_Res['ma_rsi'])
         
         # Buy entry conditions for CE option
-        bc1_opt = rc_options_cc['rsi'] > 50
+        bc1_opt = rc_options_cc['rsi'] > 60
         bc2_opt = bool(Crossabove_opt.iloc[-2])
-        bc3_opt = cc_close > long_stop_opt
+        bc3_opt = cc_close > stop_loss_opt
         bc4_opt = cc_close > fractal_high_opt
         bc5_opt = cc_close > vwap_opt
         bc6_opt = orderbook[name]['traded'] is None
         bc7_opt = no_of_orders_placed < 5
-        
-        print(f" CE Option Buy Condition {ce_name} : RSI>60={bc1_opt} - {rc_options_cc['rsi']}, CrossAbove={bc2_opt} - {Crossabove_opt.iloc[-2]}, "
-              f"Close>LongStop={bc3_opt} - {long_stop_opt}, Close>FractalHigh={bc4_opt} - {fractal_high_opt}, Close>VWAP={bc5_opt} - {vwap_opt}")
-        
-        return bc1_opt and bc2_opt and bc3_opt and bc4_opt and bc5_opt and bc6_opt and bc7_opt
+
+        # ✅ NEW: ADX Condition for CE Option (Bullish Directional Movement)
+        # ADX rising, > 23, and +DI crossed above -DI
+        from adx_indicator import check_adx_ce_condition
+        adx_met_opt, adx_val_opt, plus_di_opt, minus_di_opt, adx_details_opt = check_adx_ce_condition(
+            options_chart_Res, adx_threshold=23, lookback=2
+        )
+        bc8_opt = adx_met_opt
+
+        print(f" CE Option Buy Condition {ce_name} : RSI>60={bc1_opt} - {rc_options_cc['rsi']:.2f}, CrossAbove={bc2_opt} - {Crossabove_opt.iloc[-2]}, "
+              f"Close>LongStop={bc3_opt} - {long_stop_opt:.2f}, Close>FractalHigh={bc4_opt} - {fractal_high_opt:.2f}, Close>VWAP={bc5_opt} - {vwap_opt:.2f}")
+        print(f" ADX Condition {ce_name} : {adx_details_opt}")
+
+        return bc1_opt and bc2_opt and bc3_opt and bc4_opt and bc5_opt and bc6_opt and bc7_opt and bc8_opt
         
     except Exception as e:
         print(f"Error checking CE option conditions for {ce_name}: {e}")
@@ -300,31 +322,32 @@ def check_ce_option_conditions(options_chart_Res, ce_name, name, orderbook, no_o
         return False
 
 
-def place_ce_entry_order(tsl, name, ce_name, lot_size, options_chart_Res, atr_multipler, 
-                         orderbook, bot_token, receiver_chat_id):
+def place_ce_entry_order(tsl, name, ce_name, lot_size, options_chart_Res, atr_multipler,
+                         orderbook, bot_token, receiver_chat_id, option_sl_percentage=0.15):
     """
     Place CE entry order with stop loss.
-    
+
     Args:
         tsl: Tradehull API client instance
         name: Underlying stock symbol
         ce_name: CE option symbol name
         lot_size: Lot size for the option
         options_chart_Res: DataFrame with option data
-        atr_multipler: ATR multiplier for stop loss
+        atr_multipler: ATR multiplier for stop loss (DEPRECATED - kept for compatibility)
         orderbook: Order tracking dictionary
         bot_token: Telegram bot token
         receiver_chat_id: Telegram chat ID for alerts
-    
+        option_sl_percentage: Stop loss as percentage of entry price (default 0.15 = 15%)
+
     Returns:
         bool: True if order placed successfully, False otherwise
     """
     try:
         process_start_time = datetime.datetime.now()
         rc_options = options_chart_Res.iloc[-1]
-        
+
         print(f"Placing CE entry order for {name} ({ce_name})")
-        
+
         # Populate orderbook entry
         orderbook[name]['name'] = name
         orderbook[name]['options_name'] = ce_name
@@ -333,10 +356,7 @@ def place_ce_entry_order(tsl, name, ce_name, lot_size, options_chart_Res, atr_mu
         orderbook[name]['max_holding_time'] = datetime.datetime.now() + datetime.timedelta(hours=2)
         orderbook[name]['buy_sell'] = "BUY"
         orderbook[name]['qty'] = lot_size
-        
-        # Calculate stop loss
-        sl_points = rc_options['ATR'] * atr_multipler
-        
+
         # Place market entry order
         order_api_limiter.wait(call_description=f"tsl.order_placement(tradingsymbol='{ce_name}', BUY MARKET)")
         entry_orderid = tsl.order_placement(
@@ -350,17 +370,26 @@ def place_ce_entry_order(tsl, name, ce_name, lot_size, options_chart_Res, atr_mu
             trade_type='MIS'
         )
         orderbook[name]['entry_orderid'] = entry_orderid
-        
+
         # Get executed price
         ntrading_api_limiter.wait(call_description=f"tsl.get_executed_price(orderid='{entry_orderid}')")
         exec_price = retry_api_call(tsl.get_executed_price, retries=1, delay=1.0, orderid=entry_orderid)
-        
+
         if exec_price is None:
             raise Exception("Failed to get executed price after retries")
-        
+
         orderbook[name]['entry_price'] = exec_price
-        orderbook[name]['sl'] = round(exec_price - sl_points, 1)
+
+        # ✅ PERCENTAGE-BASED STOP LOSS (More reliable for options)
+        # Calculate SL as percentage below entry price
+        initial_sl = exec_price * (1 - option_sl_percentage)
+
+        orderbook[name]['sl'] = round(initial_sl, 1)
         orderbook[name]['tsl'] = orderbook[name]['sl']
+
+        print(f"📊 CE Entry: Price=₹{exec_price:.2f}, Initial SL=₹{orderbook[name]['sl']:.2f}")
+        print(f"   Risk: ₹{exec_price - orderbook[name]['sl']:.2f} ({option_sl_percentage*100:.0f}% stop loss)")
+        print(f"   Position Value: ₹{exec_price * lot_size:,.2f}")
         
         # Place stop loss order
         price = orderbook[name]['sl'] - 0.05
@@ -413,20 +442,21 @@ def place_ce_entry_order(tsl, name, ce_name, lot_size, options_chart_Res, atr_mu
 
 
 def execute_ce_entry(tsl, name, chart, orderbook, no_of_orders_placed, atr_multipler,
-                     bot_token, receiver_chat_id):
+                     bot_token, receiver_chat_id, option_sl_percentage=0.15):
     """
     Main function to execute CE entry logic.
-    
+
     Args:
         tsl: Tradehull API client instance
         name: Underlying stock symbol
         chart: DataFrame with underlying stock data
         orderbook: Order tracking dictionary
         no_of_orders_placed: Current number of active orders
-        atr_multipler: ATR multiplier for stop loss
+        atr_multipler: ATR multiplier for stop loss (DEPRECATED - kept for compatibility)
         bot_token: Telegram bot token
         receiver_chat_id: Telegram chat ID for alerts
-    
+        option_sl_percentage: Stop loss as percentage of entry price (default 0.15 = 15%)
+
     Returns:
         tuple: (success: bool, message: str)
     """
@@ -472,18 +502,25 @@ def execute_ce_entry(tsl, name, chart, orderbook, no_of_orders_placed, atr_multi
 
         print(f"✅ Bid-Ask spread check PASSED for {ce_name}")
 
+        # ✅ Get option_sl_percentage from main bot configuration (imported from single_trade_focus_bot)
+        # Default to 15% if not available
+        from single_trade_focus_bot import option_sl_percentage
+
         # Place entry order
         success = place_ce_entry_order(
             tsl, name, ce_name, lot_size, options_chart_Res,
-            atr_multipler, orderbook, bot_token, receiver_chat_id
+            atr_multipler, orderbook, bot_token, receiver_chat_id, option_sl_percentage
         )
 
         if success:
             # Subscribe to WebSocket for real-time monitoring after successful entry
             try:
+                import time
                 from websocket_manager import subscribe_for_position
                 subscribe_for_position(tsl.ClientCode, tsl.token_id, ce_name)
                 print(f"  ✅ Subscribed to WebSocket for real-time monitoring: {ce_name}")
+                print(f"  ⏳ Waiting 2 seconds for WebSocket connection to establish...")
+                time.sleep(2)  # Give websocket time to connect and start streaming
             except Exception as e:
                 print(f"  ⚠️ WebSocket subscription failed (will use API polling): {e}")
 

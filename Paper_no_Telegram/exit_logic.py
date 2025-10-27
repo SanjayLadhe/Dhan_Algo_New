@@ -14,6 +14,7 @@ This module handles exit conditions for active trades including:
 import datetime
 import time
 import traceback
+import pandas as pd
 from rate_limiter import (
     ntrading_api_limiter,
     order_api_limiter,
@@ -22,19 +23,26 @@ from rate_limiter import (
 )
 
 
-def check_sl_hit(tsl, name, orderbook):
+def check_sl_hit(tsl, name, orderbook, options_chart_3min=None):
     """
-    Check if stop loss has been hit.
+    Check if stop loss has been hit using candle close confirmation.
+
+    ✅ NEW LOGIC: Uses WebSocket for real-time monitoring but confirms with candle close
+    - WebSocket LTP detects potential TSL trigger
+    - 3-minute candle CLOSE must confirm the break
+    - Prevents false exits from temporary spikes/noise
 
     Args:
         tsl: Tradehull API client
         name: Stock symbol
         orderbook: Order tracking dictionary
+        options_chart_3min: Pre-fetched 3-minute candle data for confirmation
 
     Returns:
-        bool: True if SL was hit
+        bool: True if SL was hit AND confirmed by candle close
     """
     try:
+        # First check order status (works for both live and paper trading)
         ntrading_api_limiter.wait(
             call_description=f"tsl.get_order_status(orderid='{orderbook[name]['sl_orderid']}')"
         )
@@ -49,7 +57,57 @@ def check_sl_hit(tsl, name, orderbook):
             print(f"[WARNING] Failed to get order status for {name}.")
             return False
 
-        return sl_status == "TRADED"
+        # If order already TRADED (executed), confirm and exit
+        if sl_status == "TRADED":
+            print(f"✅ TSL order EXECUTED for {name}")
+            return True
+
+        # ✅ NEW: WebSocket + Candle Close Confirmation
+        # If order is still PENDING, use WebSocket to detect potential trigger
+        # then confirm with candle close to avoid false exits
+        if sl_status == "PENDING":
+            option_symbol = orderbook[name].get('options_name')
+            current_tsl = orderbook[name].get('tsl', 0)
+
+            if not option_symbol or current_tsl == 0:
+                return False
+
+            # Try to get WebSocket LTP
+            try:
+                from websocket_manager import get_live_market_data
+                ws_data = get_live_market_data(option_symbol)
+
+                if ws_data and ws_data.get('ltp', 0) > 0:
+                    current_ltp = ws_data['ltp']
+
+                    # WebSocket detects price at or below TSL
+                    if current_ltp <= current_tsl:
+                        print(f"⚠️ WebSocket TSL Alert: LTP (₹{current_ltp:.2f}) <= TSL (₹{current_tsl:.2f})")
+
+                        # ✅ CONFIRM WITH CANDLE CLOSE
+                        if options_chart_3min is not None and not options_chart_3min.empty:
+                            latest_candle = options_chart_3min.iloc[-1]
+                            candle_close = float(latest_candle['close'])
+
+                            # Only exit if CANDLE CLOSE confirms the break
+                            if candle_close <= current_tsl:
+                                print(f"✅ TSL CONFIRMED by candle close: Close (₹{candle_close:.2f}) <= TSL (₹{current_tsl:.2f})")
+                                print(f"   Executing TSL exit...")
+                                return True
+                            else:
+                                print(f"⏸️ TSL NOT CONFIRMED: Candle close (₹{candle_close:.2f}) > TSL (₹{current_tsl:.2f})")
+                                print(f"   Temporary dip ignored - waiting for candle close confirmation")
+                                return False
+                        else:
+                            # No candle data, fall back to WebSocket only (less strict)
+                            print(f"⚠️ No candle data available for confirmation")
+                            return False
+
+            except Exception as e:
+                # WebSocket not available, rely on order status only
+                pass
+
+        return False
 
     except Exception as e:
         print(f"Error checking SL for {name}: {e}")
@@ -541,39 +599,40 @@ def update_trailing_stop_loss(tsl, name, orderbook, atr_multipler, options_chart
         if options_chart_tsl_3min.empty:
             return False
 
-        # ✅ Calculate ATR using ATRTrailingStop custom indicator
-        atr_indicator = ATRTrailingStopIndicator(period=14, multiplier=atr_multipler)
+        # ✅ NEW: Use Long_Stop directly from ATR Trailing Stop indicator for TSL
+        # This is more accurate and dynamic than manual calculation
+        atr_indicator = ATRTrailingStopIndicator(period=21, multiplier=atr_multipler)
         result_df = atr_indicator.compute_indicator(options_chart_tsl_3min)
 
-        # Get ATR value from the result
-        if 'ATR' in result_df.columns:
+        # Use Long_Stop value directly (this is the trailing stop calculated by the indicator)
+        if 'Long_Stop' in result_df.columns:
             rc_options_tsl = result_df.iloc[-1]
-            sl_points_tsl = rc_options_tsl['ATR']
+            new_tsl_level = rc_options_tsl['Long_Stop']
+
+            # Validate Long_Stop value
+            if pd.isna(new_tsl_level) or new_tsl_level == 0:
+                print(f"⚠️ Long_Stop not available for TSL update, skipping...")
+                return False
+
+            print(f"✅ Using Long_Stop for TSL: {new_tsl_level:.2f} (Current TSL: {orderbook[name]['tsl']:.2f})")
         else:
-            # Fallback: calculate manually if ATR column not available
-            atr_values = result_df.get('Long_Stop', options_chart_tsl_3min['close'])
-            sl_points_tsl = abs(options_chart_tsl_3min['close'].iloc[-1] - atr_values.iloc[-1])
+            # Fallback: use ATR-based calculation
+            print(f"⚠️ Long_Stop column not found, using fallback ATR calculation")
+            sl_points_tsl = rc_options_tsl.get('ATR', 0) * atr_multipler
+            options_ltp_data = retry_api_call(
+                tsl.get_ltp_data,
+                retries=1,
+                delay=1.0,
+                names=[options_name]
+            )
+            if options_ltp_data is None or options_name not in options_ltp_data:
+                return False
+            options_ltp = options_ltp_data[options_name]
+            new_tsl_level = options_ltp - sl_points_tsl
 
-        # Get current LTP
-        ltp_api_limiter.wait(
-            call_description=f"tsl.get_ltp_data(names=['{options_name}'])"
-        )
-        options_ltp_data = retry_api_call(
-            tsl.get_ltp_data,
-            retries=1,
-            delay=1.0,
-            names=[options_name]
-        )
-
-        if options_ltp_data is None or options_name not in options_ltp_data:
-            return False
-
-        options_ltp = options_ltp_data[options_name]
-        tsl_level = options_ltp - sl_points_tsl
-
-        # Only update if new TSL is higher than current
-        if tsl_level > orderbook[name]['tsl']:
-            trigger_price = round(tsl_level, 1)
+        # Only update if new TSL is higher than current (for LONG positions)
+        if new_tsl_level > orderbook[name]['tsl']:
+            trigger_price = round(new_tsl_level, 1)
             price = trigger_price - 0.05
             tsl_qty = orderbook[name].get('qty', 0)
 
@@ -592,8 +651,8 @@ def update_trailing_stop_loss(tsl, name, orderbook, atr_multipler, options_chart
                 trigger_price=trigger_price
             )
 
-            orderbook[name]['tsl'] = tsl_level
-            print(f"📈 TSL updated for {name} ({options_name}) to {tsl_level}")
+            orderbook[name]['tsl'] = new_tsl_level
+            print(f"📈 TSL updated for {name} ({options_name}) to ₹{new_tsl_level:.2f}")
             return True
 
         return False
@@ -868,20 +927,7 @@ def process_exit_conditions(tsl, name, orderbook, all_ltp, process_start_time,
         if orderbook[name].get('buy_sell') != "BUY":
             return "not_buy_position"
 
-        # Priority 1: Check Trailing Stop Loss (TSL) - HIGHEST PRIORITY FOR EXIT
-        # This checks if the current SL order (which includes TSL) has been triggered
-        if check_sl_hit(tsl, name, orderbook):
-            if handle_sl_exit(tsl, name, orderbook, process_start_time,
-                             bot_token, receiver_chat_id, reentry, completed_orders, single_order):
-                return "sl_hit"
-
-        # Priority 2: Check Target
-        if check_target_hit(name, orderbook, all_ltp):
-            if handle_target_exit(tsl, name, orderbook, process_start_time,
-                                 bot_token, receiver_chat_id, reentry, completed_orders, single_order):
-                return "target_hit"
-
-        # ✅ OPTIMIZATION: Fetch option historical data ONCE, resample to 3min, and reuse for both functions
+        # ✅ OPTIMIZATION: Fetch option historical data ONCE, resample to 3min, and reuse for all functions
         options_name = orderbook[name].get('options_name')
         options_chart_3min = None
 
@@ -912,6 +958,19 @@ def process_exit_conditions(tsl, name, orderbook, all_ltp, process_start_time,
 
                 # Reset index for further use
                 options_chart_3min = options_chart_3min.reset_index()
+
+        # Priority 1: Check Trailing Stop Loss (TSL) - HIGHEST PRIORITY FOR EXIT
+        # ✅ NEW: Uses WebSocket for detection + candle close confirmation
+        if check_sl_hit(tsl, name, orderbook, options_chart_3min):
+            if handle_sl_exit(tsl, name, orderbook, process_start_time,
+                             bot_token, receiver_chat_id, reentry, completed_orders, single_order):
+                return "sl_hit"
+
+        # Priority 2: Check Target
+        if check_target_hit(name, orderbook, all_ltp):
+            if handle_target_exit(tsl, name, orderbook, process_start_time,
+                                 bot_token, receiver_chat_id, reentry, completed_orders, single_order):
+                return "target_hit"
 
         # Priority 3: Check RSI/LongStop Technical Exit (CUSTOM CONDITION)
         # Pass pre-fetched 3-min data to avoid duplicate API call

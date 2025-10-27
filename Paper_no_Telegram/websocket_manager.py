@@ -299,8 +299,45 @@ class WebSocketMarketData:
         # Close DhanFeed connection
         if self.dhan_feed:
             try:
-                self.dhan_feed.close_connection()
-            except:
+                # ✅ FIX: Properly close the connection and clean up pending tasks
+                if hasattr(self.dhan_feed, 'close_connection'):
+                    self.dhan_feed.close_connection()
+                else:
+                    # Fallback: try to call disconnect properly if it's async
+                    import asyncio
+                    try:
+                        # Get the current event loop if it exists
+                        try:
+                            loop = asyncio.get_event_loop()
+                            if loop.is_running():
+                                # If loop is running (shouldn't be in stop), create a new one
+                                loop = asyncio.new_event_loop()
+                                asyncio.set_event_loop(loop)
+                        except RuntimeError:
+                            # No event loop, create a new one
+                            loop = asyncio.new_event_loop()
+                            asyncio.set_event_loop(loop)
+
+                        # Disconnect and clean up tasks
+                        if hasattr(self.dhan_feed, 'disconnect'):
+                            loop.run_until_complete(self.dhan_feed.disconnect())
+
+                        # Cancel all pending tasks
+                        pending = asyncio.all_tasks(loop)
+                        for task in pending:
+                            task.cancel()
+
+                        # Wait for all tasks to be cancelled
+                        if pending:
+                            loop.run_until_complete(asyncio.gather(*pending, return_exceptions=True))
+
+                        # Close the loop
+                        loop.close()
+                    except Exception as cleanup_error:
+                        # Silently handle cleanup errors
+                        pass
+            except Exception as e:
+                # Silently handle disconnect errors to avoid noise
                 pass
             self.dhan_feed = None
 
@@ -370,6 +407,9 @@ class WebSocketMarketData:
         """
         Async method to connect and continuously receive data.
         """
+        reconnect_attempts = 0
+        max_reconnect_attempts = 5
+
         try:
             # Connect to WebSocket
             await self.dhan_feed.connect()
@@ -380,11 +420,14 @@ class WebSocketMarketData:
             while self.is_running and self.is_connected:
                 try:
                     # Get data from WebSocket (this waits for incoming messages)
+                    # CRITICAL: This call should be the ONLY place calling recv
                     data = await self.dhan_feed.get_instrument_data()
 
                     if data:
                         # Process the received data through our callback
                         self._on_market_data(data)
+                        # Reset reconnect attempts on successful data reception
+                        reconnect_attempts = 0
 
                 except asyncio.CancelledError:
                     print("  ⚠️ WebSocket task cancelled")
@@ -392,18 +435,36 @@ class WebSocketMarketData:
                 except Exception as e:
                     if self.is_running:  # Only show errors if we're still supposed to be running
                         print(f"  ⚠️ Error receiving data: {e}")
-                        # Try to reconnect after a delay
-                        await asyncio.sleep(2)
+
+                        # CRITICAL FIX: Properly close the connection before reconnecting
+                        try:
+                            self.dhan_feed.close_connection()
+                        except:
+                            pass
+
+                        self.is_connected = False
+                        reconnect_attempts += 1
+
+                        # Check if we've exceeded max reconnection attempts
+                        if reconnect_attempts >= max_reconnect_attempts:
+                            print(f"  ❌ Max reconnection attempts ({max_reconnect_attempts}) reached. Stopping.")
+                            break
+
+                        # Wait before reconnecting (exponential backoff)
+                        backoff_delay = min(2 ** reconnect_attempts, 30)  # Cap at 30 seconds
+                        await asyncio.sleep(backoff_delay)
+
                         if self.is_running:
-                            print("  🔄 Attempting to reconnect...")
+                            print(f"  🔄 Attempting to reconnect... (Attempt {reconnect_attempts}/{max_reconnect_attempts})")
                             try:
+                                # Create a fresh connection
                                 await self.dhan_feed.connect()
                                 self.is_connected = True
                                 print("  ✅ Reconnected successfully!")
-                            except:
-                                print("  ❌ Reconnection failed")
+                            except Exception as reconnect_error:
+                                print(f"  ❌ Reconnection failed: {reconnect_error}")
                                 self.is_connected = False
-                                break
+                                # Continue loop to try again (will check reconnect_attempts)
 
         except Exception as e:
             print(f"  ❌ Connection error: {e}")

@@ -22,7 +22,7 @@ from rate_limiter import (
 )
 
 
-def check_bid_ask_spread(tsl, option_symbol, max_spread=2):
+def check_bid_ask_spread(tsl, option_symbol, max_spread=0.70):
     """
     Check if bid-ask spread is within acceptable limits using option chain data.
 
@@ -136,41 +136,49 @@ def check_bid_ask_spread(tsl, option_symbol, max_spread=2):
 def check_pe_entry_conditions(chart, name, orderbook, no_of_orders_placed):
     """
     Check if PE (Put Option) entry conditions are met for the underlying stock.
-    
+
     Args:
         chart: DataFrame with OHLCV data and indicators
         name: Stock symbol name
         orderbook: Order tracking dictionary
         no_of_orders_placed: Current number of active orders
-    
+
     Returns:
         bool: True if all entry conditions are met, False otherwise
     """
     try:
         last = chart.iloc[-1]
         cc = chart.iloc[-2]
-        
+
         last_close = float(last['close'])
         cc_close = float(cc['close'])
         long_stop = pd.to_numeric(cc['Long_Stop'], errors='coerce')
+        Stop_Loss = pd.to_numeric(cc['Stop_Loss'], errors='coerce')
         fractal_low = pd.to_numeric(cc['fractal_low'], errors='coerce')
         vwap = pd.to_numeric(last['vwap'], errors='coerce')
         Crossbelow = pta.below(chart['rsi'], chart['ma_rsi'])
-        
+
         # Sell entry conditions for underlying (which triggers PE buy)
         sc1 = cc['rsi'] < 60
         sc2 = bool(Crossbelow.iloc[-2])
-        sc3 = cc_close < long_stop
+        sc3 = cc_close < Stop_Loss
         sc4 = cc_close < fractal_low
         sc5 = cc_close < vwap
         sc6 = orderbook[name]['traded'] is None
         sc7 = no_of_orders_placed < 5
-        
-        print(f" PE Buy Condition {name} : RSI<60={sc1} - {cc['rsi']}, CrossBelow={sc2}-{Crossbelow.iloc[-2]}, "
-              f"Close<LongStop={sc3}-{long_stop}, Close<FractalLow={sc4}-{fractal_low}, Close<VWAP={sc5}-{vwap}")
-        
-        return sc1 and sc2 and sc3 and sc4 and sc5 and sc6 and sc7
-        
+
+        # ✅ NEW: ADX Condition for PE Stock (Bearish Directional Movement)
+        # Stock is falling: ADX rising, > 23, and -DI crossed above +DI
+        from adx_indicator import check_adx_pe_stock_condition
+        adx_met, adx_val, plus_di, minus_di, adx_details = check_adx_pe_stock_condition(chart, adx_threshold=23, lookback=2)
+        sc8 = adx_met
+
+        print(f" PE Buy Condition {name} : RSI<60={sc1} - {cc['rsi']:.2f}, CrossBelow={sc2}-{Crossbelow.iloc[-2]}, "
+              f"Close<LongStop={sc3}-{long_stop:.2f}, Close<FractalLow={sc4}-{fractal_low:.2f}, Close<VWAP={sc5}-{vwap:.2f}")
+        print(f" ADX Condition {name} (Stock Falling): {adx_details}")
+
+        return sc1 and sc2 and sc3 and sc4 and sc5 and sc6 and sc7 and sc8
+
     except Exception as e:
         print(f"Error checking PE entry conditions for {name}: {e}")
         traceback.print_exc()
@@ -246,7 +254,11 @@ def process_pe_option_data(tsl, pe_name):
         options_chart_Res[['fractal_high', 'fractal_low', 'signal']] = df_with_signals[
             ['fractal_high', 'fractal_low', 'signal']
         ]
-        
+
+        # ADX (Average Directional Index) - For directional movement
+        from adx_indicator import calculate_adx_indicators
+        options_chart_Res = calculate_adx_indicators(options_chart_Res, period=14)
+
         return options_chart_Res
         
     except Exception as e:
@@ -272,27 +284,38 @@ def check_pe_option_conditions(options_chart_Res, pe_name, name, orderbook, no_o
     try:
         rc_options = options_chart_Res.iloc[-1]
         rc_options_cc = options_chart_Res.iloc[-2]
-        
+
         last_close = float(rc_options['close'])
         cc_close = float(rc_options_cc['close'])
-        long_stop_opt = pd.to_numeric(rc_options['Long_Stop'], errors='coerce')
-        fractal_high_opt = pd.to_numeric(rc_options['fractal_high'], errors='coerce')
+        long_stop_opt = pd.to_numeric(rc_options_cc['Long_Stop'], errors='coerce')  # ✅ Changed from rc_options to rc_options_cc
+        stop_loss_opt = pd.to_numeric(rc_options_cc['Stop_Loss'], errors='coerce')  # ✅ Changed from rc_options to rc_options_cc
+        fractal_high_opt = pd.to_numeric(rc_options_cc['fractal_high'], errors='coerce')  # ✅ Changed from rc_options to rc_options_cc
         vwap_opt = pd.to_numeric(rc_options['vwap'], errors='coerce')
         Crossabove_opt = pta.above(options_chart_Res['rsi'], options_chart_Res['ma_rsi'])
         
         # Buy entry conditions for PE option (we're buying the PUT)
-        bc1_opt = rc_options_cc['rsi'] > 50
+        bc1_opt = rc_options_cc['rsi'] > 60
         bc2_opt = bool(Crossabove_opt.iloc[-2])
-        bc3_opt = cc_close > long_stop_opt
+        bc3_opt = cc_close > stop_loss_opt
         bc4_opt = cc_close > fractal_high_opt
         bc5_opt = cc_close > vwap_opt
         bc6_opt = orderbook[name]['traded'] is None
         bc7_opt = no_of_orders_placed < 5
-        
-        print(f" PE Option Buy Condition {pe_name} : RSI>60={bc1_opt} - {rc_options_cc['rsi']}, CrossAbove={bc2_opt}- {Crossabove_opt.iloc[-2]}, "
-              f"Close>LongStop={bc3_opt} - {long_stop_opt}, Close>FractalHigh={bc4_opt} - {fractal_high_opt}, Close>VWAP={bc5_opt} - {vwap_opt}")
-        
-        return bc1_opt and bc2_opt and bc3_opt and bc4_opt and bc5_opt and bc6_opt and bc7_opt
+
+        # ✅ NEW: ADX Condition for PE Option (Bullish for PE - option is rising in value)
+        # Even though stock is falling, PE option price is rising
+        # So we check for bullish ADX: ADX rising, > 23, and +DI > -DI
+        from adx_indicator import check_adx_pe_option_condition
+        adx_met_opt, adx_val_opt, plus_di_opt, minus_di_opt, adx_details_opt = check_adx_pe_option_condition(
+            options_chart_Res, adx_threshold=23, lookback=2
+        )
+        bc8_opt = adx_met_opt
+
+        print(f" PE Option Buy Condition {pe_name} : RSI>60={bc1_opt} - {rc_options_cc['rsi']:.2f}, CrossAbove={bc2_opt}- {Crossabove_opt.iloc[-2]}, "
+              f"Close>LongStop={bc3_opt} - {long_stop_opt:.2f}, Close>FractalHigh={bc4_opt} - {fractal_high_opt:.2f}, Close>VWAP={bc5_opt} - {vwap_opt:.2f}")
+        print(f" ADX Condition {pe_name} (PE Option Rising): {adx_details_opt}")
+
+        return bc1_opt and bc2_opt and bc3_opt and bc4_opt and bc5_opt and bc6_opt and bc7_opt and bc8_opt
         
     except Exception as e:
         print(f"Error checking PE option conditions for {pe_name}: {e}")
@@ -333,10 +356,20 @@ def place_pe_entry_order(tsl, name, pe_name, lot_size, options_chart_Res, atr_mu
         orderbook[name]['max_holding_time'] = datetime.datetime.now() + datetime.timedelta(hours=2)
         orderbook[name]['buy_sell'] = "BUY"
         orderbook[name]['qty'] = lot_size
-        
-        # Calculate stop loss
-        sl_points = rc_options['ATR'] * atr_multipler
-        
+
+        # ✅ NEW: Use Long_Stop from ATR Trailing Stop indicator for initial SL
+        # This is more accurate than manual ATR calculation
+        long_stop_value = rc_options['Long_Stop']
+
+        # Fallback to ATR-based calculation if Long_Stop not available
+        if pd.isna(long_stop_value) or long_stop_value == 0:
+            sl_points = rc_options['ATR'] * atr_multipler
+            initial_sl = rc_options['close'] - sl_points
+            print(f"⚠️ Long_Stop not available, using ATR-based SL: {initial_sl:.2f}")
+        else:
+            initial_sl = long_stop_value
+            print(f"✅ Using Long_Stop for initial SL: {initial_sl:.2f}")
+
         # Place market entry order
         order_api_limiter.wait(call_description=f"tsl.order_placement(tradingsymbol='{pe_name}', BUY MARKET)")
         entry_orderid = tsl.order_placement(
@@ -350,17 +383,19 @@ def place_pe_entry_order(tsl, name, pe_name, lot_size, options_chart_Res, atr_mu
             trade_type='MIS'
         )
         orderbook[name]['entry_orderid'] = entry_orderid
-        
+
         # Get executed price
         ntrading_api_limiter.wait(call_description=f"tsl.get_executed_price(orderid='{entry_orderid}')")
         exec_price = retry_api_call(tsl.get_executed_price, retries=3, delay=1.0, orderid=entry_orderid)
-        
+
         if exec_price is None:
             raise Exception("Failed to get executed price after retries")
-        
+
         orderbook[name]['entry_price'] = exec_price
-        orderbook[name]['sl'] = round(exec_price - sl_points, 1)
+        orderbook[name]['sl'] = round(initial_sl, 1)
         orderbook[name]['tsl'] = orderbook[name]['sl']
+
+        print(f"📊 PE Entry: Price={exec_price:.2f}, Initial SL={orderbook[name]['sl']:.2f}, Risk={exec_price - orderbook[name]['sl']:.2f} ({((exec_price - orderbook[name]['sl'])/exec_price*100):.1f}%)")
         
         # Place stop loss order
         price = orderbook[name]['sl'] - 0.05
@@ -481,9 +516,12 @@ def execute_pe_entry(tsl, name, chart, orderbook, no_of_orders_placed, atr_multi
         if success:
             # Subscribe to WebSocket for real-time monitoring after successful entry
             try:
+                import time
                 from websocket_manager import subscribe_for_position
                 subscribe_for_position(tsl.ClientCode, tsl.token_id, pe_name)
                 print(f"  ✅ Subscribed to WebSocket for real-time monitoring: {pe_name}")
+                print(f"  ⏳ Waiting 2 seconds for WebSocket connection to establish...")
+                time.sleep(2)  # Give websocket time to connect and start streaming
             except Exception as e:
                 print(f"  ⚠️ WebSocket subscription failed (will use API polling): {e}")
 
