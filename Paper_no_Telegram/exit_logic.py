@@ -607,10 +607,7 @@ def update_trailing_stop_loss(tsl, name, orderbook, atr_multipler, options_chart
 def check_rsi_longstop_exit(tsl, name, orderbook, options_chart_3min=None):
     """
     Check if exit condition met:
-    - RSI closes below MA-RSI OR
-    - Latest candle closes below Long_Stop
-
-    Uses ATRTrailingStop custom indicator for Long_Stop calculation.
+    - Latest candle closes below Stop Loss (TSL)
 
     Args:
         tsl: Tradehull API client
@@ -622,14 +619,18 @@ def check_rsi_longstop_exit(tsl, name, orderbook, options_chart_3min=None):
         tuple: (bool, str) - (condition_met, reason)
     """
     try:
-        import talib
-        import pandas as pd
-        from ATRTrailingStop import ATRTrailingStopIndicator
         from rate_limiter import data_api_limiter
 
         options_name = orderbook[name].get('options_name')
         if not options_name:
             return False, "no_option_name"
+
+        # Get stop loss level from orderbook (use TSL if available, else SL)
+        latest_stop_loss = orderbook[name].get('tsl', orderbook[name].get('sl', 0))
+
+        if latest_stop_loss == 0:
+            print(f"[WARNING] No stop loss found for {name}")
+            return False, "no_stop_loss"
 
         # ✅ Use pre-fetched data if available, otherwise fetch it
         if options_chart_3min is None or options_chart_3min.empty:
@@ -644,7 +645,7 @@ def check_rsi_longstop_exit(tsl, name, orderbook, options_chart_3min=None):
             )
 
             if options_chart is None or options_chart.empty:
-                print(f"[WARNING] Failed to fetch option data for RSI/LongStop check: {options_name}")
+                print(f"[WARNING] Failed to fetch option data for close_below_stop_loss check: {options_name}")
                 return False, "data_fetch_failed"
 
             # Set timestamp as index for resampling
@@ -666,41 +667,20 @@ def check_rsi_longstop_exit(tsl, name, orderbook, options_chart_3min=None):
             print(f"[WARNING] Resampled 3-minute data is empty for {options_name}")
             return False, "resample_failed"
 
-        # Calculate RSI and MA-RSI on 3-minute data
-        options_chart_3min['rsi'] = talib.RSI(options_chart_3min['close'], timeperiod=14)
-        options_chart_3min['ma_rsi'] = talib.SMA(options_chart_3min['rsi'], timeperiod=20)
+        # Get latest candle close price
+        latest_close = float(options_chart_3min.iloc[-1]['close'])
 
-        # ✅ Calculate Long_Stop using ATRTrailingStop custom indicator
-        atr_strategy = ATRTrailingStopIndicator(period=21, multiplier=1.0)
-        result_df = atr_strategy.compute_indicator(options_chart_3min)
-        options_chart_3min['Long_Stop'] = result_df['Long_Stop']
+        # Check condition: close_below_stop_loss
+        close_below_stop_loss = latest_close < latest_stop_loss
 
-        # Get latest candle
-        latest = options_chart_3min.iloc[-1]
-        previous = options_chart_3min.iloc[-2]
-
-        latest_rsi = latest['rsi']
-        latest_ma_rsi = latest['ma_rsi']
-        latest_close = float(latest['close'])
-        latest_long_stop = float(latest['Long_Stop'])
-
-        # Check conditions
-        rsi_below_ma = latest_rsi < latest_ma_rsi
-        close_below_longstop = latest_close < latest_long_stop
-
-        # Exit if EITHER condition is met
-        if rsi_below_ma:
-            print(f"🚨 Exit signal for {name} ({options_name}): RSI ({latest_rsi:.2f}) < MA-RSI ({latest_ma_rsi:.2f})")
-            return True, "rsi_below_ma_rsi"
-
-        if close_below_longstop:
-            print(f"🚨 Exit signal for {name} ({options_name}): Close ({latest_close:.2f}) < Long_Stop ({latest_long_stop:.2f})")
-            return True, "close_below_longstop"
+        if close_below_stop_loss:
+            print(f"🚨 Exit signal for {name} ({options_name}): Close ({latest_close:.2f}) < Stop_Loss ({latest_stop_loss:.2f})")
+            return True, "close_below_stop_loss"
 
         return False, "conditions_not_met"
 
     except Exception as e:
-        print(f"Error checking RSI/LongStop exit for {name}: {e}")
+        print(f"Error checking close_below_stop_loss exit for {name}: {e}")
         traceback.print_exc()
         return False, "error"
 
@@ -708,14 +688,14 @@ def check_rsi_longstop_exit(tsl, name, orderbook, options_chart_3min=None):
 def handle_rsi_longstop_exit(tsl, name, orderbook, process_start_time, exit_reason,
                               bot_token, receiver_chat_id, reentry, completed_orders, single_order):
     """
-    Handle exit when RSI/LongStop condition is met.
+    Handle exit when close_below_stop_loss condition is met.
 
     Args:
         tsl: Tradehull API client
         name: Stock symbol
         orderbook: Order tracking dictionary
         process_start_time: Current processing timestamp
-        exit_reason: Reason for exit ("rsi_below_ma_rsi" or "close_below_longstop")
+        exit_reason: Reason for exit ("close_below_stop_loss")
         bot_token: Telegram bot token
         receiver_chat_id: Telegram chat ID
         reentry: Whether to allow re-entry
@@ -772,14 +752,9 @@ def handle_rsi_longstop_exit(tsl, name, orderbook, process_start_time, exit_reas
         )
 
         # Set remark based on exit reason
-        if exit_reason == "rsi_below_ma_rsi":
-            orderbook[name]['remark'] = "RSI_Below_MA_Exit"
-            reason_text = "RSI crossed below MA-RSI"
-            reason_emoji = "📊"
-        else:
-            orderbook[name]['remark'] = "Close_Below_LongStop_Exit"
-            reason_text = "Close below Long_Stop"
-            reason_emoji = "📉"
+        orderbook[name]['remark'] = "Close_Below_Stop_Loss_Exit"
+        reason_text = "Close below Stop Loss"
+        reason_emoji = "📉"
 
         # Send Telegram alert - Beautified
         pnl_emoji = "💰" if orderbook[name]['pnl'] >= 0 else "📉"
@@ -836,7 +811,7 @@ def process_exit_conditions(tsl, name, orderbook, all_ltp, process_start_time,
     1. Trailing Stop Loss (TSL) - HIGHEST PRIORITY for exit
     2. Stop Loss hit
     3. Target Hit
-    4. RSI/LongStop Technical Exit (CUSTOM)
+    4. Close Below Stop Loss Technical Exit (CUSTOM)
     5. Time Exit (if in loss)
     6. Update TSL (if none of above)
 
@@ -913,7 +888,7 @@ def process_exit_conditions(tsl, name, orderbook, all_ltp, process_start_time,
                 # Reset index for further use
                 options_chart_3min = options_chart_3min.reset_index()
 
-        # Priority 3: Check RSI/LongStop Technical Exit (CUSTOM CONDITION)
+        # Priority 3: Check Close Below Stop Loss Technical Exit (CUSTOM CONDITION)
         # Pass pre-fetched 3-min data to avoid duplicate API call
         condition_met, exit_reason = check_rsi_longstop_exit(tsl, name, orderbook, options_chart_3min)
         if condition_met:
