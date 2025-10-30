@@ -14,12 +14,11 @@ from websocket_manager import WebSocketMarketData
 
 # Your Dhan credentials
 CLIENT_CODE = "1106090196"
-TOKEN_ID = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzYwNTU3MDE0LCJpYXQiOjE3NjA0NzA2MTQsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTA2MDkwMTk2In0.bqQgOLmUX0yO8qy7aZdnL8rsecUa1-3mDdq2KkUo_xJhrCWIDZZSpXmN12h6A1a3gF4SvABB-2c7MWS-gEPshg"
-
+TOKEN_ID = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzYxMDI0ODYyLCJpYXQiOjE3NjA5Mzg0NjIsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTA2MDkwMTk2In0.jCJYvHIUG3xy1J607hE70aL4k-camDpaNqX4UsimbyDm0XEBmS4k3WZXbrzkqj3MIFkBPledGgIszuN67qJs4Q"
 # ============================
 # CHANGE THIS TO YOUR SYMBOL
 # ============================
-TEST_SYMBOL = "GODREJPROP 28 OCT 2150 CALL"  # Replace with your option symbol
+TEST_SYMBOL = "ADANIGREEN 28 OCT 1040 PUT"  # Replace with your option symbol
 
 # How many updates to show (each update is 2 seconds apart)
 NUM_UPDATES = 30  # 30 updates = 1 minute
