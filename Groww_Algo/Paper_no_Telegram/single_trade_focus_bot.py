@@ -57,16 +57,22 @@ from SectorPerformanceAnalyzer import get_dynamic_watchlist
 # Paper Trading Config
 from paper_trading_config import PAPER_TRADING_ENABLED
 
+# Trade Logger for Excel export
+from trade_logger import TradeLogger, init_trade_logger
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
         logging.FileHandler('trading_bot.log'),
         logging.StreamHandler()
     ]
 )
 logger = logging.getLogger(__name__)
+
+# Trade logger instance
+trade_logger: TradeLogger = None
 
 # =============================================================================
 # CONFIGURATION
@@ -139,11 +145,15 @@ order_limiter = None
 def initialize_bot():
     """Initialize the trading bot."""
     global tsl, ws_manager, data_limiter, order_limiter, watchlist
-    global RISK_PER_TRADE
+    global RISK_PER_TRADE, trade_logger
 
     logger.info("=" * 60)
     logger.info("GROWW ALGO TRADING BOT - INITIALIZATION")
     logger.info("=" * 60)
+
+    # Initialize trade logger for Excel export
+    trade_logger = init_trade_logger(log_dir="logs", excel_file="trade_log.xlsx")
+    logger.info(f"Trade Logger initialized - Excel: logs/trade_log.xlsx")
 
     # Calculate risk parameters
     market_gains = OPENING_BALANCE - BASE_CAPITAL
@@ -242,6 +252,35 @@ def add_position(
     logger.info(f"Position added: {symbol} @ {entry_price}")
     logger.info(f"  SL: {stop_loss}, Target: {target}, Qty: {quantity}")
 
+    # Log to trade logger for Excel export
+    if trade_logger:
+        trade_logger.log_order(
+            order_id=order_id,
+            symbol=symbol,
+            transaction_type="BUY",
+            quantity=quantity,
+            order_type="MARKET",
+            price=entry_price,
+            status="COMPLETE",
+            option_type=option_type
+        )
+        trade_logger.log_trade(
+            trade_id=f"TRD_{order_id}",
+            order_id=order_id,
+            symbol=symbol,
+            transaction_type="BUY",
+            quantity=quantity,
+            executed_price=entry_price
+        )
+        trade_logger.log_position_open(
+            symbol=symbol,
+            entry_price=entry_price,
+            quantity=quantity,
+            stop_loss=stop_loss,
+            target=target,
+            option_type=option_type
+        )
+
 
 def remove_position(symbol: str, exit_price: float, reason: str) -> float:
     """Remove a position and calculate P&L."""
@@ -261,6 +300,32 @@ def remove_position(symbol: str, exit_price: float, reason: str) -> float:
     logger.info(f"Position closed: {symbol}")
     logger.info(f"  Entry: {entry_price}, Exit: {exit_price}")
     logger.info(f"  P&L: {pnl:,.2f}, Reason: {reason}")
+
+    # Log to trade logger for Excel export
+    if trade_logger:
+        trade_logger.log_order(
+            order_id=f"EXIT_{position['order_id']}",
+            symbol=symbol,
+            transaction_type="SELL",
+            quantity=quantity,
+            order_type="MARKET",
+            price=exit_price,
+            status="COMPLETE",
+            exit_reason=reason
+        )
+        trade_logger.log_trade(
+            trade_id=f"TRD_EXIT_{position['order_id']}",
+            order_id=f"EXIT_{position['order_id']}",
+            symbol=symbol,
+            transaction_type="SELL",
+            quantity=quantity,
+            executed_price=exit_price
+        )
+        trade_logger.log_position_close(
+            symbol=symbol,
+            exit_price=exit_price,
+            exit_reason=reason
+        )
 
     # Unsubscribe from WebSocket
     if ws_manager:
@@ -446,8 +511,11 @@ def monitor_positions():
                     atr_multiplier=ATR_MULTIPLIER
                 )
                 if new_tsl > position["trailing_stop"]:
+                    old_tsl = position["trailing_stop"]
                     position["trailing_stop"] = new_tsl
                     logger.info(f"TSL updated for {symbol}: {new_tsl:.2f}")
+                    if trade_logger:
+                        trade_logger.log_tsl_update(symbol, old_tsl, new_tsl)
 
         except Exception as e:
             logger.error(f"Error monitoring {symbol}: {e}")
@@ -543,6 +611,11 @@ def print_session_summary():
                        f"TSL={pos['trailing_stop']:.2f}")
 
     logger.info("=" * 60)
+
+    # Print trade logger summary with Excel file location
+    if trade_logger:
+        trade_logger.print_summary()
+        logger.info(f"Trade log Excel file: {trade_logger.excel_file}")
 
 
 # =============================================================================
