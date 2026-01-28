@@ -11,6 +11,7 @@ Features:
 - Options trading (CE/PE) with risk management
 - Stop loss and trailing stop loss management
 - Paper trading mode for testing
+- Detailed console logging with emoji indicators
 
 Groww API Documentation: https://groww.in/trade-api/docs/python-sdk
 Package: pip install growwapi (version 1.5.0+)
@@ -25,6 +26,7 @@ Date: 2026
 
 import time
 import logging
+import traceback
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any
 import pandas as pd
@@ -33,10 +35,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Groww API Wrapper
-# For Paper Trading: Replace with paper_trading_wrapper
 from Groww_Tradehull import Tradehull
-# Uncomment for paper trading:
-# from paper_trading_wrapper import get_trading_instance
 
 # Entry/Exit Logic Modules
 from ce_entry_logic import execute_ce_entry, check_ce_entry_conditions
@@ -55,7 +54,7 @@ from websocket_manager import WebSocketManager
 from SectorPerformanceAnalyzer import get_dynamic_watchlist
 
 # Paper Trading Config
-from paper_trading_config import PAPER_TRADING_ENABLED
+from paper_trading_config import PAPER_TRADING_ENABLED, PAPER_TRADING_BALANCE
 
 # Trade Logger for Excel export
 from trade_logger import TradeLogger, init_trade_logger
@@ -102,6 +101,7 @@ OPTION_SL_PERCENTAGE = 0.15         # 15% stop loss for options
 MONITOR_INTERVAL = 5                # Seconds between position checks
 SCAN_INTERVAL = 30                  # Seconds between entry scans
 WATCHLIST_REFRESH_INTERVAL = 900    # 15 minutes (900 seconds)
+BATCH_SIZE = 5                      # Symbols per batch for scanning
 
 # Market Hours (IST)
 MARKET_OPEN_HOUR = 9
@@ -139,6 +139,83 @@ data_limiter = None
 order_limiter = None
 
 # =============================================================================
+# BANNER AND DISPLAY FUNCTIONS
+# =============================================================================
+
+def print_startup_banner():
+    """Print startup banner with mode information."""
+    print("\n" + "=" * 100)
+    if PAPER_TRADING_ENABLED:
+        print("🎮 PAPER TRADING MODE ENABLED")
+        print("=" * 100)
+        print("⚠️  NO REAL ORDERS WILL BE PLACED")
+        print("⚠️  ALL TRADES ARE SIMULATED")
+        print(f"💰 Starting Balance: ₹{PAPER_TRADING_BALANCE:,.2f}")
+        print(f"📝 Logs: paper_trading_log.txt")
+    else:
+        print("🚀 LIVE TRADING MODE")
+        print("=" * 100)
+        print("⚠️  REAL MONEY WILL BE USED")
+        print(f"💰 Opening Balance: ₹{OPENING_BALANCE:,.2f}")
+    print("=" * 100 + "\n")
+
+
+def print_bot_started_banner():
+    """Print bot started banner with configuration."""
+    print("\n" + "=" * 100)
+    print("🚀 GROWW SINGLE TRADE FOCUS BOT STARTED")
+    print("=" * 100)
+    print(f"📊 Strategy: Focus on ONE high-quality trade at a time")
+    print(f"⏰ Scan Interval (No Position): {SCAN_INTERVAL} seconds")
+    print(f"👁️  Monitor Interval (In Position): {MONITOR_INTERVAL} seconds")
+    print(f"🔄 Watchlist Refresh Interval: {WATCHLIST_REFRESH_INTERVAL // 60} minutes")
+    print(f"💰 Risk per Trade: ₹{RISK_PER_TRADE:,.2f}")
+    print(f"📈 Risk Reward Ratio: 1:{RISK_REWARD_RATIO}")
+    print(f"📋 Watchlist: {len(watchlist)} symbols")
+    print("=" * 100 + "\n")
+
+
+def print_market_status():
+    """Print current market status."""
+    now = datetime.now()
+    time_str = now.strftime('%H:%M:%S')
+
+    if is_market_hours():
+        print(f"\n{'=' * 80}")
+        print(f"📈 MARKET OPEN at {time_str}")
+        print(f"{'=' * 80}")
+    else:
+        print(f"\n{'=' * 80}")
+        print(f"🔔 MARKET CLOSED at {time_str}")
+        print(f"{'=' * 80}")
+
+
+def print_scan_header():
+    """Print scanning header."""
+    now = datetime.now()
+    time_str = now.strftime('%H:%M:%S')
+    current_positions = len(active_positions)
+    max_positions = MAX_SIMULTANEOUS_POSITIONS
+
+    print(f"\n{'=' * 80}")
+    print(f"🔍 SCANNING FOR ENTRY - {time_str}")
+    print(f"{'=' * 80}")
+    print(f"📊 Current Positions: {current_positions}/{max_positions}")
+    print(f"📋 Watchlist Size: {len(watchlist)} symbols")
+    print()
+
+
+def print_monitor_header(symbol: str):
+    """Print position monitoring header."""
+    now = datetime.now()
+    time_str = now.strftime('%H:%M:%S')
+
+    print(f"\n{'=' * 80}")
+    print(f"👁️  MONITORING ACTIVE POSITION: {symbol} - {time_str}")
+    print(f"{'=' * 80}")
+
+
+# =============================================================================
 # INITIALIZATION
 # =============================================================================
 
@@ -147,13 +224,11 @@ def initialize_bot():
     global tsl, ws_manager, data_limiter, order_limiter, watchlist
     global RISK_PER_TRADE, trade_logger
 
-    logger.info("=" * 60)
-    logger.info("GROWW ALGO TRADING BOT - INITIALIZATION")
-    logger.info("=" * 60)
+    print("\nGroww Algo Bot Version 1.0")
+    print("-----Connecting to Groww-----")
 
     # Initialize trade logger for Excel export
-    trade_logger = init_trade_logger(log_dir="logs", excel_file="trade_log.xlsx")
-    logger.info(f"Trade Logger initialized - Excel: logs/trade_log.xlsx")
+    trade_logger = init_trade_logger(log_dir="logs", excel_file="Live Trade Data.xlsx")
 
     # Calculate risk parameters
     market_gains = OPENING_BALANCE - BASE_CAPITAL
@@ -162,19 +237,14 @@ def initialize_bot():
     max_risk_today = market_risk + base_risk
     RISK_PER_TRADE = max_risk_today / MAX_ORDERS_TODAY
 
-    logger.info(f"Opening Balance: {OPENING_BALANCE:,.2f}")
-    logger.info(f"Max Risk Today: {max_risk_today:,.2f}")
-    logger.info(f"Risk Per Trade: {RISK_PER_TRADE:,.2f}")
-    logger.info(f"Max Simultaneous Positions: {MAX_SIMULTANEOUS_POSITIONS}")
-
     # Initialize Groww API
     if PAPER_TRADING_ENABLED:
-        logger.info("Paper Trading Mode: ENABLED")
         from paper_trading_wrapper import get_trading_instance
         tsl = get_trading_instance(API_KEY, API_SECRET)
+        print("[PAPER] Paper Trading Simulator Initialized")
     else:
-        logger.info("Live Trading Mode: ENABLED")
         tsl = Tradehull(API_KEY, API_SECRET)
+        print("-----Logged into Groww-----")
 
     # Initialize rate limiters
     data_limiter = get_data_api_limiter()
@@ -184,11 +254,9 @@ def initialize_bot():
     ws_manager = WebSocketManager(API_KEY)
 
     # Get initial watchlist
+    print("Fetching watchlist from best performing sectors...")
     watchlist = get_dynamic_watchlist()
-    logger.info(f"Watchlist loaded: {len(watchlist)} symbols")
-
-    logger.info("Bot initialization complete!")
-    logger.info("=" * 60)
+    print(f"✅ Using sector-based watchlist with {len(watchlist)} stocks\n")
 
     return True
 
@@ -249,8 +317,6 @@ def add_position(
     }
 
     todays_orders += 1
-    logger.info(f"Position added: {symbol} @ {entry_price}")
-    logger.info(f"  SL: {stop_loss}, Target: {target}, Qty: {quantity}")
 
     # Log to trade logger for Excel export
     if trade_logger:
@@ -287,7 +353,7 @@ def remove_position(symbol: str, exit_price: float, reason: str) -> float:
     global todays_pnl
 
     if symbol not in active_positions:
-        logger.warning(f"Position not found: {symbol}")
+        print(f"⚠️ Position not found: {symbol}")
         return 0.0
 
     position = active_positions[symbol]
@@ -296,10 +362,6 @@ def remove_position(symbol: str, exit_price: float, reason: str) -> float:
 
     pnl = (exit_price - entry_price) * quantity
     todays_pnl += pnl
-
-    logger.info(f"Position closed: {symbol}")
-    logger.info(f"  Entry: {entry_price}, Exit: {exit_price}")
-    logger.info(f"  P&L: {pnl:,.2f}, Reason: {reason}")
 
     # Log to trade logger for Excel export
     if trade_logger:
@@ -350,58 +412,84 @@ def scan_for_entry():
     now = datetime.now()
     if (last_watchlist_refresh is None or
         (now - last_watchlist_refresh).total_seconds() > WATCHLIST_REFRESH_INTERVAL):
+
+        print("\n" + "=" * 80)
+        print(f"🔄 REFRESHING WATCHLIST - 15 minutes elapsed since last refresh")
+        print("=" * 80)
+
         watchlist = get_dynamic_watchlist()
         last_watchlist_refresh = now
-        logger.info(f"Watchlist refreshed: {len(watchlist)} symbols")
+        print(f"✅ Watchlist refreshed: {len(watchlist)} symbols\n")
 
-    logger.debug(f"Scanning {len(watchlist)} symbols for entry...")
+    print_scan_header()
 
-    for symbol in watchlist:
-        if symbol in active_positions:
-            continue
+    # Process in batches
+    batch_num = 0
+    for i in range(0, len(watchlist), BATCH_SIZE):
+        batch = watchlist[i:i + BATCH_SIZE]
+        batch_num += 1
 
-        try:
-            # Rate limit API calls
-            data_limiter.wait_if_needed()
+        print(f"\n📦 Processing batch {batch_num}: {batch}")
 
-            # Get candle data
-            df = tsl.get_candles(symbol, tsl.NSE, "5m", 100)
-
-            if df.empty or len(df) < 50:
+        for symbol in batch:
+            if symbol in active_positions:
                 continue
 
-            # Calculate indicators
-            df = calculate_vwap(df)
-            df = calculate_atr(df)
-            df = calculate_adx(df)
-            df = calculate_fractal_chaos_bands(df)
+            try:
+                # Rate limit API calls
+                data_limiter.wait_if_needed()
 
-            # Check CE entry conditions
-            ce_signal = check_ce_entry_conditions(df, symbol, tsl)
-            if ce_signal["valid"]:
-                execute_ce_trade(symbol, df, ce_signal)
-                if not can_place_new_trade():
-                    return
+                # Fetch historical data
+                fetch_time = datetime.now()
+                print(f"[DATA_API] ✅ Fetching data for '{symbol}' at {fetch_time.strftime('%H:%M:%S')}")
 
-            # Check PE entry conditions
-            pe_signal = check_pe_entry_conditions(df, symbol, tsl)
-            if pe_signal["valid"]:
-                execute_pe_trade(symbol, df, pe_signal)
-                if not can_place_new_trade():
-                    return
+                df = tsl.get_candles(symbol, tsl.NSE, "5m", 100)
 
-            # Rate limit between symbols
-            time.sleep(1)
+                if df is None or df.empty:
+                    print(f"[ERROR] Failed to fetch historical data for {symbol}. Returned None.")
+                    print(f"⏭️  Skipping {symbol} - No chart data")
+                    continue
 
-        except Exception as e:
-            logger.error(f"Error scanning {symbol}: {e}")
-            continue
+                if len(df) < 50:
+                    print(f"⏭️  Skipping {symbol} - Insufficient data ({len(df)} candles)")
+                    continue
+
+                complete_time = datetime.now()
+                print(f"✅ Completed fetching for {symbol} at {complete_time.strftime('%H:%M:%S')}")
+
+                # Calculate indicators
+                df = calculate_vwap(df)
+                df = calculate_atr(df)
+                df = calculate_adx(df)
+                df = calculate_fractal_chaos_bands(df)
+
+                # Check CE entry conditions
+                ce_signal = check_ce_entry_conditions(df, symbol, tsl)
+                if ce_signal["valid"]:
+                    execute_ce_trade(symbol, df, ce_signal)
+                    if not can_place_new_trade():
+                        return
+
+                # Check PE entry conditions
+                pe_signal = check_pe_entry_conditions(df, symbol, tsl)
+                if pe_signal["valid"]:
+                    execute_pe_trade(symbol, df, pe_signal)
+                    if not can_place_new_trade():
+                        return
+
+            except Exception as e:
+                print(f"[ERROR] Error scanning {symbol}: {e}")
+                traceback.print_exc()
+                continue
+
+        # Small delay between batches
+        time.sleep(1)
 
 
 def execute_ce_trade(symbol: str, df: pd.DataFrame, signal: Dict) -> None:
     """Execute a CE (Call) trade."""
     try:
-        logger.info(f"CE Entry Signal for {symbol}")
+        print(f"\n🟢 CE Entry Signal for {symbol}")
 
         result = execute_ce_entry(
             tsl=tsl,
@@ -429,13 +517,14 @@ def execute_ce_trade(symbol: str, df: pd.DataFrame, signal: Dict) -> None:
                 ws_manager.subscribe(result["option_symbol"])
 
     except Exception as e:
-        logger.error(f"CE trade execution error: {e}")
+        print(f"[ERROR] CE trade execution error: {e}")
+        traceback.print_exc()
 
 
 def execute_pe_trade(symbol: str, df: pd.DataFrame, signal: Dict) -> None:
     """Execute a PE (Put) trade."""
     try:
-        logger.info(f"PE Entry Signal for {symbol}")
+        print(f"\n🔴 PE Entry Signal for {symbol}")
 
         result = execute_pe_entry(
             tsl=tsl,
@@ -463,7 +552,8 @@ def execute_pe_trade(symbol: str, df: pd.DataFrame, signal: Dict) -> None:
                 ws_manager.subscribe(result["option_symbol"])
 
     except Exception as e:
-        logger.error(f"PE trade execution error: {e}")
+        print(f"[ERROR] PE trade execution error: {e}")
+        traceback.print_exc()
 
 
 # =============================================================================
@@ -475,10 +565,10 @@ def monitor_positions():
     if not active_positions:
         return
 
-    logger.debug(f"Monitoring {len(active_positions)} active positions...")
-
     for symbol, position in list(active_positions.items()):
         try:
+            print_monitor_header(symbol)
+
             # Get current price
             current_price = ws_manager.get_ltp(symbol) if ws_manager else 0
 
@@ -487,12 +577,24 @@ def monitor_positions():
                 current_price = tsl.get_ltp(symbol, tsl.NFO)
 
             if current_price == 0:
-                logger.warning(f"Could not get price for {symbol}")
+                print(f"⚠️ Could not get price for {symbol}")
                 continue
+
+            entry_price = position["entry_price"]
+            unrealized_pnl = (current_price - entry_price) * position["quantity"]
+            pnl_pct = ((current_price / entry_price) - 1) * 100
+
+            print(f"💵 Entry: ₹{entry_price:.2f} | Current: ₹{current_price:.2f}")
+            print(f"📈 Unrealized P&L: ₹{unrealized_pnl:,.2f} ({pnl_pct:.1f}%)")
+            print(f"🛑 SL: ₹{position['stop_loss']:.2f} | TSL: ₹{position['trailing_stop']:.2f}")
 
             # Update high/low tracking
             position["highest_price"] = max(position["highest_price"], current_price)
             position["lowest_price"] = min(position["lowest_price"], current_price)
+
+            # Update current price in trade logger
+            if trade_logger:
+                trade_logger.update_current_price(symbol, current_price)
 
             # Check exit conditions
             exit_signal = check_exit_conditions(
@@ -513,12 +615,13 @@ def monitor_positions():
                 if new_tsl > position["trailing_stop"]:
                     old_tsl = position["trailing_stop"]
                     position["trailing_stop"] = new_tsl
-                    logger.info(f"TSL updated for {symbol}: {new_tsl:.2f}")
+                    print(f"📈 TSL Updated: ₹{old_tsl:.2f} → ₹{new_tsl:.2f}")
                     if trade_logger:
                         trade_logger.log_tsl_update(symbol, old_tsl, new_tsl)
 
         except Exception as e:
-            logger.error(f"Error monitoring {symbol}: {e}")
+            print(f"[ERROR] Error monitoring {symbol}: {e}")
+            traceback.print_exc()
 
 
 def execute_position_exit(symbol: str, exit_price: float, reason: str) -> None:
@@ -536,10 +639,11 @@ def execute_position_exit(symbol: str, exit_price: float, reason: str) -> None:
         if result["success"]:
             remove_position(symbol, result["executed_price"], reason)
         else:
-            logger.error(f"Exit failed for {symbol}: {result['message']}")
+            print(f"[ERROR] Exit failed for {symbol}: {result['message']}")
 
     except Exception as e:
-        logger.error(f"Exit execution error: {e}")
+        print(f"[ERROR] Exit execution error: {e}")
+        traceback.print_exc()
 
 
 # =============================================================================
@@ -548,22 +652,30 @@ def execute_position_exit(symbol: str, exit_price: float, reason: str) -> None:
 
 def run_trading_loop():
     """Main trading loop."""
-    logger.info("Starting trading loop...")
+    print_bot_started_banner()
 
     last_scan_time = None
     last_monitor_time = None
+    last_market_check = None
 
     while True:
         try:
             now = datetime.now()
 
+            # Print market status periodically
+            if last_market_check is None or (now - last_market_check).total_seconds() >= 300:
+                print_market_status()
+                last_market_check = now
+
             # Check market hours
             if not is_market_hours():
                 if now.hour >= MARKET_CLOSE_HOUR:
-                    logger.info("Market closed. Ending session.")
+                    print("\n" + "=" * 80)
+                    print("🔔 MARKET CLOSED - Ending session")
+                    print("=" * 80)
                     break
                 else:
-                    logger.info("Waiting for market to open...")
+                    print(f"⏳ Waiting for market to open... ({now.strftime('%H:%M:%S')})")
                     time.sleep(60)
                     continue
 
@@ -585,10 +697,11 @@ def run_trading_loop():
             time.sleep(1)
 
         except KeyboardInterrupt:
-            logger.info("Bot stopped by user.")
+            print("\n\n⚠️ Bot stopped by user (Ctrl+C)\n")
             break
         except Exception as e:
-            logger.error(f"Error in main loop: {e}")
+            print(f"[ERROR] Error in main loop: {e}")
+            traceback.print_exc()
             time.sleep(5)
 
     # End of day summary
@@ -597,25 +710,25 @@ def run_trading_loop():
 
 def print_session_summary():
     """Print end of session summary."""
-    logger.info("=" * 60)
-    logger.info("SESSION SUMMARY")
-    logger.info("=" * 60)
-    logger.info(f"Total Orders: {todays_orders}")
-    logger.info(f"Total P&L: {todays_pnl:,.2f}")
-    logger.info(f"Open Positions: {len(active_positions)}")
+    print("\n" + "=" * 80)
+    print("📊 SESSION SUMMARY")
+    print("=" * 80)
+    print(f"📋 Total Orders: {todays_orders}")
+    pnl_emoji = "💰" if todays_pnl >= 0 else "📉"
+    print(f"{pnl_emoji} Total P&L: ₹{todays_pnl:,.2f}")
+    print(f"👁️  Open Positions: {len(active_positions)}")
 
     if active_positions:
-        logger.info("\nOpen Positions:")
+        print("\n📈 Open Positions:")
         for symbol, pos in active_positions.items():
-            logger.info(f"  {symbol}: Entry={pos['entry_price']:.2f}, "
-                       f"TSL={pos['trailing_stop']:.2f}")
+            print(f"   {symbol}: Entry=₹{pos['entry_price']:.2f}, TSL=₹{pos['trailing_stop']:.2f}")
 
-    logger.info("=" * 60)
+    print("=" * 80)
 
     # Print trade logger summary with Excel file location
     if trade_logger:
         trade_logger.print_summary()
-        logger.info(f"Trade log Excel file: {trade_logger.excel_file}")
+        trade_logger.close_excel()
 
 
 # =============================================================================
@@ -624,40 +737,20 @@ def print_session_summary():
 
 def main():
     """Main entry point."""
-    print("""
-    ============================================
-    GROWW ALGO TRADING BOT
-    ============================================
-
-    Groww API Documentation:
-    https://groww.in/trade-api/docs/python-sdk
-
-    Package: pip install growwapi
-
-    ============================================
-    """)
-
-    # Check if paper trading
-    if PAPER_TRADING_ENABLED:
-        print("MODE: PAPER TRADING (Simulated)")
-    else:
-        print("MODE: LIVE TRADING (Real Money)")
-
-    print(f"\nStarting at: {datetime.now()}")
-    print("-" * 50)
+    print_startup_banner()
 
     try:
         # Initialize
         if not initialize_bot():
-            logger.error("Bot initialization failed!")
+            print("[ERROR] Bot initialization failed!")
             return
 
         # Run trading loop
         run_trading_loop()
 
     except Exception as e:
-        logger.error(f"Fatal error: {e}")
-        raise
+        print(f"[FATAL] Fatal error: {e}")
+        traceback.print_exc()
 
 
 if __name__ == "__main__":
