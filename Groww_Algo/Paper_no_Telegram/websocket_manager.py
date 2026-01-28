@@ -42,25 +42,40 @@ class WebSocketManager:
         ltp = ws_manager.get_ltp("RELIANCE")
     """
 
-    def __init__(self, api_key: str, auto_reconnect: bool = True):
+    def __init__(self, api_key: str, auto_reconnect: bool = True, paper_trading: bool = False):
         """
         Initialize WebSocket Manager.
 
         Args:
             api_key: Groww API key
             auto_reconnect: Whether to auto-reconnect on disconnection
+            paper_trading: If True, use mock data instead of real feed
         """
         self.api_key = api_key
         self.auto_reconnect = auto_reconnect
+        self.paper_trading = paper_trading
 
         # Initialize Groww Feed
         self.feed = None
-        if GrowwFeed:
+
+        # Check if paper trading mode
+        try:
+            from paper_trading_config import PAPER_TRADING_ENABLED
+            if PAPER_TRADING_ENABLED:
+                self.paper_trading = True
+        except ImportError:
+            pass
+
+        if self.paper_trading:
+            logger.info("WebSocket Manager: Paper trading mode - using mock data")
+        elif GrowwFeed and api_key and api_key != "YOUR_GROWW_API_KEY":
             try:
                 self.feed = GrowwFeed(api_key)
                 logger.info("Groww Feed initialized successfully")
             except Exception as e:
-                logger.error(f"Failed to initialize Groww Feed: {e}")
+                logger.warning(f"Groww Feed unavailable, using polling mode: {e}")
+        else:
+            logger.info("WebSocket Manager: No valid API key, using mock data")
 
         # Data storage
         self._ltp_data: Dict[str, float] = {}
@@ -117,7 +132,8 @@ class WebSocketManager:
                 return True
 
             if not self.feed:
-                logger.warning("Feed not initialized, using polling mode")
+                if not self.paper_trading:
+                    logger.debug("Feed not initialized, using polling mode")
                 self._subscribed_symbols.add(symbol)
                 return True
 
@@ -208,6 +224,19 @@ class WebSocketManager:
             with self._lock:
                 if symbol in self._ltp_data:
                     return self._ltp_data[symbol]
+
+            # For paper trading, generate simulated price
+            if self.paper_trading:
+                import random
+                # Generate a reasonable price based on symbol
+                if symbol not in self._ltp_data:
+                    base = 100 + random.random() * 200
+                    self._ltp_data[symbol] = round(base, 2)
+                else:
+                    # Small random movement
+                    change = (random.random() - 0.5) * 2
+                    self._ltp_data[symbol] = round(self._ltp_data[symbol] + change, 2)
+                return self._ltp_data[symbol]
 
             # Try fetching from feed
             if self.feed:
