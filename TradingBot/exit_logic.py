@@ -192,6 +192,13 @@ def handle_sl_exit(tsl, name, orderbook, process_start_time,
         except Exception as e:
             print(f"  ⚠️ WebSocket unsubscribe warning: {e}")
 
+        # Log trade completion for RL training
+        try:
+            from rl_integration import log_trade_completion
+            log_trade_completion(name, orderbook[name], "Stop_Loss_Hit")
+        except Exception:
+            pass
+
         # Always move to completed orders and reset orderbook
         completed_orders.append(orderbook[name].copy())
         orderbook[name] = single_order.copy()
@@ -362,6 +369,13 @@ def handle_target_exit(tsl, name, orderbook, process_start_time,
         except Exception as e:
             print(f"  ⚠️ WebSocket unsubscribe warning: {e}")
 
+        # Log trade completion for RL training
+        try:
+            from rl_integration import log_trade_completion
+            log_trade_completion(name, orderbook[name], "Target_Reached")
+        except Exception:
+            pass
+
         # Always move to completed orders and reset orderbook
         completed_orders.append(orderbook[name].copy())
         orderbook[name] = single_order.copy()
@@ -526,6 +540,13 @@ def handle_time_exit(tsl, name, orderbook, process_start_time, all_ltp,
         except Exception as e:
             print(f"  ⚠️ WebSocket unsubscribe warning: {e}")
 
+        # Log trade completion for RL training
+        try:
+            from rl_integration import log_trade_completion
+            log_trade_completion(name, orderbook[name], "Time_Exit_Loss")
+        except Exception:
+            pass
+
         # Always move to completed orders and reset orderbook
         completed_orders.append(orderbook[name].copy())
         orderbook[name] = single_order.copy()
@@ -630,8 +651,9 @@ def update_trailing_stop_loss(tsl, name, orderbook, atr_multipler, options_chart
             options_ltp = options_ltp_data[options_name]
             new_tsl_level = options_ltp - sl_points_tsl
 
-        # Only update if new TSL is higher than current (for LONG positions)
-        if new_tsl_level > orderbook[name]['tsl']:
+        # Only update if new TSL is strictly higher than current (for LONG positions)
+        # ✅ FIX: Skip if same value to avoid redundant API calls (was doing 17.00 → 17.00)
+        if new_tsl_level > orderbook[name]['tsl'] and round(new_tsl_level, 1) != round(orderbook[name]['tsl'], 1):
             trigger_price = round(new_tsl_level, 1)
             price = trigger_price - 0.05
             tsl_qty = orderbook[name].get('qty', 0)
@@ -873,6 +895,13 @@ def handle_rsi_longstop_exit(tsl, name, orderbook, process_start_time, exit_reas
         except Exception as e:
             print(f"  ⚠️ WebSocket unsubscribe warning: {e}")
 
+        # Log trade completion for RL training
+        try:
+            from rl_integration import log_trade_completion
+            log_trade_completion(name, orderbook[name], orderbook[name].get('remark', exit_reason))
+        except Exception:
+            pass
+
         # Always move to completed orders and reset orderbook
         completed_orders.append(orderbook[name].copy())
         orderbook[name] = single_order.copy()
@@ -973,12 +1002,52 @@ def process_exit_conditions(tsl, name, orderbook, all_ltp, process_start_time,
                 return "target_hit"
 
         # Priority 3: Check RSI/LongStop Technical Exit (CUSTOM CONDITION)
-        # Pass pre-fetched 3-min data to avoid duplicate API call
-        condition_met, exit_reason = check_rsi_longstop_exit(tsl, name, orderbook, options_chart_3min)
-        if condition_met:
-            if handle_rsi_longstop_exit(tsl, name, orderbook, process_start_time, exit_reason,
-                                       bot_token, receiver_chat_id, reentry, completed_orders, single_order):
-                return "rsi_longstop_exit"
+        # ✅ FIX: Skip RSI/LongStop exit if position held for fewer than MIN_HOLD_CANDLES candles
+        # This prevents immediate exits where entry and exit signals contradict each other
+        MIN_HOLD_CANDLES = 3  # Minimum 3 candles (9 minutes on 3-min TF)
+        min_hold_satisfied = True
+        try:
+            entry_time_str = orderbook[name].get('entry_time')
+            if entry_time_str:
+                entry_dt = datetime.datetime.combine(
+                    datetime.date.today(),
+                    datetime.datetime.strptime(entry_time_str, "%H:%M:%S").time()
+                )
+                min_hold_minutes = MIN_HOLD_CANDLES * 3  # 3 candles * 3 min = 9 minutes
+                time_held = (process_start_time - entry_dt).total_seconds() / 60
+                if time_held < min_hold_minutes:
+                    print(f"⏳ Skipping RSI/LongStop check for {name}: held {time_held:.1f} min < {min_hold_minutes} min minimum")
+                    min_hold_satisfied = False
+        except Exception as e:
+            print(f"⚠️ Could not check min hold time: {e}")
+
+        if min_hold_satisfied:
+            # Pass pre-fetched 3-min data to avoid duplicate API call
+            condition_met, exit_reason = check_rsi_longstop_exit(tsl, name, orderbook, options_chart_3min)
+            if condition_met:
+                # RL Exit Filter - only RSI/LongStop exits can be filtered by RL
+                rl_should_exit = True
+                try:
+                    from rl_integration import filter_exit_signal
+                    option_ltp = all_ltp.get(orderbook[name].get('options_name', ''), 0)
+                    rl_should_exit, sl_adj, rl_reason = filter_exit_signal(
+                        option_chart_3min=options_chart_3min,
+                        orderbook_entry=orderbook[name],
+                        current_price=option_ltp,
+                        symbol=name,
+                        exit_signal_type=exit_reason
+                    )
+                    if not rl_should_exit:
+                        print(f"  [RL] Overriding RSI/LongStop exit for {name}: {rl_reason}")
+                        if sl_adj > 0:
+                            print(f"  [RL] Tightening SL by {sl_adj*100:.1f}%")
+                except Exception as e:
+                    print(f"  [RL] Exit filter error (proceeding with exit): {e}")
+
+                if rl_should_exit:
+                    if handle_rsi_longstop_exit(tsl, name, orderbook, process_start_time, exit_reason,
+                                               bot_token, receiver_chat_id, reentry, completed_orders, single_order):
+                        return "rsi_longstop_exit"
 
         # Priority 4: Check Time Exit
         if check_time_exit(name, orderbook):

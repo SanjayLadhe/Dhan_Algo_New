@@ -475,7 +475,11 @@ def execute_ce_entry(tsl, name, chart, orderbook, no_of_orders_placed, atr_multi
             return False, "Failed to get ATM strike"
         
         ce_name, pe_name, strike = atm_result
-        
+
+        # ✅ FIX: Guard against None ATM result (symbols without F&O like WIPRO, TATASTEEL)
+        if ce_name is None:
+            return False, f"ATM strike returned None for {name} - symbol may not have F&O options"
+
         # Get lot size
         ntrading_api_limiter.wait(call_description=f"tsl.get_lot_size(tradingsymbol='{ce_name}')")
         lot_size = retry_api_call(tsl.get_lot_size, retries=1, delay=1.0, tradingsymbol=ce_name)
@@ -501,6 +505,21 @@ def execute_ce_entry(tsl, name, chart, orderbook, no_of_orders_placed, atr_multi
             return False, f"Bid-Ask spread too wide for {ce_name} (spread={spread_str})"
 
         print(f"✅ Bid-Ask spread check PASSED for {ce_name}")
+
+        # RL Entry Filter - filters signal through trained RL model
+        try:
+            from rl_integration import filter_entry_signal
+            should_enter, lot_multiplier, rl_reason = filter_entry_signal(
+                chart=chart, option_chart=options_chart_Res,
+                spread_info=quote_info, symbol=name, signal_type='CE'
+            )
+            if not should_enter:
+                return False, f"RL agent filtered out CE entry for {name}: {rl_reason}"
+            if lot_multiplier < 1.0:
+                lot_size = max(1, int(lot_size * lot_multiplier))
+                print(f"  [RL] Reduced lot size to {lot_size} (multiplier: {lot_multiplier})")
+        except Exception as e:
+            print(f"  [RL] Entry filter error (proceeding with rules): {e}")
 
         # ✅ Get option_sl_percentage from main bot configuration (imported from single_trade_focus_bot)
         # Default to 15% if not available

@@ -1,0 +1,627 @@
+2026-02-05 11:33:48,047 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=83 symbols) - Queue size after add: 1, Max allowed: 1
+2026-02-05 11:34:23,262 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='OIL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:34:26,197 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='OIL 24 FEB 500 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:34:31,242 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='OIL 24 FEB 500 PUT', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:34:33,960 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1000') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:34:33,960 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='OIL 24 FEB 500 PUT', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:34:44,740 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:35:30,532 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='WIPRO', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:35:33,424 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:35:42,935 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='HCLTECH', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:35:45,798 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='HCLTECH 24 FEB 1600 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:35:50,829 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='HCLTECH 24 FEB 1600 PUT', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:35:53,469 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1002') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:35:53,470 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='HCLTECH 24 FEB 1600 PUT', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:36:08,774 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:36:15,890 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:36:28,061 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:36:35,205 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:36:48,688 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:36:56,484 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:37:08,612 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:37:10,755 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1001') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:37:15,765 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:37:32,990 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='BANKBARODA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:37:36,059 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='BANKBARODA 24 FEB 290 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:37:58,421 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='WIPRO', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:38:02,462 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:38:03,302 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='TCS', Expiry=0) - Queue size after add: 2, Max allowed: 18
+2026-02-05 11:38:07,912 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='TCS 24 FEB 3000 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:38:21,463 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='INFY', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:38:25,536 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='INFY 24 FEB 1520 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:38:38,060 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='OFSS', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:38:42,389 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='OFSS 24 FEB 7400 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:38:58,943 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='TATASTEEL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:39:05,598 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:39:06,458 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='APLAPOLLO', Expiry=0) - Queue size after add: 2, Max allowed: 18
+2026-02-05 11:39:10,455 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='APLAPOLLO 24 FEB 2180 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:39:23,581 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='NMDC', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:39:27,585 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='NMDC 24 FEB 85 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:39:58,093 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='NMDC 24 FEB 85 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:40:01,013 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1004') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:40:01,013 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='NMDC 24 FEB 85 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:40:14,190 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:40:23,771 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:40:37,839 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:40:46,305 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:41:02,180 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:41:10,852 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:41:24,530 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:41:34,497 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:41:50,409 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:41:59,313 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:42:13,743 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:42:23,091 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:42:38,115 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:42:47,767 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:43:02,756 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:43:11,367 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:43:24,444 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:43:31,564 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:43:44,040 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:43:51,339 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:44:03,537 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:44:11,205 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:44:23,342 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:44:30,948 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:44:43,243 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:44:50,426 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:45:04,287 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:45:11,425 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:45:23,586 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:45:30,818 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:45:43,082 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:45:50,226 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:46:02,948 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:46:10,203 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:46:22,378 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:46:29,719 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:46:42,842 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:46:51,272 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:47:05,830 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:47:14,157 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1005') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:47:16,401 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1005') - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:47:17,403 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='NMDC 24 FEB 85 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:47:20,072 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1006') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:47:35,251 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='SBIN', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:47:38,184 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='SBIN 24 FEB 1080 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:47:43,200 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='SBIN 24 FEB 1080 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:47:45,861 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1007') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:47:45,862 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='SBIN 24 FEB 1080 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:47:57,166 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1008') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:47:59,880 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1008', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:48:08,115 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:48:23,678 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1008') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:48:31,802 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:48:44,899 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1008') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:48:55,019 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:49:08,458 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1008') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:49:10,808 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1008') - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:49:11,810 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='SBIN 24 FEB 1080 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:49:14,788 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1009') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:49:26,652 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:49:51,967 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='INDIANB', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:49:57,243 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='INDIANB 24 FEB 880 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:50:03,526 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='INDIANB 24 FEB 880 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:50:06,305 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1010') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:50:06,312 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='INDIANB 24 FEB 880 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:50:18,089 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1011') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:50:21,380 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1011') - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:50:22,382 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='INDIANB 24 FEB 880 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:50:25,885 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1012') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:50:37,506 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:51:03,882 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='HINDUNILVR', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:51:07,711 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='HINDUNILVR 24 FEB 2380 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:51:13,566 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='HINDUNILVR 24 FEB 2380 PUT', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:51:16,352 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1013') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:51:16,355 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='HINDUNILVR 24 FEB 2380 PUT', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:51:27,784 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1014') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:51:36,069 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:51:49,168 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1014') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:51:57,040 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:52:10,095 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1014') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:52:18,051 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:52:20,604 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1003', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:52:31,792 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1014') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:52:39,483 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:52:42,063 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1003', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:52:54,989 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1014') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:53:03,174 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:53:15,961 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1014') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:53:18,175 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1014') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:53:29,683 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:54:15,138 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='WIPRO', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:54:18,641 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:54:19,091 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='TCS', Expiry=0) - Queue size after add: 2, Max allowed: 18
+2026-02-05 11:54:22,412 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='TCS 24 FEB 2980 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:54:28,029 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='TCS 24 FEB 2980 PUT', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:54:30,810 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1015') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:54:30,812 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='TCS 24 FEB 2980 PUT', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:54:41,317 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1016') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:54:49,016 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:54:51,539 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1003', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:55:02,331 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1016') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:55:10,442 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:55:23,543 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1016') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:55:32,196 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:55:45,007 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1016') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:55:55,051 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:55:57,576 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1003', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:56:08,262 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1016') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:56:19,525 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:56:33,657 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1016') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:56:35,976 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1016') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:56:48,442 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:57:39,563 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='WIPRO', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:57:43,196 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:57:57,416 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='MPHASIS', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:58:00,880 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:59:05,121 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:59:07,519 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1003', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 11:59:18,233 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 11:59:31,057 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:00:47,492 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='HINDALCO', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:00:51,751 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='HINDALCO 24 FEB 940 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:00:55,651 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='VEDL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:01:01,022 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='VEDL 24 FEB 650 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:01:05,297 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='HINDZINC', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:01:09,802 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='HINDZINC 24 FEB 610 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:01:16,036 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='HINDZINC 24 FEB 610 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:01:18,902 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1017') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:01:18,904 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='HINDZINC 24 FEB 610 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:01:30,559 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:01:33,334 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1003', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:01:39,838 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1018') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:01:42,658 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1018', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:01:54,211 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:01:57,041 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1003', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:02:03,302 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1018') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:02:17,244 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:02:25,836 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1018') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:02:28,619 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1018') - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:02:29,622 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='HINDZINC 24 FEB 610 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:02:32,465 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1019') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:03:07,217 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='VBL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:03:11,846 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='VBL 24 FEB 440 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:03:38,717 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='TITAN', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:03:43,630 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='TITAN 24 FEB 4060 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:04:04,326 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='MPHASIS', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:04:08,752 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:04:41,528 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='OBEROIRLTY', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:04:46,002 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='OBEROIRLTY 24 FEB 1560 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:04:53,666 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='OBEROIRLTY 24 FEB 1560 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:04:56,437 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1020') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:04:56,439 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='OBEROIRLTY 24 FEB 1560 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:05:07,980 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:05:17,671 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1021') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:05:20,388 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1021', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:05:32,041 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:05:40,799 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1021') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:05:54,549 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1003') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:05:57,089 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1003') - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:05:58,091 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='HCLTECH 24 FEB 1600 PUT', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:06:00,910 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1022') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:06:13,376 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1021') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:06:16,042 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1021', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:06:29,457 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='SBIN', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:06:33,680 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='SBIN 24 FEB 1080 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:06:39,997 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='SBIN 24 FEB 1080 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:06:42,761 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1023') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:06:42,761 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='SBIN 24 FEB 1080 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:06:54,820 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1024') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:06:57,531 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1024', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:07:03,880 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1021') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:07:06,689 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1021', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:07:17,950 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1024') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:07:20,431 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1024') - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:07:21,433 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='SBIN 24 FEB 1080 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:07:24,220 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1025') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:07:36,640 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1021') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:12:52,263 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='WIPRO', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:12:55,190 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:13:00,097 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='INFY', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:13:03,136 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='INFY 24 FEB 1520 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:13:07,928 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='INFY 24 FEB 1520 PUT', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:13:10,614 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1026') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:13:10,614 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='INFY 24 FEB 1520 PUT', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:13:20,700 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1027') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:13:28,425 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1021') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:13:30,653 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1021') - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:13:31,654 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='OBEROIRLTY 24 FEB 1560 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:13:34,460 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1028') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:14:00,206 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='VBL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:14:03,407 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='VBL 24 FEB 440 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:14:22,628 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='WIPRO', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:14:25,761 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:14:51,889 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='AMBER', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:14:54,791 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:15:31,343 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1027') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:15:43,730 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1027') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:15:45,983 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1027') - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:15:46,984 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='INFY 24 FEB 1520 PUT', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:15:49,657 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1029') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:16:26,178 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='WIPRO', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:16:29,321 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:16:44,972 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='APLAPOLLO', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:16:48,152 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='APLAPOLLO 24 FEB 2200 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:16:53,370 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='APLAPOLLO 24 FEB 2200 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:16:56,102 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1030') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:16:56,103 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='APLAPOLLO 24 FEB 2200 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:17:06,363 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1031') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:17:08,653 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1031') - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:17:09,655 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='APLAPOLLO 24 FEB 2200 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:17:13,350 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1032') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:17:59,591 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='WIPRO', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:18:02,931 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:18:33,880 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='AMBER', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:18:36,445 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:19:11,906 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=83 symbols) - Queue size after add: 1, Max allowed: 1
+2026-02-05 12:19:37,130 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=81 symbols) - Queue size after add: 1, Max allowed: 1
+2026-02-05 12:20:07,199 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='GAIL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:20:10,305 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='GAIL 24 FEB 160 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:20:28,533 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='PPLPHARMA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:20:31,076 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:20:47,362 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='AMBER', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:20:50,174 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:21:11,785 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='EXIDEIND', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:21:15,100 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='EXIDEIND 24 FEB 335 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:21:20,553 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='EXIDEIND 24 FEB 335 PUT', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:21:23,198 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1033') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:21:23,202 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='EXIDEIND 24 FEB 335 PUT', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:21:33,191 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1034') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:22:28,955 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='PPLPHARMA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:22:33,380 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:23:23,739 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='NAUKRI', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:23:27,106 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='NAUKRI 24 FEB 1160 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:23:33,530 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='NAUKRI 24 FEB 1160 PUT', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:23:36,230 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1035') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:23:36,230 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='NAUKRI 24 FEB 1160 PUT', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:23:47,193 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['NAUKRI 24 FEB 1160 PUT']) - Queue size after add: 1, Max allowed: 1
+2026-02-05 12:23:54,485 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1034') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:24:02,541 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1036') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:24:09,984 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['NAUKRI 24 FEB 1160 PUT']) - Queue size after add: 1, Max allowed: 1
+2026-02-05 12:24:17,753 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1034') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:24:25,029 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1036') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:24:32,406 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['NAUKRI 24 FEB 1160 PUT']) - Queue size after add: 1, Max allowed: 1
+2026-02-05 12:24:39,583 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1034') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:24:47,948 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1036') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:24:55,303 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['NAUKRI 24 FEB 1160 PUT']) - Queue size after add: 1, Max allowed: 1
+2026-02-05 12:25:03,273 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1034') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:25:10,890 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1036') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:25:18,278 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['NAUKRI 24 FEB 1160 PUT']) - Queue size after add: 1, Max allowed: 1
+2026-02-05 12:25:25,342 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1034') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:25:33,026 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1036') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:25:40,487 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['NAUKRI 24 FEB 1160 PUT']) - Queue size after add: 1, Max allowed: 1
+2026-02-05 12:25:48,446 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1034') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:25:55,802 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1036') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:26:03,186 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['NAUKRI 24 FEB 1160 PUT']) - Queue size after add: 1, Max allowed: 1
+2026-02-05 12:26:10,829 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1034') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:26:18,704 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1036') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:26:26,059 - INFO - CALL_ALLOWED - LTP_API - tsl.get_ltp_data(names=['NAUKRI 24 FEB 1160 PUT']) - Queue size after add: 1, Max allowed: 1
+2026-02-05 12:26:33,734 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1034') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:26:41,389 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1036') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:26:43,668 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1036') - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:26:44,669 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='NAUKRI 24 FEB 1160 PUT', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:26:47,352 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1037') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:27:03,294 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='BANKBARODA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:27:06,324 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='BANKBARODA 24 FEB 290 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:27:13,380 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='VBL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:27:16,714 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='VBL 24 FEB 440 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:27:45,456 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='SYNGENE', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:27:49,069 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='SYNGENE 24 FEB 460 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:28:23,919 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='MARUTI', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:28:26,897 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='MARUTI 24 FEB 15000 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:28:50,872 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1034') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:28:53,074 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1034') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:29:04,209 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='BANKINDIA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:29:07,467 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='BANKINDIA 24 FEB 162 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:29:13,379 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BANKINDIA 24 FEB 162 PUT', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:29:16,064 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1038') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:29:16,064 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='BANKINDIA 24 FEB 162 PUT', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:29:25,758 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:29:38,046 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:29:50,605 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:30:02,025 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='UNIONBANK', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:30:05,750 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:30:06,262 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='CANBK', Expiry=0) - Queue size after add: 2, Max allowed: 18
+2026-02-05 12:30:09,362 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='CANBK 24 FEB 148 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:30:14,571 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='CANBK 24 FEB 148 PUT', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:30:17,269 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1040') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:30:17,269 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='CANBK 24 FEB 148 PUT', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:30:32,974 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:30:40,594 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1041') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:30:53,361 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:31:01,011 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1041') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:31:13,603 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:31:21,182 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1041') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:31:33,624 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:31:41,020 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1041') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:31:53,819 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:32:01,182 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1041') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:32:13,802 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:32:21,225 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1041') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:32:23,367 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1041') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:32:38,184 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='BANKBARODA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:32:41,079 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='BANKBARODA 24 FEB 290 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:33:00,609 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='OIL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:33:04,060 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='OIL 24 FEB 500 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:33:09,432 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='OIL 24 FEB 500 PUT', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:33:12,087 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1042') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:33:12,087 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='OIL 24 FEB 500 PUT', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:33:22,011 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:33:29,181 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:33:41,399 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:33:49,190 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:34:01,620 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:34:09,645 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:34:22,063 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:34:29,331 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:34:41,775 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:34:49,132 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:35:01,650 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:35:09,732 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:35:22,487 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:35:29,769 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:35:41,929 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:35:49,558 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:36:02,302 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:36:10,237 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:36:23,142 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:36:30,413 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:36:42,915 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:50:26,943 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:50:29,585 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1043', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:50:39,873 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:50:41,986 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1039') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:50:53,153 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:51:21,046 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='HINDPETRO', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:51:24,022 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='HINDPETRO 24 FEB 460 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:52:32,585 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='DIXON', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:52:37,507 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='DIXON 24 FEB 11500 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:52:52,853 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='GODREJPROP', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:52:57,188 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:53:15,084 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='TMPV', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:53:18,610 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:53:39,310 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:53:55,224 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:55:00,724 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='CIPLA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:55:04,799 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='CIPLA 24 FEB 1340 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:55:17,067 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='AUROPHARMA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:55:22,476 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='AUROPHARMA 24 FEB 1180 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:55:27,223 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='GLENMARK', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:55:31,318 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='GLENMARK 24 FEB 1960 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:56:09,475 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='DIXON', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:56:13,895 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='DIXON 24 FEB 11500 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:56:41,618 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='TMPV', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:56:44,911 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:56:45,898 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='TIINDIA', Expiry=0) - Queue size after add: 2, Max allowed: 18
+2026-02-05 12:56:50,193 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='TIINDIA 24 FEB 2400 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:57:16,623 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:57:19,304 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1043', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:57:30,767 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:57:44,843 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:58:35,105 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='GAIL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:58:39,706 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='GAIL 24 FEB 160 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:58:59,980 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='CIPLA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:59:04,026 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='CIPLA 24 FEB 1340 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:59:12,835 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='GLENMARK', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:59:15,720 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='GLENMARK 24 FEB 1960 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:59:38,366 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='KALYANKJIL', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:59:42,009 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='KALYANKJIL 24 FEB 380 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:59:48,130 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='KALYANKJIL 24 FEB 380 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 12:59:51,233 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1044') - Queue size after add: 1, Max allowed: 18
+2026-02-05 12:59:51,236 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='KALYANKJIL 24 FEB 380 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:00:02,711 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1043') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:00:05,115 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1043') - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:00:06,117 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='OIL 24 FEB 500 PUT', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:00:08,905 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1046') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:00:20,284 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:00:23,034 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1045', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:01:03,967 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='CIPLA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:01:08,407 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='CIPLA 24 FEB 1340 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:01:16,301 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='AUROPHARMA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:01:19,299 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='AUROPHARMA 24 FEB 1180 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:01:22,275 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='GLENMARK', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:01:25,311 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='GLENMARK 24 FEB 1960 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:01:30,600 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='GLENMARK 24 FEB 1960 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:01:33,501 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1047') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:01:33,501 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='GLENMARK 24 FEB 1960 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:01:43,275 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:01:45,565 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1045', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:01:50,644 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1048') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:01:52,925 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1048', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:02:03,297 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:02:10,568 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1048') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:02:12,870 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1048', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:02:23,614 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:02:30,803 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1048') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:02:33,110 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1048', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:02:43,907 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:02:51,229 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1048') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:03:04,407 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:03:13,316 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1048') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:03:28,644 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:03:37,387 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1048') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:03:52,662 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:04:02,274 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1048') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:04:16,314 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:04:24,930 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1048') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:04:27,556 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1048') - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:04:28,558 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='GLENMARK 24 FEB 1960 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:04:31,324 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1049') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:05:13,138 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='HINDPETRO', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:05:18,205 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='HINDPETRO 24 FEB 455 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:05:24,433 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='HINDPETRO 24 FEB 455 PUT', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:05:27,201 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1050') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:05:27,202 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='HINDPETRO 24 FEB 455 PUT', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:05:39,424 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:05:48,164 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:06:02,336 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:06:10,850 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:06:24,849 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:06:33,908 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:06:48,419 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:06:57,328 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:07:11,398 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:07:19,961 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:07:22,710 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1045', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:07:34,692 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:07:45,299 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:07:59,055 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:08:07,732 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:08:10,100 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1045', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:08:21,597 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:08:30,302 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:08:43,222 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:08:51,074 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:09:04,441 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:09:13,698 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:09:29,833 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:09:41,861 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:09:55,861 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:10:06,354 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:10:09,605 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1045', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:10:22,469 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:10:32,312 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:10:35,074 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1045', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:10:47,346 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:10:56,374 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:11:10,925 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:11:19,985 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:11:35,610 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:11:44,501 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:12:01,325 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:12:14,044 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:12:31,857 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:12:46,311 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:13:01,679 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:13:13,551 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:13:16,784 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1045', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:13:30,985 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:13:44,352 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:13:59,371 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:14:11,497 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:14:26,251 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:14:36,300 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:14:51,358 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:14:59,965 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:15:13,672 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:15:23,287 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:15:26,082 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1045', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:15:37,968 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:15:47,534 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:16:02,636 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:16:13,215 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:16:26,961 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:16:35,730 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:16:48,329 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:16:57,460 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:17:11,936 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:17:21,533 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:17:38,832 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:17:47,493 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:18:02,624 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:18:13,717 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:18:27,915 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:18:41,039 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:18:44,053 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1045', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:18:57,938 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:19:06,539 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:19:22,639 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:19:33,438 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:19:46,970 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:19:57,009 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:20:12,210 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:20:21,542 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:20:34,560 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:20:42,293 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:20:55,351 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:21:04,959 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:21:18,323 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:21:25,742 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:21:42,619 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:21:53,274 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:22:07,169 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:22:15,912 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:22:19,866 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1045', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:22:32,318 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:22:41,725 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:22:56,104 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:23:04,975 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:23:18,671 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:23:28,275 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:23:42,291 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:23:52,658 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:24:06,162 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:24:14,648 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:24:28,555 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:24:35,982 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:24:48,808 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:24:56,372 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:25:09,121 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:25:16,403 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:25:18,740 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1045', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:25:28,813 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:25:36,221 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:25:48,587 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:25:57,779 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1045') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:26:00,076 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1045') - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:26:01,078 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='KALYANKJIL 24 FEB 380 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:26:04,048 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1052') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:26:53,968 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='CIPLA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:26:57,474 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='CIPLA 24 FEB 1340 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:27:00,697 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='MAXHEALTH', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:27:03,691 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='MAXHEALTH 24 FEB 1040 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:27:09,176 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='MAXHEALTH 24 FEB 1040 CALL', BUY MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:27:12,214 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1053') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:27:12,215 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='MAXHEALTH 24 FEB 1040 CALL', SELL STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:27:22,361 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:27:30,132 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1054') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:27:32,464 - INFO - CALL_ALLOWED - ORDER_API - tsl.modify_order(order_id='PAPER_1054', STOPLIMIT) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:27:42,580 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:27:50,059 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1054') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:28:04,241 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:28:11,546 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1054') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:28:23,868 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:28:31,207 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1054') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:28:44,094 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:28:51,662 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1054') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:29:05,250 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:29:14,210 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1054') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:29:27,837 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:29:38,141 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1054') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:29:52,736 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:30:05,140 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1054') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:30:07,718 - INFO - CALL_ALLOWED - ORDER_API - tsl.cancel_order(OrderID='PAPER_1054') - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:30:08,719 - INFO - CALL_ALLOWED - ORDER_API - tsl.order_placement(tradingsymbol='MAXHEALTH 24 FEB 1040 CALL', SELL MARKET) - Queue size after add: 1, Max allowed: 25
+2026-02-05 13:30:11,554 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1055') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:30:54,881 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='IOC', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:30:59,761 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='IOC 24 FEB 176 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:31:07,717 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='UNITDSPR', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:31:12,215 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='UNITDSPR 24 FEB 1360 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:31:37,830 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='CIPLA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:31:41,995 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='CIPLA 24 FEB 1340 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:31:46,386 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='SUNPHARMA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:31:50,726 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='SUNPHARMA 24 FEB 1700 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:32:04,170 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='LAURUSLABS', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:32:10,589 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='LAURUSLABS 24 FEB 960 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:32:18,730 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='GLENMARK', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:32:23,159 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='GLENMARK 24 FEB 1960 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:33:09,928 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='PHOENIXLTD', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:33:15,178 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='PHOENIXLTD 24 FEB 1700 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:33:54,672 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_order_status(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:33:56,961 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_executed_price(orderid='PAPER_1051') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:34:23,312 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='DABUR', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:34:27,908 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='DABUR 24 FEB 505 PUT') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:34:32,044 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='MARICO', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:34:37,172 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='MARICO 24 FEB 740 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:35:26,381 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='SUNPHARMA', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:35:30,720 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='SUNPHARMA 24 FEB 1700 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:35:44,306 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='GLENMARK', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:35:48,442 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='GLENMARK 24 FEB 1960 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:35:55,262 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='LAURUSLABS', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 13:35:59,725 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='LAURUSLABS 24 FEB 970 CALL') - Queue size after add: 1, Max allowed: 18
+2026-02-05 15:39:29,139 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='BLUESTARCO', Expiry=0) - Queue size after add: 1, Max allowed: 18
+2026-02-05 15:39:32,146 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='None') - Queue size after add: 1, Max allowed: 18
+2026-02-05 15:39:32,418 - INFO - CALL_ALLOWED - NTRADING_API - tsl.ATM_Strike_Selection(Underlying='TITAN', Expiry=0) - Queue size after add: 2, Max allowed: 18
+2026-02-05 15:39:35,520 - INFO - CALL_ALLOWED - NTRADING_API - tsl.get_lot_size(tradingsymbol='TITAN 24 FEB 4100 CALL') - Queue size after add: 1, Max allowed: 18

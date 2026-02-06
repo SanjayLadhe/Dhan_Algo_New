@@ -51,11 +51,11 @@ pd.set_option('display.expand_frame_repr', False)
 # API CREDENTIALS
 # ============================
 client_code = "1106090196"
-token_id = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzYxNjM3NDI2LCJpYXQiOjE3NjE1NTEwMjYsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTA2MDkwMTk2In0.0QiAdbNRJOZoYyD6mK6wCVatGA2zsZrzdztyDixXvkyoM8sCNovEJwwo1z-gfkUmvfmweWBOIjv6Isyjmo73Xg"
+token_id = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzcwMjk3NjIzLCJpYXQiOjE3NzAyMTEyMjMsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTA2MDkwMTk2In0.HhvrxfuiMBUO7CIgqAILgx3JALBOHT_D7p-V8Z2TnYAHKWYFXBPgJhRUtXQHjyJ5UFjliETV9m-1l-yKD4PZUA"
 tsl = get_trading_instance(client_code, token_id)
 # ============================
 # RISK MANAGEMENT PARAMETERS
-# ============================
+# ============================all the
 opening_balance = 1005000  # tsl.get_balance()
 base_capital = 1000000
 market_money = opening_balance - base_capital
@@ -99,9 +99,14 @@ MONITOR_INTERVAL = 5    # Check every 5 seconds when IN position(s)
 SCAN_INTERVAL = 30      # Scan for entry every 30 seconds when NOT at max positions
 WATCHLIST_REFRESH_INTERVAL = 15 * 60  # Refresh watchlist every 15 minutes (900 seconds)
 REENTRY_COOLDOWN = 10 * 60  # Cooldown period after exit before re-entering same symbol (10 minutes)
+MIN_HOLD_CANDLES = 3    # Minimum 3 candles (9 minutes on 3-min TF) before RSI/LongStop exit is evaluated
 
 # Track last exit time for each symbol (prevents immediate re-entry)
 symbol_exit_times = {}
+
+# Track total orders placed today
+# NOTE: This is recalculated from completed_orders on each check to survive bot restarts
+total_orders_placed_today = 0
 
 # ============================
 # WATCHLIST FUNCTIONS
@@ -410,13 +415,25 @@ def scan_for_entry(all_ltp):
     # Check if we can take new position
     can_enter, current_positions, max_positions = can_take_new_position()
 
+    global total_orders_placed_today
+
     if not can_enter:
         print(f"\n⏸️ Max positions reached ({current_positions}/{max_positions}) - No scanning")
         return False
 
+    # ✅ FIX: Derive total_orders_placed_today from completed_orders + active positions
+    # This survives bot restarts (completed_orders may be empty on restart, but active positions persist)
+    active_count = sum(1 for v in orderbook.values() if isinstance(v, dict) and v.get('traded') == "yes")
+    total_orders_placed_today = len(completed_orders) + active_count
+
+    # Enforce max_order_for_today (total trades for the day, not just active)
+    if total_orders_placed_today >= max_order_for_today:
+        print(f"\n⛔ Daily order limit reached ({total_orders_placed_today}/{max_order_for_today}) - No more trades today")
+        return False
+
     print("\n" + "="*80)
     print(f"🔍 SCANNING FOR ENTRY - {datetime.datetime.now().strftime('%H:%M:%S')}")
-    print(f"📊 Current Positions: {current_positions}/{max_positions}")
+    print(f"📊 Current Positions: {current_positions}/{max_positions} | Daily Orders: {total_orders_placed_today}/{max_order_for_today}")
     print("="*80)
 
     # Calculate current number of orders placed
@@ -480,8 +497,10 @@ def scan_for_entry(all_ltp):
                 )
 
                 if ce_success:
+                    total_orders_placed_today += 1
                     print(f"\n{'='*80}")
                     print(f"✅ ENTRY EXECUTED: {ce_message}")
+                    print(f"📊 Daily Orders: {total_orders_placed_today}/{max_order_for_today}")
                     print(f"{'='*80}\n")
                     update_excel_sheets()
 
@@ -509,8 +528,10 @@ def scan_for_entry(all_ltp):
                 )
 
                 if pe_success:
+                    total_orders_placed_today += 1
                     print(f"\n{'='*80}")
                     print(f"✅ ENTRY EXECUTED: {pe_message}")
+                    print(f"📊 Daily Orders: {total_orders_placed_today}/{max_order_for_today}")
                     print(f"{'='*80}\n")
                     update_excel_sheets()
 
@@ -681,7 +702,7 @@ def main():
             if market_status == "market_not_started":
                 print(f"⏰ Waiting for market to start... Current time: {current_time.strftime('%H:%M:%S')}")
                 time.sleep(10)
-                pass
+                continue  # ✅ FIX: Skip all trading logic until market opens
 
             if market_status in ["market_closed", "max_loss_hit"]:
                 print(f"\n{'='*80}")
@@ -690,17 +711,16 @@ def main():
                 else:
                     print(f"⛔ MAX LOSS HIT - Stopping trading at {current_time.strftime('%H:%M:%S')}")
                 print(f"{'='*80}")
-                
-                """
+
+                # ✅ FIX: Uncommented - actually stop the bot
                 try:
                     order_details = tsl.cancel_all_orders()
                     print("✅ All pending orders cancelled")
                 except Exception as e:
                     print(f"⚠️ Error cancelling orders: {e}")
-                
+
                 print("\n👋 Bot stopped. See you tomorrow!")
                 break
-                """
 
             # Check if we have any active positions
             has_position, active_positions, position_count = is_position_active()
